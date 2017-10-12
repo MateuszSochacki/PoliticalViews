@@ -1,25 +1,31 @@
-var path = require('path');
+const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
-    entry: './src/main/js/app.js',
+    entry: {
+        app: ['./src/main/js/app.jsx']
+    },
     devtool: 'sourcemaps',
     cache: true,
     output: {
         path: __dirname,
         filename: './src/main/resources/static/built/bundle.js'
     },
+    resolve: {
+        // Look for modules in .ts(x) files first, then .js(x)
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+        // Add 'src' to our modulesDirectories, as all our app code will live in there, so Webpack should look in there for modules
+    },
     module: {
-        loaders: [
+        rules: [
             {
-                test: path.join(__dirname, '.'),
-                exclude: /(node_modules)/,
-                loader: 'babel-loader',
-                query: {
-                    cacheDirectory: true,
-                    presets: [['es2015', {es2015: 'react'}]]
-                    /*presets: ['es2015', 'react']*/
-                }
+                test: /\.jsx$/,
+                exclude: /(node_modules)/
             }
         ]
-    }
+    },
+    plugins: [
+        // Set up the notifier plugin - you can remove this (or set alwaysNotify false) if desired
+        new WebpackNotifierPlugin({alwaysNotify: true}),
+    ],
+    watch: true
 };
