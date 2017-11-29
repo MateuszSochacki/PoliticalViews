@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
 
     entry: {
-        app: ['./src/main/js/App.jsx']
+        app: ['./src/main/js/app.jsx']
 
     },
     devtool: 'sourcemaps',
