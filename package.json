@@ -2,10 +2,16 @@
   "name": "ReactTest",
   "version": "1.0.0",
   "description": "",
+  "main": "App.jsx",
   "dependencies": {
+    "browser-history": "^1.0.1",
+    "history": "^4.7.2",
+    "html-webpack-plugin": "^2.30.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-mdl": "^1.10.3",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "rest": "^2.0.0",
     "webpack": "^3.7.1",
     "webpack-notifier": "^1.5.0"
