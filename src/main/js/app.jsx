@@ -2,13 +2,11 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {
     BrowserRouter as Router,
-    Route,
-    NavLink, Switch,
+    NavLink
 
 } from 'react-router-dom'
+import Routes from './Routes'
 
-import Home from './home'
-import About from './about'
 
 class App extends Component {
 
@@ -26,10 +24,7 @@ class App extends Component {
                             <NavLink to="/about">About</NavLink>
                         </li>
                     </ul>
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/about" component={About}/>
-                    </Switch>
+                    <Routes/>
                 </div>
             </Router>
         );

@@ -4,10 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "SocialView", schema = "ii302782", catalog = "")
-@IdClass(SocialViewEntityPK.class)
 public class SocialViewEntity {
     private int idSocialView;
-    private int userIdUser;
     private String autonomy;
     private String system;
     private String votingReq;
@@ -32,16 +30,6 @@ public class SocialViewEntity {
 
     public void setIdSocialView(int idSocialView) {
         this.idSocialView = idSocialView;
-    }
-
-    @Id
-    @Column(name = "User_idUser")
-    public int getUserIdUser() {
-        return userIdUser;
-    }
-
-    public void setUserIdUser(int userIdUser) {
-        this.userIdUser = userIdUser;
     }
 
     @Basic
@@ -202,7 +190,6 @@ public class SocialViewEntity {
         SocialViewEntity that = (SocialViewEntity) o;
 
         if (idSocialView != that.idSocialView) return false;
-        if (userIdUser != that.userIdUser) return false;
         if (autonomy != null ? !autonomy.equals(that.autonomy) : that.autonomy != null) return false;
         if (system != null ? !system.equals(that.system) : that.system != null) return false;
         if (votingReq != null ? !votingReq.equals(that.votingReq) : that.votingReq != null) return false;
@@ -229,7 +216,6 @@ public class SocialViewEntity {
     @Override
     public int hashCode() {
         int result = idSocialView;
-        result = 31 * result + userIdUser;
         result = 31 * result + (autonomy != null ? autonomy.hashCode() : 0);
         result = 31 * result + (system != null ? system.hashCode() : 0);
         result = 31 * result + (votingReq != null ? votingReq.hashCode() : 0);

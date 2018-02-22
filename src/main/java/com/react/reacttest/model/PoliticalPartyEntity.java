@@ -8,6 +8,8 @@ public class PoliticalPartyEntity {
     private int idPoliticalParty;
     private String name;
     private String description;
+    private int coordinatesIdCoordinates;
+    private CoordinatesEntity coordinatesByCoordinatesIdCoordinates;
 
     @Id
     @Column(name = "idPoliticalParty")
@@ -39,6 +41,16 @@ public class PoliticalPartyEntity {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "Coordinates_idCoordinates")
+    public int getCoordinatesIdCoordinates() {
+        return coordinatesIdCoordinates;
+    }
+
+    public void setCoordinatesIdCoordinates(int coordinatesIdCoordinates) {
+        this.coordinatesIdCoordinates = coordinatesIdCoordinates;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,6 +59,7 @@ public class PoliticalPartyEntity {
         PoliticalPartyEntity that = (PoliticalPartyEntity) o;
 
         if (idPoliticalParty != that.idPoliticalParty) return false;
+        if (coordinatesIdCoordinates != that.coordinatesIdCoordinates) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
 
@@ -58,6 +71,17 @@ public class PoliticalPartyEntity {
         int result = idPoliticalParty;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + coordinatesIdCoordinates;
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false, insertable= false, updatable = false)
+    public CoordinatesEntity getCoordinatesByCoordinatesIdCoordinates() {
+        return coordinatesByCoordinatesIdCoordinates;
+    }
+
+    public void setCoordinatesByCoordinatesIdCoordinates(CoordinatesEntity coordinatesByCoordinatesIdCoordinates) {
+        this.coordinatesByCoordinatesIdCoordinates = coordinatesByCoordinatesIdCoordinates;
     }
 }

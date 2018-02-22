@@ -4,10 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Economy", schema = "ii302782", catalog = "")
-@IdClass(EconomyEntityPK.class)
 public class EconomyEntity {
     private int idEconomy;
-    private int userIdUser;
     private String environment;
     private String rich;
     private String minWage;
@@ -32,16 +30,6 @@ public class EconomyEntity {
 
     public void setIdEconomy(int idEconomy) {
         this.idEconomy = idEconomy;
-    }
-
-    @Id
-    @Column(name = "User_idUser")
-    public int getUserIdUser() {
-        return userIdUser;
-    }
-
-    public void setUserIdUser(int userIdUser) {
-        this.userIdUser = userIdUser;
     }
 
     @Basic
@@ -202,7 +190,6 @@ public class EconomyEntity {
         EconomyEntity that = (EconomyEntity) o;
 
         if (idEconomy != that.idEconomy) return false;
-        if (userIdUser != that.userIdUser) return false;
         if (environment != null ? !environment.equals(that.environment) : that.environment != null) return false;
         if (rich != null ? !rich.equals(that.rich) : that.rich != null) return false;
         if (minWage != null ? !minWage.equals(that.minWage) : that.minWage != null) return false;
@@ -226,7 +213,6 @@ public class EconomyEntity {
     @Override
     public int hashCode() {
         int result = idEconomy;
-        result = 31 * result + userIdUser;
         result = 31 * result + (environment != null ? environment.hashCode() : 0);
         result = 31 * result + (rich != null ? rich.hashCode() : 0);
         result = 31 * result + (minWage != null ? minWage.hashCode() : 0);
