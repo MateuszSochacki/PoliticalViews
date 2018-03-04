@@ -1,11 +1,19 @@
 import React from 'react';
 import Typography from 'material-ui/Typography'
+import Button from 'material-ui/Button';
+import AppBar from 'material-ui/AppBar';
 
 class Home extends React.Component {
 
+    constructor() {
+        super();
 
+
+    }
 
     render() {
+
+
 
         const style = {
             width: '100%'
@@ -13,9 +21,16 @@ class Home extends React.Component {
 
         return (
             <div style={style}>
-                <Typography align="center" gutterBottom>
-                    Zanalizuj swoje poglądy już teraz!
+                <Typography variant="display3" align="center" gutterBottom>
+                    Zanalizuj swoje poglądy już teraz!<br/>
+
+
+                    <Button variant="raised" color="primary" className="button">
+                        Rozpocznij test
+                    </Button>
                 </Typography>
+
+
             </div>
         );
     }

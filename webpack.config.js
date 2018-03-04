@@ -18,12 +18,17 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
         // Add 'src' to our modulesDirectories, as all our app code will live in there, so Webpack should look in there for modules
     },
+
     module: {
         rules: [
             {
                 test: /\.jsx$/,
-                loader: "babel-loader",
+                loader: ["babel-loader"],
                 exclude: /(node_modules)/
+            },
+            {
+                test: /\.css$/,
+                use: 'css-loader/locals'
             }
         ]
     },
@@ -32,7 +37,7 @@ module.exports = {
         },
         plugins: [
             // Set up the notifier plugin - you can remove this (or set alwaysNotify false) if desired
-            new WebpackNotifierPlugin({alwaysNotify: true}),
+            new WebpackNotifierPlugin({alwaysNotify: true})
         ],
         watch: true
 
