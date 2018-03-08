@@ -14,9 +14,8 @@ class About extends React.Component {
 
             <div>
                 <NavBar/>
-                <Chart/>
-                <Economy/>
-                <Coordinates/>
+                {/*<Economy/>
+                <Coordinates/>*/}
             </div>
         );
     }
