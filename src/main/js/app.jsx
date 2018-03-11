@@ -12,7 +12,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Home from "./components/home";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navigation";
 
 
 class App extends Component {
@@ -45,7 +45,7 @@ class App extends Component {
                             <NavLink to="/">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about">About</NavLink>
+                            <NavLink to="/Test">Test</NavLink>
                         </li>
                     </ul>
                     <Routes />

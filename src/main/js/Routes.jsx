@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Route, Switch} from 'react-router-dom'
 
 import Home from './components/home'
-import About from './components/about'
+import Test from './components/Test'
 
 
 class Routes extends Component {
@@ -14,7 +14,7 @@ class Routes extends Component {
 
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/about" component={About}/>
+                <Route path="/Test" component={Test}/>
             </Switch>
 
         );

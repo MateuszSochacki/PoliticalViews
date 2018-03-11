@@ -6,6 +6,10 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import Chart from './Chart';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
+import EditIcon from 'material-ui-icons/ModeEdit'
+
 
 
 function TabContainer(props) {
@@ -37,6 +41,10 @@ class NavBar extends Component {
         this.setState({ value });
     }
 
+    handleClick() {
+
+    }
+
     render() {
         const { value } = this.state;
 
@@ -49,7 +57,7 @@ class NavBar extends Component {
                             Sekcje testu:
                         </Typography>
                         <Typography variant ="body2" color="inherit">
-                            <Tabs value={value} onChange={this.handleChange}>
+                            <Tabs value={value} onChange={this.handleChange} indicatorColor="secondary">
                                 <Tab label="Ekonomia" />
                                 <Tab label="Państwo" />
                                 <Tab label="Światopogląd" />
@@ -60,6 +68,8 @@ class NavBar extends Component {
                 {value === 0 && this.state.economy.render()}
                 {value === 1 && this.state.chart.render()}
                 {value === 2 && this.state.coordinates.render()}
+
+                {this.state.value < 2 ? <EditIcon /> : <AddIcon />}
 
             </div>
 
