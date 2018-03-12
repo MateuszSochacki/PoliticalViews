@@ -7,7 +7,7 @@ import Chart from './Chart';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
 import Button from 'material-ui/Button';
-import AddIcon from 'material-ui-icons/Add';
+import ForwardIcon from 'material-ui-icons/ArrowForward';
 import EditIcon from 'material-ui-icons/ModeEdit'
 
 
@@ -26,7 +26,7 @@ class NavBar extends Component {
 
         super(props);
         this.handleChange = this.handleChange.bind(this);
-
+        this.handleClick = this.handleClick.bind(this);
 
         this.state = {
             value : 0,
@@ -41,13 +41,14 @@ class NavBar extends Component {
         this.setState({ value });
     }
 
-    handleClick() {
+    handleClick(event) {
 
+        const val = this.state.value + 1;
+        this.setState({value : val})
     }
 
     render() {
         const { value } = this.state;
-
 
         return (
             <div>
@@ -68,8 +69,17 @@ class NavBar extends Component {
                 {value === 0 && this.state.economy.render()}
                 {value === 1 && this.state.chart.render()}
                 {value === 2 && this.state.coordinates.render()}
-
-                {this.state.value < 2 ? <EditIcon /> : <AddIcon />}
+                <br/>
+                <Typography align="center">
+                    {this.state.value < 2 ?
+                        <Button variant="raised" size="medium" onClick={this.handleClick}>
+                            Następny dział <ForwardIcon/>
+                        </Button> :
+                        <Button variant="raised" size="medium" onClick={this.handleClick}>
+                            Pokaż wyniki <ForwardIcon/>
+                        </Button>
+                    }
+                </Typography>
 
             </div>
 

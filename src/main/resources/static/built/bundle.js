@@ -24840,8 +24840,8 @@ class Coordinates extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Coordinates__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_material_ui_Button__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_material_ui_Button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_material_ui_Button__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_icons_Add__ = __webpack_require__(650);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_icons_Add___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_material_ui_icons_Add__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_icons_ArrowForward__ = __webpack_require__(650);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_icons_ArrowForward___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_material_ui_icons_ArrowForward__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_material_ui_icons_ModeEdit__ = __webpack_require__(651);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_material_ui_icons_ModeEdit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_material_ui_icons_ModeEdit__);
 
@@ -24870,6 +24870,7 @@ class NavBar extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
 
         this.state = {
             value: 0,
@@ -24884,7 +24885,11 @@ class NavBar extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.setState({ value });
     }
 
-    handleClick() {}
+    handleClick(event) {
+
+        const val = this.state.value + 1;
+        this.setState({ value: val });
+    }
 
     render() {
         const { value } = this.state;
@@ -24920,7 +24925,22 @@ class NavBar extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             value === 0 && this.state.economy.render(),
             value === 1 && this.state.chart.render(),
             value === 2 && this.state.coordinates.render(),
-            this.state.value < 2 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_material_ui_icons_ModeEdit___default.a, null) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_material_ui_icons_Add___default.a, null)
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_3_material_ui_Typography___default.a,
+                { align: 'center' },
+                this.state.value < 2 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_8_material_ui_Button___default.a,
+                    { variant: 'raised', size: 'medium', onClick: this.handleClick },
+                    'Nast\u0119pny dzia\u0142 ',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_material_ui_icons_ArrowForward___default.a, null)
+                ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_8_material_ui_Button___default.a,
+                    { variant: 'raised', size: 'medium', onClick: this.handleClick },
+                    'Poka\u017C wyniki ',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_material_ui_icons_ArrowForward___default.a, null)
+                )
+            )
         );
     }
 
@@ -75821,9 +75841,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var SvgIconCustom = global.__MUI_SvgIcon__ || _SvgIcon2.default;
 
-var _ref = _react2.default.createElement('path', { d: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z' });
+var _ref = _react2.default.createElement('path', { d: 'M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z' });
 
-var Add = function Add(props) {
+var ArrowForward = function ArrowForward(props) {
   return _react2.default.createElement(
     SvgIconCustom,
     props,
@@ -75831,10 +75851,10 @@ var Add = function Add(props) {
   );
 };
 
-Add = (0, _pure2.default)(Add);
-Add.muiName = 'SvgIcon';
+ArrowForward = (0, _pure2.default)(ArrowForward);
+ArrowForward.muiName = 'SvgIcon';
 
-exports.default = Add;
+exports.default = ArrowForward;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)))
 
 /***/ }),
