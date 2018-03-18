@@ -8,6 +8,7 @@ public class UserEntityPK implements Serializable {
     private int idUser;
     private int socialViewIdSocialView;
     private int economyIdEconomy;
+    private int stateViewIdStateView;
 
     @Column(name = "idUser")
     @Id
@@ -59,5 +60,15 @@ public class UserEntityPK implements Serializable {
         result = 31 * result + socialViewIdSocialView;
         result = 31 * result + economyIdEconomy;
         return result;
+    }
+
+    @Column(name = "StateView_idStateView")
+    @Id
+    public int getStateViewIdStateView() {
+        return stateViewIdStateView;
+    }
+
+    public void setStateViewIdStateView(int stateViewIdStateView) {
+        this.stateViewIdStateView = stateViewIdStateView;
     }
 }

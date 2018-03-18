@@ -8,8 +8,8 @@ import Economy from "./Economy";
 import Coordinates from "./Coordinates";
 import Button from 'material-ui/Button';
 import ForwardIcon from 'material-ui-icons/ArrowForward';
-import EditIcon from 'material-ui-icons/ModeEdit'
-
+import SocialView from "./SocialView";
+import StateView from "./StateView";
 
 
 function TabContainer(props) {
@@ -20,7 +20,7 @@ function TabContainer(props) {
     );
 }
 
-class NavBar extends Component {
+class Navigation extends Component {
 
     constructor(props) {
 
@@ -32,7 +32,9 @@ class NavBar extends Component {
             value : 0,
             economy : new Economy(),
             chart : new Chart(),
-            coordinates : new Coordinates()
+            coordinates : new Coordinates(),
+            socialView : new SocialView(),
+            stateView : new StateView()
         }
     }
 
@@ -67,8 +69,8 @@ class NavBar extends Component {
                     </Toolbar>
                 </AppBar><br/>
                 {value === 0 && this.state.economy.render()}
-                {value === 1 && this.state.chart.render()}
-                {value === 2 && this.state.coordinates.render()}
+                {value === 1 && this.state.stateView.render()}
+                {value === 2 && this.state.socialView.render()}
                 <br/>
                 <Typography align="center">
                     {this.state.value < 2 ?
@@ -88,4 +90,4 @@ class NavBar extends Component {
     }
 
 }
-export default NavBar;
+export default Navigation;

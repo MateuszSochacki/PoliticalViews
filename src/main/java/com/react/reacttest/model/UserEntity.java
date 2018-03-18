@@ -13,6 +13,8 @@ public class UserEntity {
     private CoordinatesEntity coordinatesByCoordinatesIdCoordinates;
     private SocialViewEntity socialViewBySocialViewIdSocialView;
     private EconomyEntity economyByEconomyIdEconomy;
+    private int stateViewIdStateView;
+    private StateViewEntity stateViewByStateViewIdStateView;
 
     @Id
     @Column(name = "idUser")
@@ -42,6 +44,16 @@ public class UserEntity {
 
     public void setSocialViewIdSocialView(int socialViewIdSocialView) {
         this.socialViewIdSocialView = socialViewIdSocialView;
+    }
+
+    @Id
+    @Column(name = "StateView_idStateView")
+    public int getStateViewIdStateView() {
+        return stateViewIdStateView;
+    }
+
+    public void setStateViewIdStateView(int stateViewIdStateView) {
+        this.stateViewIdStateView = stateViewIdStateView;
     }
 
     @Id
@@ -79,7 +91,7 @@ public class UserEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false, insertable= false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false, insertable = false, updatable = false)})
     public CoordinatesEntity getCoordinatesByCoordinatesIdCoordinates() {
         return coordinatesByCoordinatesIdCoordinates;
     }
@@ -89,7 +101,7 @@ public class UserEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "SocialView_idSocialView", referencedColumnName = "idSocialView", nullable = false, insertable= false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "SocialView_idSocialView", referencedColumnName = "idSocialView", nullable = false, insertable = false, updatable = false)})
     public SocialViewEntity getSocialViewBySocialViewIdSocialView() {
         return socialViewBySocialViewIdSocialView;
     }
@@ -99,12 +111,23 @@ public class UserEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "Economy_idEconomy", referencedColumnName = "idEconomy", nullable = false, insertable= false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "Economy_idEconomy", referencedColumnName = "idEconomy", nullable = false, insertable = false, updatable = false)})
     public EconomyEntity getEconomyByEconomyIdEconomy() {
         return economyByEconomyIdEconomy;
     }
 
     public void setEconomyByEconomyIdEconomy(EconomyEntity economyByEconomyIdEconomy) {
         this.economyByEconomyIdEconomy = economyByEconomyIdEconomy;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "StateView_idStateView", referencedColumnName = "idStateView", nullable = false, insertable = false, updatable = false)
+    public StateViewEntity getStateViewByStateViewIdStateView() {
+        return stateViewByStateViewIdStateView;
+    }
+
+    public void setStateViewByStateViewIdStateView(StateViewEntity stateViewByStateViewIdStateView) {
+        this.stateViewByStateViewIdStateView = stateViewByStateViewIdStateView;
     }
 }

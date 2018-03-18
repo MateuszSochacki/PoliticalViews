@@ -76,7 +76,7 @@ public class IdeologiesEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false, insertable= false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false, insertable = false, updatable = false)})
     public CoordinatesEntity getCoordinatesByCoordinatesIdCoordinates() {
         return coordinatesByCoordinatesIdCoordinates;
     }

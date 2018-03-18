@@ -1,6 +1,7 @@
 package com.react.reacttest.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "Economy", schema = "ii302782", catalog = "")
@@ -21,6 +22,7 @@ public class EconomyEntity {
     private String tradeUnions;
     private String vat;
     private String controls;
+    private Collection<UserEntity> usersByIdEconomy;
 
     @Id
     @Column(name = "idEconomy")
@@ -229,5 +231,14 @@ public class EconomyEntity {
         result = 31 * result + (vat != null ? vat.hashCode() : 0);
         result = 31 * result + (controls != null ? controls.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "economyByEconomyIdEconomy")
+    public Collection<UserEntity> getUsersByIdEconomy() {
+        return usersByIdEconomy;
+    }
+
+    public void setUsersByIdEconomy(Collection<UserEntity> usersByIdEconomy) {
+        this.usersByIdEconomy = usersByIdEconomy;
     }
 }
