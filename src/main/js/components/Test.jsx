@@ -14,8 +14,6 @@ class About extends React.Component {
 
             <div>
                 <Navigation/>
-                {/*<Economy/>
-                <Coordinates/>*/}
             </div>
         );
     }

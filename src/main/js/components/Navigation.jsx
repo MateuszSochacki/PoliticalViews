@@ -1,15 +1,20 @@
 import React, {Component} from 'react'
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import Chart from './Chart';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
-import Button from 'material-ui/Button';
 import ForwardIcon from 'material-ui-icons/ArrowForward';
+import BackIcon from 'material-ui-icons/ArrowBack';
 import SocialView from "./SocialView";
 import StateView from "./StateView";
+import { MuiThemeProvider} from "material-ui";
+import Typography from "material-ui/es/Typography/Typography";
+import Button from "material-ui/es/Button/Button";
+import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
+
+
 
 
 function TabContainer(props) {
@@ -19,6 +24,7 @@ function TabContainer(props) {
         </Typography>
     );
 }
+
 
 class Navigation extends Component {
 
@@ -30,11 +36,11 @@ class Navigation extends Component {
 
         this.state = {
             value : 0,
-            economy : new Economy(),
+            economy : <Economy/>,
             chart : new Chart(),
             coordinates : new Coordinates(),
-            socialView : new SocialView(),
-            stateView : new StateView()
+            socialView : <SocialView/>,
+            stateView : <StateView/>
         }
     }
 
@@ -54,23 +60,26 @@ class Navigation extends Component {
 
         return (
             <div>
+                {/*<MuiThemeProvider>*/}
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="title" color="inherit">
                             Sekcje testu:
                         </Typography>
                         <Typography variant ="body2" color="inherit">
+
                             <Tabs value={value} onChange={this.handleChange} indicatorColor="secondary">
-                                <Tab label="Ekonomia" />
-                                <Tab label="Państwo" />
+                                <Tab label="Ekonomia"/>
+                                <Tab label="Państwo"/>
                                 <Tab label="Światopogląd" />
                             </Tabs>
                         </Typography>
+
                     </Toolbar>
                 </AppBar><br/>
-                {value === 0 && this.state.economy.render()}
-                {value === 1 && this.state.stateView.render()}
-                {value === 2 && this.state.socialView.render()}
+                {value === 0 && <Economy/>}
+                {value === 1 && this.state.stateView}
+                {value === 2 && this.state.socialView}
                 <br/>
                 <Typography align="center">
                     {this.state.value < 2 ?
@@ -81,8 +90,10 @@ class Navigation extends Component {
                             Pokaż wyniki <ForwardIcon/>
                         </Button>
                     }
+
                 </Typography>
 
+               {/* </MuiThemeProvider>*/}
             </div>
 
 

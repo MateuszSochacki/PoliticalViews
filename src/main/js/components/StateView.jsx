@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import Radio from 'material-ui/Radio'
 import green from "material-ui/es/colors/green";
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
+import Checkbox from "material-ui/es/Checkbox/Checkbox";
+import {
+    FormLabel,
+    FormControl,
+    FormGroup,
+    FormControlLabel,
+    FormHelperText,
+} from 'material-ui/Form';
+import Radio, { RadioGroup } from 'material-ui/Radio';
 
 /*const styles = {
     checked: {
@@ -17,6 +25,7 @@ class StateView extends Component {
         this.state = {
             selectedValue: 'a',
         };
+
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -30,6 +39,12 @@ class StateView extends Component {
                 method: 'POST',
                 body: JSON.stringify(this.state)
             }).catch(err => console.error(err));*/
+        console.log("halohalowyłaczam");
+
+    }
+
+    componentWillUnmount() {
+        //console.log("halohalowyłaczam");
     }
 
 
@@ -46,7 +61,17 @@ class StateView extends Component {
         return (
             <div>
                 <div>
-                    <Radio
+                    <Checkbox
+                        /*checked={this.state.jason}
+                        onChange={this.handleChange('jason')}
+                        value="jason"*/
+                    />
+                    <Checkbox
+                        /*checked={this.state.jason}
+                        onChange={this.handleChange('jason')}
+                        value="jason"*/
+                    />
+                   {/* <Radio
                        checked={this.state.selectedValue === 'a'}
                         onChange={this.handleChange}
                         value="a"
@@ -66,8 +91,63 @@ class StateView extends Component {
                         value="c"
                         name="radio-button-demo"
                         aria-label="C"
-                    />
+                    />*/}
                 </div>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+
 
 
             </div>
@@ -75,8 +155,8 @@ class StateView extends Component {
     }
 }
 
-StateView.propTypes = {
+/*StateView.propTypes = {
     classes: PropTypes.object.isRequired,
-};
+};*/
 
 export default StateView;

@@ -7,13 +7,6 @@ import {
 } from 'react-router-dom'
 import Routes from './Routes.jsx'
 import 'typeface-roboto'
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import Home from "./components/home";
-import NavBar from "./components/Navigation";
-
 
 class App extends Component {
 

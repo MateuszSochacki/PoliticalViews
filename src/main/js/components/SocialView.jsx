@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import green from "material-ui/es/colors/green";
-import Radio from 'material-ui/Radio';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
+import {
+    FormLabel,
+    FormControl,
+    FormGroup,
+    FormControlLabel
+} from 'material-ui/Form';
+import Radio, { RadioGroup } from 'material-ui/Radio';
 
 /*const styles = {
     checked: {
@@ -17,6 +23,7 @@ class SocialView extends Component {
         this.state = {
             selectedValue: 'a',
         };
+
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -30,8 +37,12 @@ class SocialView extends Component {
                 method: 'POST',
                 body: JSON.stringify(this.state)
             }).catch(err => console.error(err));*/
+
     }
 
+    /*componentWillReceiveProps(nextProps) {
+        this.setState({selectedValue : nextProps});
+    }*/
 
     saveData() {
 
@@ -66,12 +77,61 @@ class SocialView extends Component {
                     name="radio-button-demo"
                     aria-label="C"
                 />
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
             </div>
+
         );
     }
 }
-SocialView.propTypes = {
+/*SocialView.propTypes = {
     classes: PropTypes.object.isRequired,
-};
+};*/
 
 export default SocialView;

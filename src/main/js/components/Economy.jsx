@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import {
+    FormLabel,
+    FormControl,
+    FormGroup,
+    FormControlLabel,
+    FormHelperText,
+} from 'material-ui/Form';
+import Radio, { RadioGroup } from 'material-ui/Radio';
 
 class Economy extends Component {
 
@@ -35,7 +43,93 @@ class Economy extends Component {
     render() {
 
         return(
-            <div>bazatest</div>
+            <div>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" required>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup>
+
+                    </RadioGroup>
+                </FormControl>
+
+            </div>
         );
     }
 }
