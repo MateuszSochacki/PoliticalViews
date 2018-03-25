@@ -25,7 +25,6 @@ function TabContainer(props) {
     );
 }
 
-
 class Navigation extends Component {
 
     constructor(props) {
@@ -36,9 +35,8 @@ class Navigation extends Component {
 
         this.state = {
             value : 0,
-            economy : <Economy/>,
-            chart : new Chart(),
             coordinates : new Coordinates(),
+            economy : <Economy/>,
             socialView : <SocialView/>,
             stateView : <StateView/>
         }
@@ -51,8 +49,17 @@ class Navigation extends Component {
 
     handleClick(event) {
 
+        /*if (this.state.value === 0) {
+            saveData(this.state);
+        } else if (this.state.value === 1) {
+            this.state.stateView.saveData();
+        } else if (this.state.value === 2) {
+            this.state.socialView.saveData();
+        }*/
+
         const val = this.state.value + 1;
         this.setState({value : val})
+
     }
 
     render() {
@@ -77,7 +84,7 @@ class Navigation extends Component {
 
                     </Toolbar>
                 </AppBar><br/>
-                {value === 0 && <Economy/>}
+                {value === 0 && this.state.economy}
                 {value === 1 && this.state.stateView}
                 {value === 2 && this.state.socialView}
                 <br/>

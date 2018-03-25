@@ -23,33 +23,41 @@ class StateView extends Component {
         super(props);
 
         this.state = {
-            selectedValue: 'a',
+            values : {
+                environment : "",
+                autonomy : "",
+                system : "",
+                votingReq : "",
+                militaryService : "",
+                foreignPolicy : "",
+                immigrationReq : "",
+                immigrationRights : "",
+                media : ""
+            }
         };
 
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
-
-        /*fetch('http://localhost:8080/api/coordinates',
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST',
-                body: JSON.stringify(this.state)
-            }).catch(err => console.error(err));*/
         console.log("halohalowyłaczam");
 
     }
 
     componentWillUnmount() {
-        //console.log("halohalowyłaczam");
+        this.saveData();
     }
 
 
     saveData() {
-
+        fetch('http://localhost:8080/api/stateviews',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(this.state.values)
+            }).catch(err => console.error(err));
     }
 
     handleChange(event) {

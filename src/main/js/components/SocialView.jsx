@@ -16,36 +16,40 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
     },
 };*/
 
+
 class SocialView extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedValue: 'a',
+            values : {
+                religion : "",
+                women : "",
+                deathPenalty : "",
+                stimulants : "",
+                orientation : "",
+                abortion : "",
+                euthanasia : "",
+                race : ""
+            }
         };
 
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
-
-        /*fetch('http://localhost:8080/api/coordinates',
+    saveData() {
+        fetch('http://localhost:8080/api/socialviews',
             {
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 method: 'POST',
-                body: JSON.stringify(this.state)
-            }).catch(err => console.error(err));*/
-
+                body: JSON.stringify(this.state.values)
+            }).catch(err => console.error(err));
     }
 
-    /*componentWillReceiveProps(nextProps) {
-        this.setState({selectedValue : nextProps});
-    }*/
-
-    saveData() {
-
+    componentWillUnmount() {
+        this.saveData();
     }
 
     handleChange(event) {

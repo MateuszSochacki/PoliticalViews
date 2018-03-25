@@ -8,38 +8,46 @@ import {
 } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 
+
 class Economy extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            'incTax' : "20%"
+            values : {
+                rich : "",
+                minWage : "",
+                protectionism : "",
+                corpTax : "",
+                incTax : "",
+                ground : "",
+                welfare : "",
+                education : "",
+                healthcare : "",
+                monopolies : "",
+                retirenment : "",
+                tradeUnions : "",
+                vat : "",
+                controls : ""
+            }
         };
-        //this.saveData(this.state.incTax);
+    }
+
+    saveData() {
         fetch('http://localhost:8080/api/economy',
             {   headers: {
                 'Content-Type': 'application/json',
             },
                 method: 'POST',
-                body: JSON.stringify(this.state)
+                body: JSON.stringify(this.state.values)
             }).catch( err => console.error(err));
-    }
-
-    componentDidMount() {
-
-        /*fetch('http://localhost:8080/api/economy',
-            {   headers: {
-                'Content-Type': 'application/json',
-            },
-                method: 'POST',
-                body: JSON.stringify(this.state)
-            }).catch( err => console.error(err));*/
-    }
-
-
-    saveData() {
 
     }
+
+    componentWillUnmount() {
+        this.saveData();
+    }
+
     render() {
 
         return(
