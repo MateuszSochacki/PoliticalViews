@@ -85,7 +85,7 @@ class Navigation extends Component {
                     </Toolbar>
                 </AppBar><br/>
                 {value === 0 && this.state.economy}
-                {value === 1 && this.state.stateView}
+                {value === 1 && <StateView/>}
                 {value === 2 && this.state.socialView}
                 <br/>
                 <Typography align="center">

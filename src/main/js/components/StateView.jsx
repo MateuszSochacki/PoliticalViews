@@ -18,25 +18,38 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
     },
 };*/
 
+function getQuestion(num) {
+    const questions = ["Które z podanych czynników wpływających na środowisko, " +
+    "powinny być poddane państwowej regulacji?", "Którą z podanych form państwowych uważasz " +
+    "za najodpowiedniejszą?"];
+    return (questions[num]);
+}
+
 class StateView extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            values : {
-                environment : "",
-                autonomy : "",
-                system : "",
-                votingReq : "",
-                militaryService : "",
-                foreignPolicy : "",
-                immigrationReq : "",
-                immigrationRights : "",
-                media : ""
-            }
+            values: {
+                environment: "",
+                autonomy: "",
+                system: "",
+                votingReq: "",
+                militaryService: "",
+                foreignPolicy: "",
+                immigrationReq: "",
+                immigrationRights: "",
+            },
+
+            airPollutions: false,
+            waterPollutions: false,
+            landPollutions: false,
+            climateChanges: false
+
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeCheck = this.handleChangeCheck.bind(this);
+        this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +61,38 @@ class StateView extends Component {
         this.saveData();
     }
 
+    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+
+        return (
+            <RadioGroup
+                aria-label={name}
+                name={name}
+                value={groupValue}
+                onChange={this.handleChangeRadio}
+            >
+                <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
+                <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
+                <FormControlLabel value={text3} control={<Radio/>} label={text3}/>
+                <FormControlLabel value={text4} control={<Radio/>} label={text4}/>
+            </RadioGroup>
+        )
+    }
+
+    getCheckboxForm(val, label, checkVal) {
+
+        return (
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={checkVal}
+                        onChange={this.handleChangeCheck}
+                        value={val}
+                    />
+                }
+                label={label}
+            />
+        );
+    }
 
     saveData() {
         fetch('http://localhost:8080/api/stateviews',
@@ -60,58 +105,35 @@ class StateView extends Component {
             }).catch(err => console.error(err));
     }
 
-    handleChange(event) {
-        this.setState({selectedValue: event.target.value});
+    handleChangeCheck(event) {
+
+            /*value = (value !== true);*/
+            this.setState({[event.target.value] : event.target.checked});
+        };
+
+    handleChangeRadio(event) {
+        const values = this.state.values;
+        values[event.target.name] = event.target.value
+        this.setState({values});
     }
 
     render() {
 
         return (
             <div>
-                <div>
-                    <Checkbox
-                        /*checked={this.state.jason}
-                        onChange={this.handleChange('jason')}
-                        value="jason"*/
-                    />
-                    <Checkbox
-                        /*checked={this.state.jason}
-                        onChange={this.handleChange('jason')}
-                        value="jason"*/
-                    />
-                   {/* <Radio
-                       checked={this.state.selectedValue === 'a'}
-                        onChange={this.handleChange}
-                        value="a"
-                        name="radio-button-demo"
-                        aria-label="A"
-                    />
-                    <Radio
-                        checked={this.state.selectedValue === 'b'}
-                        onChange={this.handleChange}
-                        value="b"
-                        name="radio-button-demo"
-                        aria-label="B"
-                    />
-                    <Radio
-                        checked={this.state.selectedValue === 'c'}
-                        onChange={this.handleChange}
-                        value="c"
-                        name="radio-button-demo"
-                        aria-label="C"
-                    />*/}
-                </div>
                 <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
-
-                    </RadioGroup>
+                    <FormLabel component="legend">{getQuestion(0)}</FormLabel>
+                    <FormGroup>
+                        {this.getCheckboxForm("airPollutions", "Zanieczyszczenia powietrza.", this.state.airPollutions)}
+                        {this.getCheckboxForm("waterPollutions", "Zanieczyszczenia wodne.", this.state.waterPollutions)}
+                        {this.getCheckboxForm("landPollutions", "Zanieczyszczenia gleby.", this.state.landPollutions)}
+                        {this.getCheckboxForm("climateChanges", "Zmiany klimatu.", this.state.climateChanges)}
+                    </FormGroup>
                 </FormControl>
                 <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
-
-                    </RadioGroup>
+                    <FormLabel component="legend">{getQuestion(1)}</FormLabel>
+                    {this.getRadioGroup("Państwo unitarne", "Federacja",
+                        "Konfederacja", "Unia", "autonomy", this.state.values.autonomy)}
                 </FormControl>
                 <FormControl component="fieldset" required>
                     <FormLabel component="legend"></FormLabel>

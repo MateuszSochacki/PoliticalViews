@@ -82634,7 +82634,7 @@ class Navigation extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
             value === 0 && this.state.economy,
-            value === 1 && this.state.stateView,
+            value === 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__StateView__["a" /* default */], null),
             value === 2 && this.state.socialView,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -84792,6 +84792,11 @@ function createBroadcast (initialState) {
     },
 };*/
 
+function getQuestion(num) {
+    const questions = ["Które z podanych czynników wpływających na środowisko, " + "powinny być poddane państwowej regulacji?", "Którą z podanych form państwowych uważasz " + "za najodpowiedniejszą?"];
+    return questions[num];
+}
+
 class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {
         super(props);
@@ -84805,12 +84810,18 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 militaryService: "",
                 foreignPolicy: "",
                 immigrationReq: "",
-                immigrationRights: "",
-                media: ""
-            }
+                immigrationRights: ""
+            },
+
+            airPollutions: false,
+            waterPollutions: false,
+            landPollutions: false,
+            climateChanges: false
+
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeCheck = this.handleChangeCheck.bind(this);
+        this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
 
     componentDidMount() {
@@ -84819,6 +84830,35 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     componentWillUnmount() {
         this.saveData();
+    }
+
+    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_material_ui_Radio__["RadioGroup"],
+            {
+                'aria-label': name,
+                name: name,
+                value: groupValue,
+                onChange: this.handleChangeRadio
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text1 }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text2 }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text3, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text3 }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text4, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text4 })
+        );
+    }
+
+    getCheckboxForm(val, label, checkVal) {
+
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], {
+            control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_es_Checkbox_Checkbox__["a" /* default */], {
+                checked: checkVal,
+                onChange: this.handleChangeCheck,
+                value: val
+            }),
+            label: label
+        });
     }
 
     saveData() {
@@ -84831,8 +84871,16 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         }).catch(err => console.error(err));
     }
 
-    handleChange(event) {
-        this.setState({ selectedValue: event.target.value });
+    handleChangeCheck(event) {
+
+        /*value = (value !== true);*/
+        this.setState({ [event.target.value]: event.target.checked });
+    }
+
+    handleChangeRadio(event) {
+        const values = this.state.values;
+        values[event.target.name] = event.target.value;
+        this.setState({ values });
     }
 
     render() {
@@ -84841,30 +84889,31 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             'div',
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_es_Checkbox_Checkbox__["a" /* default */]
-                /*checked={this.state.jason}
-                onChange={this.handleChange('jason')}
-                value="jason"*/
-                , null),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_es_Checkbox_Checkbox__["a" /* default */]
-                /*checked={this.state.jason}
-                onChange={this.handleChange('jason')}
-                value="jason"*/
-                , null)
+                __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControl"],
+                { component: 'fieldset', required: true },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormLabel"],
+                    { component: 'legend' },
+                    getQuestion(0)
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormGroup"],
+                    null,
+                    this.getCheckboxForm("airPollutions", "Zanieczyszczenia powietrza.", this.state.airPollutions),
+                    this.getCheckboxForm("waterPollutions", "Zanieczyszczenia wodne.", this.state.waterPollutions),
+                    this.getCheckboxForm("landPollutions", "Zanieczyszczenia gleby.", this.state.landPollutions),
+                    this.getCheckboxForm("climateChanges", "Zmiany klimatu.", this.state.climateChanges)
+                )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControl"],
                 { component: 'fieldset', required: true },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormLabel"], { component: 'legend' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio__["RadioGroup"], null)
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControl"],
-                { component: 'fieldset', required: true },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormLabel"], { component: 'legend' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio__["RadioGroup"], null)
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormLabel"],
+                    { component: 'legend' },
+                    getQuestion(1)
+                ),
+                this.getRadioGroup("Państwo unitarne", "Federacja", "Konfederacja", "Unia", "autonomy", this.state.values.autonomy)
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControl"],
