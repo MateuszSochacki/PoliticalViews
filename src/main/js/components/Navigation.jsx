@@ -68,7 +68,7 @@ class Navigation extends Component {
         return (
             <div>
                 {/*<MuiThemeProvider>*/}
-                <AppBar position="static">
+                <AppBar position="fixed">
                     <Toolbar>
                         <Typography variant="title" color="inherit">
                             Sekcje testu:

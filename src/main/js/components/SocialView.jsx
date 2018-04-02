@@ -35,6 +35,56 @@ class SocialView extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeCheck = this.handleChangeCheck.bind(this);
+        this.handleChangeRadio = this.handleChangeRadio.bind(this);
+    }
+
+    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+
+        return (
+            <RadioGroup
+                aria-label={name}
+                name={name}
+                value={groupValue}
+                onChange={this.handleChangeRadio}
+            >
+                <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
+                <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
+                <FormControlLabel value={text3} control={<Radio/>} label={text3}/>
+                <FormControlLabel value={text4} control={<Radio/>} label={text4}/>
+            </RadioGroup>
+        )
+    }
+
+    getRadioPair(text1, text2, name, groupValue) {
+
+        return (
+            <RadioGroup
+                aria-label={name}
+                name={name}
+                value={groupValue}
+                onChange={this.handleChangeRadio}
+            >
+                <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
+                <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
+            </RadioGroup>
+        )
+    }
+
+    getCheckboxForm(val, label, checkVal) {
+
+        return (
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={checkVal}
+                        onChange={this.handleChangeCheck}
+                        value={val}
+                    />
+                }
+                label={label}
+            />
+        );
     }
 
     saveData() {
@@ -54,6 +104,18 @@ class SocialView extends Component {
 
     handleChange(event) {
         this.setState({selectedValue: event.target.value});
+    }
+
+    handleChangeCheck(event) {
+
+        /*value = (value !== true);*/
+        this.setState({[event.target.value] : event.target.checked});
+    };
+
+    handleChangeRadio(event) {
+        const values = this.state.values;
+        values[event.target.name] = event.target.value
+        this.setState({values});
     }
 
     render() {

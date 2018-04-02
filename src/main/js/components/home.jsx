@@ -1,7 +1,6 @@
 import React from 'react';
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button';
-import AppBar from 'material-ui/AppBar';
 
 class Home extends React.Component {
 
@@ -29,8 +28,6 @@ class Home extends React.Component {
                         Rozpocznij test
                     </Button>
                 </Typography>
-
-
             </div>
         );
     }
