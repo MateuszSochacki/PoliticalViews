@@ -8,7 +8,6 @@ class Home extends React.Component {
 
     constructor() {
         super();
-        this.handleClick = this.handleClick.bind(this);
     }
 
     render() {
@@ -21,9 +20,11 @@ class Home extends React.Component {
             <div style={style}>
                 <Typography variant="display3" align="center" gutterBottom>
                     Zanalizuj swoje poglądy już teraz!<br/>
-                        <Button variant="raised" color="primary" className="button" href="/Test">
+                    <Link to="/Test">
+                        <Button variant="raised" color="primary" className="button">
                             Rozpocznij test
                         </Button>
+                    </Link>
                 </Typography>
             </div>
         );
