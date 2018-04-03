@@ -9,6 +9,7 @@ import {
     FormControlLabel
 } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
+import Typography from "material-ui/Typography";
 
 /*const styles = {
     checked: {

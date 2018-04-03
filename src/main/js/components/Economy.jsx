@@ -7,6 +7,7 @@ import {
     FormHelperText,
 } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
+import Typography from "material-ui/Typography";
 
 function FormContainer(props) {
     return (

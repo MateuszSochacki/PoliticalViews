@@ -6,15 +6,10 @@ import Chart from './Chart';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
 import ForwardIcon from 'material-ui-icons/ArrowForward';
-import BackIcon from 'material-ui-icons/ArrowBack';
 import SocialView from "./SocialView";
 import StateView from "./StateView";
-import { MuiThemeProvider} from "material-ui";
 import Typography from "material-ui/es/Typography/Typography";
 import Button from "material-ui/es/Button/Button";
-import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
-
-
 
 
 function TabContainer(props) {

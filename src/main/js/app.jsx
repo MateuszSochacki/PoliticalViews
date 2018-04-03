@@ -21,18 +21,6 @@ class App extends Component {
         return (
             <Router >
                 <div className="container">
-                   {/*<AppBar position="static">
-                        <Toolbar>
-                            <Typography variant="title" color="inherit">
-                                Sekcje testu:
-                            </Typography>
-                            <Typography variant ="body2" color="inherit">
-                                <Button color="inherit">Ekonomia</Button>
-                                <Button color="inherit">Państwo</Button>
-                                <Button color="inherit">Światpogląd</Button>
-                            </Typography>
-                    </Toolbar>
-                    </AppBar>*/}
                     <ul>
                         <li>
                             <NavLink to="/">Home</NavLink>
