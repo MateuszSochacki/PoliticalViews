@@ -30527,6 +30527,14 @@ module.exports = toNumber;
 
 
 
+function FormContainer(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        Typography,
+        { align: 'center', component: 'div', style: { paddingBottom: 40 } },
+        props.children
+    );
+}
+
 class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     constructor(props) {
@@ -84384,6 +84392,14 @@ exports.default = ArrowBack;
         color: green[500],
     },
 };*/
+
+function FormContainer(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        Typography,
+        { align: 'center', component: 'div', style: { paddingBottom: 40 } },
+        props.children
+    );
+}
 
 class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {

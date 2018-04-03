@@ -8,6 +8,18 @@ import {
 } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 
+function FormContainer(props) {
+    return (
+        <Typography align="center" component="div" style={{ paddingBottom: 40 }}>
+            {props.children}
+        </Typography>
+    );
+}
+
+function getQuestion(num) {
+    const questions = [];
+    return (questions[num]);
+}
 
 class Economy extends Component {
 
@@ -52,6 +64,7 @@ class Economy extends Component {
 
         return(
             <div>
+                <Typography align="center">
                 <FormControl component="fieldset" required>
                     <FormLabel component="legend"></FormLabel>
                     <RadioGroup>
@@ -136,7 +149,7 @@ class Economy extends Component {
 
                     </RadioGroup>
                 </FormControl>
-
+                </Typography>
             </div>
         );
     }

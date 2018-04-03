@@ -16,6 +16,18 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
     },
 };*/
 
+function FormContainer(props) {
+    return (
+        <Typography align="center" component="div" style={{ paddingBottom: 40 }}>
+            {props.children}
+        </Typography>
+    );
+}
+
+function getQuestion(num) {
+    const questions = [];
+    return (questions[num]);
+}
 
 class SocialView extends Component {
     constructor(props) {
@@ -122,6 +134,7 @@ class SocialView extends Component {
 
         return (
             <div>
+                <Typography align="center">
                 <Radio
                     checked={this.state.selectedValue === 'a'}
                     onChange={this.handleChange}
@@ -191,6 +204,7 @@ class SocialView extends Component {
 
                     </RadioGroup>
                 </FormControl>
+                </Typography>
             </div>
 
         );
