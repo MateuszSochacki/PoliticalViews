@@ -19,7 +19,7 @@ import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
 
 function TabContainer(props) {
     return (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
+        <Typography component="div" style={{ paddingBottom: 8 * 3 }}>
             {props.children}
         </Typography>
     );
