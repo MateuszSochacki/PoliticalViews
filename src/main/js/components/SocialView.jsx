@@ -26,7 +26,8 @@ function FormContainer(props) {
 }
 
 function getQuestion(num) {
-    const questions = [];
+    const questions = ["Jak duży wpływ powinna mieć religia na rząd lub władce?",
+    "Jakie prawa oraz zasady powinny obejmować kobiety w państwie? "];
     return (questions[num]);
 }
 
@@ -136,75 +137,53 @@ class SocialView extends Component {
         return (
             <div>
                 <Typography align="center">
-                <Radio
-                    checked={this.state.selectedValue === 'a'}
-                    onChange={this.handleChange}
-                    value="a"
-                    name="radio-button-demo"
-                    aria-label="A"
-                />
-                <Radio
-                    checked={this.state.selectedValue === 'b'}
-                    onChange={this.handleChange}
-                    value="b"
-                    name="radio-button-demo"
-                    aria-label="B"
-                />
-                <Radio
-                    checked={this.state.selectedValue === 'c'}
-                    onChange={this.handleChange}
-                    value="c"
-                    name="radio-button-demo"
-                    aria-label="C"
-                />
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
 
-                    </RadioGroup>
-                </FormControl>
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
+                    <FormControl component="fieldset" required>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(0)}</FormLabel>
+                        </FormContainer>
+                    </FormControl>
+                    <FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(1)}</FormLabel>
+                        </FormContainer>
+                    </FormControl>
+                    <FormControl component="fieldset" required>
+                        <FormLabel component="legend"></FormLabel>
+                        <RadioGroup>
 
-                    </RadioGroup>
-                </FormControl>
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl component="fieldset" required>
+                        <FormLabel component="legend"></FormLabel>
+                        <RadioGroup>
 
-                    </RadioGroup>
-                </FormControl>
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl component="fieldset" required>
+                        <FormLabel component="legend"></FormLabel>
+                        <RadioGroup>
 
-                    </RadioGroup>
-                </FormControl>
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl component="fieldset" required>
+                        <FormLabel component="legend"></FormLabel>
+                        <RadioGroup>
 
-                    </RadioGroup>
-                </FormControl>
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl component="fieldset" required>
+                        <FormLabel component="legend"></FormLabel>
+                        <RadioGroup>
 
-                    </RadioGroup>
-                </FormControl>
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
+                        </RadioGroup>
+                    </FormControl>
+                    <FormControl component="fieldset" required>
+                        <FormLabel component="legend"></FormLabel>
+                        <RadioGroup>
 
-                    </RadioGroup>
-                </FormControl>
-                <FormControl component="fieldset" required>
-                    <FormLabel component="legend"></FormLabel>
-                    <RadioGroup>
-
-                    </RadioGroup>
-                </FormControl>
+                        </RadioGroup>
+                    </FormControl>
                 </Typography>
             </div>
 
