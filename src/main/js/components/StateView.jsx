@@ -163,12 +163,10 @@ class StateView extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(0)}</FormLabel>
-                            <FormGroup row={true}>
                                 {this.getCheckboxForm("airPollutions", "Zanieczyszczenia powietrza.", this.state.airPollutions)}
                                 {this.getCheckboxForm("waterPollutions", "Zanieczyszczenia wodne.", this.state.waterPollutions)}
                                 {this.getCheckboxForm("landPollutions", "Zanieczyszczenia gleby.", this.state.landPollutions)}
                                 {this.getCheckboxForm("climateChanges", "Zmiany klimatu.", this.state.climateChanges)}
-                            </FormGroup>
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
