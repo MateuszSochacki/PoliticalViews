@@ -21,7 +21,10 @@ function FormContainer(props) {
 function getQuestion(num) {
     const questions = ["Jaki typ opodatkowania od osób fizycznych powinień obowiązywać?",
     "Czy uważasz, że osoby bogate powinny zostać dodatkowo opodatkowane?",
-    ""];
+    "Jaki typ opodatkowania od przedsiębiorstw powinień obowiązywać?",
+    "Jak powinna funkcjonować płaca minimalna?",
+    "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę?",
+    "Jaka część gruntów powinna należeć do państwa?"];
     return (questions[num]);
 }
 
@@ -45,7 +48,13 @@ class Economy extends Component {
                 tradeUnions : "",
                 vat : "",
                 controls : ""
-            }
+            },
+
+            protectTariffs: false,
+            protectLicenses: false,
+            antiDumping: false,
+            exchangeRate: false
+
         };
     }
 
@@ -120,26 +129,33 @@ class Economy extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(2)}</FormLabel>
-
+                            {this.getRadioGroup("Brak podatku", "Podatek pogłówny",
+                                "Podatek liniowy", "Podatek progresywny", "corpTax", this.state.values.corpTax)}
                         </FormContainer>
-                    </FormControl>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(3)}</FormLabel>
+                            {this.getRadioGroup("Brak płacy minimalnej", "Powinna obowiązywać tylko w korporacjach",
+                                "Stała płaca minimalna", "Płaca minimalna uzależniona od inflacji", "minWage", this.state.values.minWage)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(4)}</FormLabel>
+                            {this.getCheckboxForm("protectTariffs", "Cła na eksport i import", this.state.protectTariffs)}
+                            {this.getCheckboxForm("protectLicenses", "Wprowadzenie licencji na importowane produkty", this.state.protectLicenses)}
+                            {this.getCheckboxForm("antiDumping", "Zakaz sprzedaży polskich produktów za granicę po niższej cenie", this.state.antiDumping)}
+                            {this.getCheckboxForm("exchangeRate", "Kontrola kursu walutowego", this.state.exchangeRate)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(5)}</FormLabel>
+                            {this.getRadioGroup("Ziemia nie powinna być obiektem kupna i sprzedaży", "Większość ziem powinna być publiczna",
+                                "Tylko niektóre obszary, jak lasy państwowe lub miejsca administracji", "Grunty powinny być wyłącznie własnością prywatną",
+                                "ground", this.state.values.ground)}
+                        </FormContainer>
                     </FormControl>
                     <FormControl component="fieldset" required>
                         <FormLabel component="legend"></FormLabel>
