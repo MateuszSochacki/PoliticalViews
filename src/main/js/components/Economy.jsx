@@ -23,8 +23,13 @@ function getQuestion(num) {
     "Czy uważasz, że osoby bogate powinny zostać dodatkowo opodatkowane?",
     "Jaki typ opodatkowania od przedsiębiorstw powinień obowiązywać?",
     "Jak powinna funkcjonować płaca minimalna?",
-    "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę?",
-    "Jaka część gruntów powinna należeć do państwa?"];
+    "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę, przed interesem zagranicznym?",
+    "Jaka część gruntów powinna należeć do państwa?",
+    "W jakich sytuacjach powinien być przyznawany zasiłek?",
+    "Jaka powinan być rola państwa w sektorze edukacji?",
+    "Jaka powinna być rola państwa w sektorze ochrony zdrowia?",
+    "Czy w wolnym rynku potrzebne są ograniczenia przeciwko powstawaniu monopoli?",
+    "Jak Twoim zdaniem, powinna być rozwiązana kwiestia emerytur?"];
     return (questions[num]);
 }
 
@@ -53,7 +58,11 @@ class Economy extends Component {
             protectTariffs: false,
             protectLicenses: false,
             antiDumping: false,
-            exchangeRate: false
+            exchangeRate: false,
+            welfarePoverty: false,
+            welfareUnemployed: false,
+            welfareMin: false,
+            welfarePension: false,
 
         };
     }
@@ -156,37 +165,45 @@ class Economy extends Component {
                                 "Tylko niektóre obszary, jak lasy państwowe lub miejsca administracji", "Grunty powinny być wyłącznie własnością prywatną",
                                 "ground", this.state.values.ground)}
                         </FormContainer>
-                    </FormControl>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(6)}</FormLabel>
+                            {this.getCheckboxForm("welfarePoverty", "Dla ludzi skrajnie biednych", this.state.welfarePoverty)}
+                            {this.getCheckboxForm("welfareUnemployed", "Zasiłek dla bezrobotnych", this.state.welfareUnemployed)}
+                            {this.getCheckboxForm("welfareMin", "Z powodu zarobków na poziomie minimum krajowego", this.state.welfareMin)}
+                            {this.getCheckboxForm("welfarePension", "Jako dodatek do pensji", this.state.welfarePension)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(7)}</FormLabel>
+                            {this.getRadioGroup("Brak udziału państwa(pełna prywatyzacja)", "Całkowita prywatyzacja szkolnictwa wyższego",
+                                "Szkoły publiczne oraz prywatne", "Brak zezwolenia na szkoły prywatne", "education", this.state.values.education)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(8)}</FormLabel>
+                            {this.getRadioGroup("Brak udziału państwa(pełna prywatyzacja)", "Istnieje nieobowiązkowa w składkach publiczna opieka medyczna",
+                                "Składki na opieke medyczną są obowiązkowe", "Brak zezwolenia prywatne firmy medyczne", "healthcare", this.state.values.healthcare)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(9)}</FormLabel>
+                            {this.getRadioGroup("Nie powinno być jakichkolwiek ograniczeń", "Drobne regulacje antymonopolowe",
+                                "Znaczne ograniczenia dla korporacji", "Im więcej kontroli nad prywatnym przedsiebiorstwem, tym lepiej",
+                                "monopolies", this.state.values.monopolies)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(10)}</FormLabel>
+                            {this.getRadioGroup("Brak publicznego finansowania", "Nieobowiązkowe ubezpieczenia publiczne, oraz prywatne",
+                                "Obowiązkowe składki", "Brak zezwolenia na prywatne ubezpieczenia emerytalne", "retirenment", this.state.values.retirenment)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormLabel component="legend"></FormLabel>
                         <RadioGroup>
