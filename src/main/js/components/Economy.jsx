@@ -29,7 +29,10 @@ function getQuestion(num) {
     "Jaka powinan być rola państwa w sektorze edukacji?",
     "Jaka powinna być rola państwa w sektorze ochrony zdrowia?",
     "Czy w wolnym rynku potrzebne są ograniczenia przeciwko powstawaniu monopoli?",
-    "Jak Twoim zdaniem, powinna być rozwiązana kwiestia emerytur?"];
+    "Jak Twoim zdaniem, powinna być rozwiązana kwiestia emerytur?",
+    "Czy popierasz wpływ związków zawodowych na prywatne przedsiębiorstwa?",
+    "Jakie Twoim zdaniem powinna opowiązywać stawka podatku VAT?",
+    ];
     return (questions[num]);
 }
 
@@ -51,8 +54,7 @@ class Economy extends Component {
                 monopolies : "",
                 retirenment : "",
                 tradeUnions : "",
-                vat : "",
-                controls : ""
+                vat : ""
             },
 
             protectTariffs: false,
@@ -65,6 +67,8 @@ class Economy extends Component {
             welfarePension: false,
 
         };
+        this.handleChangeCheck = this.handleChangeCheck.bind(this);
+        this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
 
     getRadioGroup(text1, text2, text3, text4, name, groupValue) {
@@ -82,6 +86,24 @@ class Economy extends Component {
                 <FormControlLabel value={text3} control={<Radio/>} label={text3}/>
                 <FormControlLabel value={text4} control={<Radio/>} label={text4}/>
             </RadioGroup>
+        )
+    }
+
+    getRadioPair(text1, text2, name, groupValue) {
+
+        return (
+            <div>
+                <RadioGroup
+                    aria-label={name}
+                    name={name}
+                    value={groupValue}
+                    onChange={this.handleChangeRadio}
+                    row={true}
+                >
+                    <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
+                    <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
+                </RadioGroup>
+            </div>
         )
     }
 
@@ -114,6 +136,18 @@ class Economy extends Component {
 
     componentWillUnmount() {
         this.saveData();
+    }
+
+    handleChangeCheck(event) {
+
+        /*value = (value !== true);*/
+        this.setState({[event.target.value] : event.target.checked});
+    };
+
+    handleChangeRadio(event) {
+        const values = this.state.values;
+        values[event.target.name] = event.target.value
+        this.setState({values});
     }
 
     render() {
@@ -205,23 +239,18 @@ class Economy extends Component {
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(11)}</FormLabel>
+                            {this.getRadioPair("Popieram", "Nie popieram", "tradeUnions", this.state.values.tradeUnions)}
+                        </FormContainer>
+                    </FormControl><br/>
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
-                    <FormControl component="fieldset" required>
-                        <FormLabel component="legend"></FormLabel>
-                        <RadioGroup>
-
-                        </RadioGroup>
-                    </FormControl>
+                        <FormContainer>
+                            <FormLabel component="legend">{getQuestion(12)}</FormLabel>
+                            {this.getRadioGroup("Od 0% do 10%", "Od 10% do 20%",
+                                "Od 20% do 30%", "Powyżej 30%", "vat", this.state.values.vat)}
+                        </FormContainer>
+                    </FormControl><br/>
                 </Typography>
             </div>
         );

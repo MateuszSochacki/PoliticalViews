@@ -97,10 +97,7 @@ class Navigation extends Component {
 
                {/* </MuiThemeProvider>*/}
             </div>
-
-
         )
     }
-
 }
 export default Navigation;

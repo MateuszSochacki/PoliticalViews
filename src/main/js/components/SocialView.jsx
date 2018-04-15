@@ -66,7 +66,6 @@ class SocialView extends Component {
             stimNicotine: false
         };
 
-        this.handleChange = this.handleChange.bind(this);
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
@@ -118,10 +117,6 @@ class SocialView extends Component {
 
     componentWillUnmount() {
         this.saveData();
-    }
-
-    handleChange(event) {
-        this.setState({selectedValue: event.target.value});
     }
 
     handleChangeCheck(event) {
