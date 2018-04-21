@@ -13,9 +13,17 @@ class Coordinates extends Component {
 
     componentDidMount() {
 
-
     }
 
+    updateX(val) {
+        const value = this.state.xAxis + val;
+        this.setState({xAxis: value})
+    }
+
+    updateY(val) {
+        const value = this.state.yAxis + val;
+        this.setState({yAxis: value})
+    }
 
     saveData() {
         fetch('http://localhost:8080/api/coordinates',
