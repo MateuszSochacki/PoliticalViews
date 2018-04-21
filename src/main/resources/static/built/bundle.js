@@ -30603,8 +30603,9 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             welfarePoverty: false,
             welfareUnemployed: false,
             welfareMin: false,
-            welfarePension: false
+            welfarePension: false,
 
+            coordinates: props.coordinates
         };
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
@@ -30631,20 +30632,16 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     getRadioPair(text1, text2, name, groupValue) {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_2_material_ui_Radio__["RadioGroup"],
-                {
-                    'aria-label': name,
-                    name: name,
-                    value: groupValue,
-                    onChange: this.handleChangeRadio,
-                    row: true
-                },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text1 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text2 })
-            )
+            __WEBPACK_IMPORTED_MODULE_2_material_ui_Radio__["RadioGroup"],
+            {
+                'aria-label': name,
+                name: name,
+                value: groupValue,
+                onChange: this.handleChangeRadio,
+                row: true
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text1 }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text2 })
         );
     }
 
@@ -34934,14 +34931,15 @@ class Coordinates extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {
         super(props);
         this.state = {
-            'xAxis': '5.0',
-            'yAxis': '6.0'
+            xAxis: 0,
+            yAxis: 0
         };
         //this.saveData(this.state.incTax);
     }
 
-    componentDidMount() {
+    componentDidMount() {}
 
+    saveData() {
         fetch('http://localhost:8080/api/coordinates', { headers: {
                 'Content-Type': 'application/json'
             },
@@ -34950,7 +34948,6 @@ class Coordinates extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         }).catch(err => console.error(err));
     }
 
-    saveData() {}
     render() {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -102610,13 +102607,11 @@ class Navigation extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.updateCoordinates = this.updateCoordinates.bind(this);
 
         this.state = {
             value: 0,
-            coordinates: new __WEBPACK_IMPORTED_MODULE_6__Coordinates__["a" /* default */](),
-            economy: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Economy__["a" /* default */], null),
-            socialView: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__SocialView__["a" /* default */], null),
-            stateView: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__StateView__["a" /* default */], null)
+            coordinates: new __WEBPACK_IMPORTED_MODULE_6__Coordinates__["a" /* default */]()
         };
     }
 
@@ -102637,6 +102632,11 @@ class Navigation extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
         const val = this.state.value + 1;
         this.setState({ value: val });
+    }
+
+    updateCoordinates(props) {
+
+        this.setState({ coordinates: props });
     }
 
     render() {
@@ -102670,9 +102670,12 @@ class Navigation extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-            value === 0 && this.state.economy,
-            value === 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__StateView__["a" /* default */], null),
-            value === 2 && this.state.socialView,
+            value === 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Economy__["a" /* default */], { coordinates: this.state.coordinates,
+                parentUpdate: this.updateCoordinates }),
+            value === 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__StateView__["a" /* default */], { coordinates: this.state.coordinates,
+                parentUpdate: this.updateCoordinates }),
+            value === 2 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__SocialView__["a" /* default */], { coordinates: this.state.coordinates,
+                parentUpdate: this.updateCoordinates }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_10_material_ui_es_Typography_Typography__["a" /* default */],
@@ -102809,7 +102812,9 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             stimAlcohol: false,
             stimCannabis: false,
             stimHard: false,
-            stimNicotine: false
+            stimNicotine: false,
+
+            coordinates: props.coordinates
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
@@ -103086,7 +103091,9 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             languageIReq: false,
             eduIReq: false,
             ethnicityIReq: false,
-            religionReq: false
+            religionReq: false,
+
+            coordinates: props.coordinates
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
@@ -103154,6 +103161,8 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             label: label
         });
     }
+
+    updateCoordinates() {}
 
     saveData() {
         fetch('http://localhost:8080/api/stateviews', {

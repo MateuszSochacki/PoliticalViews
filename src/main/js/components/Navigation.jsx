@@ -27,13 +27,11 @@ class Navigation extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.updateCoordinates = this.updateCoordinates.bind(this);
 
         this.state = {
             value : 0,
-            coordinates : new Coordinates(),
-            economy : <Economy/>,
-            socialView : <SocialView/>,
-            stateView : <StateView/>
+            coordinates : new Coordinates()
         }
     }
 
@@ -55,6 +53,11 @@ class Navigation extends Component {
         const val = this.state.value + 1;
         this.setState({value : val})
 
+    }
+
+    updateCoordinates(props) {
+
+        this.setState({coordinates: props});
     }
 
     render() {
@@ -79,9 +82,12 @@ class Navigation extends Component {
 
                     </Toolbar>
                 </AppBar><br/>
-                {value === 0 && this.state.economy}
-                {value === 1 && <StateView/>}
-                {value === 2 && this.state.socialView}
+                {value === 0 && <Economy coordinates={this.state.coordinates}
+                                         parentUpdate={this.updateCoordinates}/>}
+                {value === 1 && <StateView coordinates={this.state.coordinates}
+                                           parentUpdate={this.updateCoordinates}/>}
+                {value === 2 && <SocialView coordinates={this.state.coordinates}
+                                            parentUpdate={this.updateCoordinates}/>}
                 <br/>
                 <Typography align="center">
                     {this.state.value < 2 ?

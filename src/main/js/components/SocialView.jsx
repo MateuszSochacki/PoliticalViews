@@ -63,7 +63,9 @@ class SocialView extends Component {
             stimAlcohol: false,
             stimCannabis: false,
             stimHard: false,
-            stimNicotine: false
+            stimNicotine: false,
+
+            coordinates: props.coordinates
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);

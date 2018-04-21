@@ -66,6 +66,7 @@ class Economy extends Component {
             welfareMin: false,
             welfarePension: false,
 
+            coordinates: props.coordinates
         };
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
@@ -92,18 +93,16 @@ class Economy extends Component {
     getRadioPair(text1, text2, name, groupValue) {
 
         return (
-            <div>
-                <RadioGroup
-                    aria-label={name}
-                    name={name}
-                    value={groupValue}
-                    onChange={this.handleChangeRadio}
-                    row={true}
-                >
-                    <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
-                    <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
-                </RadioGroup>
-            </div>
+            <RadioGroup
+                aria-label={name}
+                name={name}
+                value={groupValue}
+                onChange={this.handleChangeRadio}
+                row={true}
+            >
+                <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
+                <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
+            </RadioGroup>
         )
     }
 

@@ -62,7 +62,9 @@ class StateView extends Component {
             languageIReq : false,
             eduIReq : false,
             ethnicityIReq : false,
-            religionReq : false
+            religionReq : false,
+
+            coordinates: props.coordinates
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
@@ -130,6 +132,10 @@ class StateView extends Component {
                 label={label}
             />
         );
+    }
+
+    updateCoordinates() {
+
     }
 
     saveData() {
