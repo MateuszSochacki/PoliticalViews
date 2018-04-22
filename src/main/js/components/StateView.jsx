@@ -8,7 +8,6 @@ import {
     FormControl,
     FormGroup,
     FormControlLabel,
-    FormHelperText,
 } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import Typography from "material-ui/Typography/";
@@ -33,6 +32,46 @@ function getQuestion(num) {
     "Jakie powinny obowiązywać prawa imigranckie w porównaniu do rodowitych obywateli",
     "Jak powinna zostać rozwiązana kwestia mediów w państwie?"];
     return (questions[num]);
+}
+
+function getHighValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getMidValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getHighValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getMidValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getCheckAnswerAdd(value) {
+
 }
 
 class StateView extends Component {
@@ -134,7 +173,11 @@ class StateView extends Component {
         );
     }
 
-    updateCoordinates() {
+    updateCoordinatesFromCheck() {
+
+    }
+
+    updateCoordinatesFromRadio() {
 
     }
 

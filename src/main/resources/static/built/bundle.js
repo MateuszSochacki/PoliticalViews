@@ -30575,6 +30575,32 @@ function getQuestion(num) {
     return questions[num];
 }
 
+function getHighValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getMidValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getHighValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getMidValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getCheckAnswerSub(value) {}
+
 class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     constructor(props) {
@@ -30669,6 +30695,10 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     componentWillUnmount() {
         this.saveData();
     }
+
+    updateCoordinatesFromCheck() {}
+
+    updateCoordinatesFromRadio() {}
 
     handleChangeCheck(event) {
 
@@ -102798,6 +102828,32 @@ function getQuestion(num) {
     return questions[num];
 }
 
+function getHighValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getMidValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getHighValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getMidValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getCheckAnswerSub(value) {}
+
 class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {
         super(props);
@@ -102874,6 +102930,10 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     componentWillUnmount() {
         this.saveData();
     }
+
+    updateCoordinatesFromCheck() {}
+
+    updateCoordinatesFromRadio() {}
 
     handleChangeCheck(event) {
 
@@ -103074,6 +103134,32 @@ function getQuestion(num) {
     return questions[num];
 }
 
+function getHighValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getMidValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getHighValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getMidValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all") return answers;else return answers[value];
+}
+function getCheckAnswerAdd(value) {}
+
 class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {
         super(props);
@@ -103172,7 +103258,9 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         });
     }
 
-    updateCoordinates() {}
+    updateCoordinatesFromCheck() {}
+
+    updateCoordinatesFromRadio() {}
 
     saveData() {
         fetch('http://localhost:8080/api/stateviews', {

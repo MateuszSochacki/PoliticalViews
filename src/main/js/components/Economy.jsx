@@ -36,6 +36,46 @@ function getQuestion(num) {
     return (questions[num]);
 }
 
+function getHighValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getMidValueAnswerAdd(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getHighValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getMidValueAnswerSub(value) {
+
+    const answers = [];
+
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
+}
+function getCheckAnswerSub(value) {
+
+}
+
 class Economy extends Component {
 
     constructor(props) {
@@ -135,6 +175,14 @@ class Economy extends Component {
 
     componentWillUnmount() {
         this.saveData();
+    }
+
+    updateCoordinatesFromCheck() {
+
+    }
+
+    updateCoordinatesFromRadio() {
+
     }
 
     handleChangeCheck(event) {
