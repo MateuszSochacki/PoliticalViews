@@ -34,14 +34,70 @@ function getQuestion(num) {
     return (questions[num]);
 }
 
-function getHighValueAnswerAdd(value) {
+const answers = {
+
+    set1: {
+        ans1: {text: "Zanieczyszczenia powietrza", value: [-1, 1]},
+        ans2: {text: "Zanieczyszczenia wodne", value: [-1, 1]},
+        ans3: {text: "Zanieczyszczenia gleby", value: [-1, 1]},
+        ans4: {text: "Zmiany klimatu", value: [-1, 1]}
+    },
+    set2: {
+        ans1: {text: "Państwo unitarne", value: [0, 2]},
+        ans2: {text: "Federacja", value: [0, 1]},
+        ans3: {text: "Konfederacja", value: [0, -1]},
+        ans4: {text: "Unia", value: [0, -2]}
+    },
+    set3: {
+        ans1: {text: "Rządy autorytarne", value: [0, 2]},
+        ans2: {text: "Ustrój jednopartyjny", value: [0, 1]},
+        ans3: {text: "demokracja parlamentarna(pośrednia)", value: [0, -1]},
+        ans4: {text: "Demokracja bezpośrednia", value: [0, -2]}
+    },
+    set4: {
+        ans1: {text: "Państwo unitarne", value: [2, 0]},
+        ans2: {text: "Federacja", value: [2, 0]},
+        ans3: {text: "Konfederacja", value: [2, 0]},
+        ans4: {text: "Unia", value: [2, 0]}
+    },
+    set5: {
+        ans1: {text: "Państwo unitarne", value: [2, 0]},
+        ans2: {text: "Federacja", value: [2, 0]},
+        ans3: {text: "Konfederacja", value: [2, 0]},
+        ans4: {text: "Unia", value: [2, 0]}
+    },
+    set7: {
+        ans1: {text: "Państwo unitarne", value: [2, 0]},
+        ans2: {text: "Federacja", value: [2, 0]},
+        ans3: {text: "Konfederacja", value: [2, 0]},
+        ans4: {text: "Unia", value: [2, 0]}
+    },
+    set8: {
+        ans1: {text: "Państwo unitarne", value: [2, 0]},
+        ans2: {text: "Federacja", value: [2, 0]},
+        ans3: {text: "Konfederacja", value: [2, 0]},
+        ans4: {text: "Unia", value: [2, 0]}
+    },
+    set9: {
+        ans1: {text: "Państwo unitarne", value: [2, 0]},
+        ans2: {text: "Federacja", value: [2, 0]},
+        ans3: {text: "Konfederacja", value: [2, 0]},
+        ans4: {text: "Unia", value: [2, 0]}
+    },
+    set10: {
+        ans1: {text: "Państwo unitarne", value: [2, 0]},
+        ans2: {text: "Federacja", value: [2, 0]},
+        ans3: {text: "Konfederacja", value: [2, 0]},
+        ans4: {text: "Unia", value: [2, 0]}
+    }
+};
+/*function getHighValueAnswerAdd(value) {
 
     const answers = [];
 
     if (value === "all")
         return answers;
     else return (answers[value]);
-
 }
 function getMidValueAnswerAdd(value) {
 
@@ -50,7 +106,6 @@ function getMidValueAnswerAdd(value) {
     if (value === "all")
         return answers;
     else return (answers[value]);
-
 }
 function getHighValueAnswerSub(value) {
 
@@ -59,7 +114,6 @@ function getHighValueAnswerSub(value) {
     if (value === "all")
         return answers;
     else return (answers[value]);
-
 }
 function getMidValueAnswerSub(value) {
 
@@ -68,11 +122,10 @@ function getMidValueAnswerSub(value) {
     if (value === "all")
         return answers;
     else return (answers[value]);
-
 }
 function getCheckAnswerAdd(value) {
 
-}
+}*/
 
 class StateView extends Component {
     constructor(props) {
@@ -119,7 +172,7 @@ class StateView extends Component {
         this.saveData();
     }
 
-    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+    getRadioGroup(set, name, groupValue) {
 
         return (
             <div>
@@ -130,16 +183,16 @@ class StateView extends Component {
                     onChange={this.handleChangeRadio}
                     row={true}
                 >
-                    <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
-                    <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
-                    <FormControlLabel value={text3} control={<Radio/>} label={text3}/>
-                    <FormControlLabel value={text4} control={<Radio/>} label={text4}/>
+                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans3.text} control={<Radio/>} label={set.ans3.text}/>
+                    <FormControlLabel value={set.ans4.text} control={<Radio/>} label={set.ans4.text}/>
                 </RadioGroup>
             </div>
         )
     }
 
-    getRadioPair(text1, text2, name, groupValue) {
+    getRadioPair(set, name, groupValue) {
 
         return (
             <div>
@@ -150,8 +203,8 @@ class StateView extends Component {
                     onChange={this.handleChangeRadio}
                     row={true}
                 >
-                    <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
-                    <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
+                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
                 </RadioGroup>
             </div>
         )
@@ -187,6 +240,7 @@ class StateView extends Component {
             coords.updateY(-1);
         else if (getHighValueAnswerSub("all").includes(value))
             coords.updateY(-2);
+
     }
 
     saveData() {
@@ -209,7 +263,7 @@ class StateView extends Component {
 
     handleChangeRadio(event) {
         const values = this.state.values;
-        values[event.target.name] = event.target.value;
+        values[event.target.name] = event.target.label;
         this.updateCoordinatesFromRadio(event.target.value);
         this.setState({values});
     }
@@ -217,29 +271,28 @@ class StateView extends Component {
     render() {
 
         return (
+
             <div>
                 <Typography align="center">
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(0)}</FormLabel>
-                                {this.getCheckboxForm("airPollutions", "Zanieczyszczenia powietrza.", this.state.airPollutions)}
-                                {this.getCheckboxForm("waterPollutions", "Zanieczyszczenia wodne.", this.state.waterPollutions)}
-                                {this.getCheckboxForm("landPollutions", "Zanieczyszczenia gleby.", this.state.landPollutions)}
-                                {this.getCheckboxForm("climateChanges", "Zmiany klimatu.", this.state.climateChanges)}
+                                {this.getCheckboxForm("airPollutions", answers.set1.ans1.text, this.state.airPollutions)}
+                                {this.getCheckboxForm("waterPollutions", answers.set1.ans2.text, this.state.waterPollutions)}
+                                {this.getCheckboxForm("landPollutions", answers.set1.ans3.text, this.state.landPollutions)}
+                                {this.getCheckboxForm("climateChanges", answers.set1.ans4.text, this.state.climateChanges)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(1)}</FormLabel>
-                            {this.getRadioGroup("Państwo unitarne", "Federacja",
-                                "Konfederacja", "Unia", "autonomy", this.state.values.autonomy)}
+                            {this.getRadioGroup(answers.set2, "autonomy", this.state.values.autonomy)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(2)}</FormLabel>
-                            {this.getRadioGroup("Rządy autorytarne", "Ustrój jednopartyjny",
-                                "demokracja parlamentarna(pośrednia)", "Demokracja bezpośrednia", "system", this.state.values.system)}
+                            {this.getRadioGroup(answers.set3, "system", this.state.values.system)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>

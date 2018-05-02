@@ -30698,17 +30698,22 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     updateCoordinatesFromCheck() {}
 
-    updateCoordinatesFromRadio() {}
+    updateCoordinatesFromRadio() {
+        const coords = this.state.coordinates;
+        if (getHighValueAnswerAdd("all").includes(value)) coords.updateX(2);else if (getMidValueAnswerAdd("all").includes(value)) coords.updateX(1);else if (getMidValueAnswerSub("all").includes(value)) coords.updateX(-1);else if (getHighValueAnswerSub("all").includes(value)) coords.updateX(-2);
+    }
 
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
+        this.updateCoordinatesFromCheck(event.target.label);
         this.setState({ [event.target.value]: event.target.checked });
     }
 
     handleChangeRadio(event) {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
+        this.updateCoordinatesFromRadio(event.target.value);
         this.setState({ values });
     }
 
@@ -102933,17 +102938,22 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     updateCoordinatesFromCheck() {}
 
-    updateCoordinatesFromRadio() {}
+    updateCoordinatesFromRadio() {
+        const coords = this.state.coordinates;
+        if (getHighValueAnswerAdd("all").includes(value)) coords.updateY(2);else if (getMidValueAnswerAdd("all").includes(value)) coords.updateY(1);else if (getMidValueAnswerSub("all").includes(value)) coords.updateY(-1);else if (getHighValueAnswerSub("all").includes(value)) coords.updateY(-2);
+    }
 
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
+        this.updateCoordinatesFromCheck(event.target.label);
         this.setState({ [event.target.value]: event.target.checked });
     }
 
     handleChangeRadio(event) {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
+        this.updateCoordinatesFromRadio(event.target.value);
         this.setState({ values });
     }
 
@@ -103134,31 +103144,98 @@ function getQuestion(num) {
     return questions[num];
 }
 
-function getHighValueAnswerAdd(value) {
+const answers = {
+
+    set1: {
+        ans1: { text: "Zanieczyszczenia powietrza", value: [-1, 1] },
+        ans2: { text: "Zanieczyszczenia wodne", value: [-1, 1] },
+        ans3: { text: "Zanieczyszczenia gleby", value: [-1, 1] },
+        ans4: { text: "Zmiany klimatu", value: [-1, 1] }
+    },
+    set2: {
+        ans1: { text: "Państwo unitarne", value: [0, 2] },
+        ans2: { text: "Federacja", value: [0, 1] },
+        ans3: { text: "Konfederacja", value: [0, -1] },
+        ans4: { text: "Unia", value: [0, -2] }
+    },
+    set3: {
+        ans1: { text: "Rządy autorytarne", value: [0, 2] },
+        ans2: { text: "Ustrój jednopartyjny", value: [0, 1] },
+        ans3: { text: "demokracja parlamentarna(pośrednia)", value: [0, -1] },
+        ans4: { text: "Demokracja bezpośrednia", value: [0, -2] }
+    },
+    set4: {
+        ans1: { text: "Państwo unitarne", value: [2, 0] },
+        ans2: { text: "Federacja", value: [2, 0] },
+        ans3: { text: "Konfederacja", value: [2, 0] },
+        ans4: { text: "Unia", value: [2, 0] }
+    },
+    set5: {
+        ans1: { text: "Państwo unitarne", value: [2, 0] },
+        ans2: { text: "Federacja", value: [2, 0] },
+        ans3: { text: "Konfederacja", value: [2, 0] },
+        ans4: { text: "Unia", value: [2, 0] }
+    },
+    set7: {
+        ans1: { text: "Państwo unitarne", value: [2, 0] },
+        ans2: { text: "Federacja", value: [2, 0] },
+        ans3: { text: "Konfederacja", value: [2, 0] },
+        ans4: { text: "Unia", value: [2, 0] }
+    },
+    set8: {
+        ans1: { text: "Państwo unitarne", value: [2, 0] },
+        ans2: { text: "Federacja", value: [2, 0] },
+        ans3: { text: "Konfederacja", value: [2, 0] },
+        ans4: { text: "Unia", value: [2, 0] }
+    },
+    set9: {
+        ans1: { text: "Państwo unitarne", value: [2, 0] },
+        ans2: { text: "Federacja", value: [2, 0] },
+        ans3: { text: "Konfederacja", value: [2, 0] },
+        ans4: { text: "Unia", value: [2, 0] }
+    },
+    set10: {
+        ans1: { text: "Państwo unitarne", value: [2, 0] },
+        ans2: { text: "Federacja", value: [2, 0] },
+        ans3: { text: "Konfederacja", value: [2, 0] },
+        ans4: { text: "Unia", value: [2, 0] }
+    }
+};
+/*function getHighValueAnswerAdd(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
 }
 function getMidValueAnswerAdd(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
 }
 function getHighValueAnswerSub(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
 }
 function getMidValueAnswerSub(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
 }
-function getCheckAnswerAdd(value) {}
+function getCheckAnswerAdd(value) {
+
+}*/
 
 class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {
@@ -103204,7 +103281,7 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.saveData();
     }
 
-    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+    getRadioGroup(set, name, groupValue) {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
@@ -103218,15 +103295,15 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                     onChange: this.handleChangeRadio,
                     row: true
                 },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text1 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text2 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text3, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text3 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text4, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text4 })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: set.ans1.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: set.ans1.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: set.ans2.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: set.ans2.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: set.ans3.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: set.ans3.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: set.ans4.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: set.ans4.text })
             )
         );
     }
 
-    getRadioPair(text1, text2, name, groupValue) {
+    getRadioPair(set, name, groupValue) {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
@@ -103240,8 +103317,8 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                     onChange: this.handleChangeRadio,
                     row: true
                 },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text1 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: text2 })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: set.ans1.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: set.ans1.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormControlLabel"], { value: set.ans2.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_Radio___default.a, null), label: set.ans2.text })
             )
         );
     }
@@ -103258,9 +103335,12 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         });
     }
 
-    updateCoordinatesFromCheck() {}
+    updateCoordinatesFromCheck(value) {}
 
-    updateCoordinatesFromRadio() {}
+    updateCoordinatesFromRadio(value) {
+        const coords = this.state.coordinates;
+        if (getHighValueAnswerAdd("all").includes(value)) coords.updateY(2);else if (getMidValueAnswerAdd("all").includes(value)) coords.updateY(1);else if (getMidValueAnswerSub("all").includes(value)) coords.updateY(-1);else if (getHighValueAnswerSub("all").includes(value)) coords.updateY(-2);
+    }
 
     saveData() {
         fetch('http://localhost:8080/api/stateviews', {
@@ -103275,12 +103355,14 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
+        this.updateCoordinatesFromCheck(event.target.label);
         this.setState({ [event.target.value]: event.target.checked });
     }
 
     handleChangeRadio(event) {
         const values = this.state.values;
-        values[event.target.name] = event.target.value;
+        values[event.target.name] = event.target.label;
+        this.updateCoordinatesFromRadio(event.target.value);
         this.setState({ values });
     }
 
@@ -103303,10 +103385,10 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(0)
                         ),
-                        this.getCheckboxForm("airPollutions", "Zanieczyszczenia powietrza.", this.state.airPollutions),
-                        this.getCheckboxForm("waterPollutions", "Zanieczyszczenia wodne.", this.state.waterPollutions),
-                        this.getCheckboxForm("landPollutions", "Zanieczyszczenia gleby.", this.state.landPollutions),
-                        this.getCheckboxForm("climateChanges", "Zmiany klimatu.", this.state.climateChanges)
+                        this.getCheckboxForm("airPollutions", answers.set1.ans1.text, this.state.airPollutions),
+                        this.getCheckboxForm("waterPollutions", answers.set1.ans2.text, this.state.waterPollutions),
+                        this.getCheckboxForm("landPollutions", answers.set1.ans3.text, this.state.landPollutions),
+                        this.getCheckboxForm("climateChanges", answers.set1.ans4.text, this.state.climateChanges)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103321,7 +103403,7 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(1)
                         ),
-                        this.getRadioGroup("Państwo unitarne", "Federacja", "Konfederacja", "Unia", "autonomy", this.state.values.autonomy)
+                        this.getRadioGroup(answers.set2, "autonomy", this.state.values.autonomy)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103336,7 +103418,7 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(2)
                         ),
-                        this.getRadioGroup("Rządy autorytarne", "Ustrój jednopartyjny", "demokracja parlamentarna(pośrednia)", "Demokracja bezpośrednia", "system", this.state.values.system)
+                        this.getRadioGroup(answers.set3, "system", this.state.values.system)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
