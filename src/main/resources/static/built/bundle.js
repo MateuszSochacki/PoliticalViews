@@ -30700,20 +30700,27 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     updateCoordinatesFromRadio() {
         const coords = this.state.coordinates;
-        if (getHighValueAnswerAdd("all").includes(value)) coords.updateX(2);else if (getMidValueAnswerAdd("all").includes(value)) coords.updateX(1);else if (getMidValueAnswerSub("all").includes(value)) coords.updateX(-1);else if (getHighValueAnswerSub("all").includes(value)) coords.updateX(-2);
+        /*if(getHighValueAnswerAdd("all").includes(value))
+            coords.updateX(2);
+        else if (getMidValueAnswerAdd("all").includes(value))
+            coords.updateX(1);
+        else if (getMidValueAnswerSub("all").includes(value))
+            coords.updateX(-1);
+        else if (getHighValueAnswerSub("all").includes(value))
+            coords.updateX(-2);*/
     }
 
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
-        this.updateCoordinatesFromCheck(event.target.label);
+        //this.updateCoordinatesFromCheck(event.target.label);
         this.setState({ [event.target.value]: event.target.checked });
     }
 
     handleChangeRadio(event) {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
-        this.updateCoordinatesFromRadio(event.target.value);
+        //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({ values });
     }
 
@@ -102940,20 +102947,27 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     updateCoordinatesFromRadio() {
         const coords = this.state.coordinates;
-        if (getHighValueAnswerAdd("all").includes(value)) coords.updateY(2);else if (getMidValueAnswerAdd("all").includes(value)) coords.updateY(1);else if (getMidValueAnswerSub("all").includes(value)) coords.updateY(-1);else if (getHighValueAnswerSub("all").includes(value)) coords.updateY(-2);
+        /*if(getHighValueAnswerAdd("all").includes(value))
+            coords.updateY(2);
+        else if (getMidValueAnswerAdd("all").includes(value))
+            coords.updateY(1);
+        else if (getMidValueAnswerSub("all").includes(value))
+            coords.updateY(-1);
+        else if (getHighValueAnswerSub("all").includes(value))
+            coords.updateY(-2);*/
     }
 
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
-        this.updateCoordinatesFromCheck(event.target.label);
+        // this.updateCoordinatesFromCheck(event.target.label);
         this.setState({ [event.target.value]: event.target.checked });
     }
 
     handleChangeRadio(event) {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
-        this.updateCoordinatesFromRadio(event.target.value);
+        //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({ values });
     }
 
@@ -103165,40 +103179,38 @@ const answers = {
         ans4: { text: "Demokracja bezpośrednia", value: [0, -2] }
     },
     set4: {
-        ans1: { text: "Państwo unitarne", value: [2, 0] },
-        ans2: { text: "Federacja", value: [2, 0] },
-        ans3: { text: "Konfederacja", value: [2, 0] },
-        ans4: { text: "Unia", value: [2, 0] }
+        ans1: { text: "Warunek wiekowy", value: [0, 1] },
+        ans2: { text: "Odpowiednie wykrztałcenie", value: [0, 1] },
+        ans3: { text: "Odpowiednia majętność", value: [0, 1] },
+        ans4: { text: "Przynależność do grupy etnicznej", value: [0, 1] }
     },
     set5: {
-        ans1: { text: "Państwo unitarne", value: [2, 0] },
-        ans2: { text: "Federacja", value: [2, 0] },
-        ans3: { text: "Konfederacja", value: [2, 0] },
-        ans4: { text: "Unia", value: [2, 0] }
+        ans1: { text: "Popieram", value: [0, 1] },
+        ans2: { text: "Nie popieram", value: [0, -1] }
+    },
+    set6: {
+        ans1: { text: "Izolacjonizm", value: [0, -2] },
+        ans2: { text: "Neutralność", value: [0, -1] },
+        ans3: { text: "Interwencjonizm", value: [0, 1] },
+        ans4: { text: "Ekpsansjonizm", value: [2, 0] }
     },
     set7: {
-        ans1: { text: "Państwo unitarne", value: [2, 0] },
-        ans2: { text: "Federacja", value: [2, 0] },
-        ans3: { text: "Konfederacja", value: [2, 0] },
-        ans4: { text: "Unia", value: [2, 0] }
+        ans1: { text: "Język", value: [0, 1] },
+        ans2: { text: "Poziom wykrztałcenia", value: [0, 1] },
+        ans3: { text: "Grupa etniczna", value: [0, 1] },
+        ans4: { text: "Religia", value: [0, 1] }
     },
     set8: {
-        ans1: { text: "Państwo unitarne", value: [2, 0] },
-        ans2: { text: "Federacja", value: [2, 0] },
-        ans3: { text: "Konfederacja", value: [2, 0] },
-        ans4: { text: "Unia", value: [2, 0] }
+        ans1: { text: "Brak praw", value: [0, 2] },
+        ans2: { text: "Ustalony limit praw", value: [0, 1] },
+        ans3: { text: "Równe prawa", value: [0, -1] },
+        ans4: { text: "Równe prawa oraz benefity", value: [0, -2] }
     },
     set9: {
-        ans1: { text: "Państwo unitarne", value: [2, 0] },
-        ans2: { text: "Federacja", value: [2, 0] },
-        ans3: { text: "Konfederacja", value: [2, 0] },
-        ans4: { text: "Unia", value: [2, 0] }
-    },
-    set10: {
-        ans1: { text: "Państwo unitarne", value: [2, 0] },
-        ans2: { text: "Federacja", value: [2, 0] },
-        ans3: { text: "Konfederacja", value: [2, 0] },
-        ans4: { text: "Unia", value: [2, 0] }
+        ans1: { text: "Tylko media publiczne", value: [0, 2] },
+        ans2: { text: "Dopuszczalne media prywatne, z narzuconymi restrykcjami", value: [0, 1] },
+        ans3: { text: "Odrębne media puczline oraz prywatne", value: [0, -1] },
+        ans4: { text: "Tylko media prywatne", value: [0, -2] }
     }
 };
 /*function getHighValueAnswerAdd(value) {
@@ -103339,7 +103351,14 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
     updateCoordinatesFromRadio(value) {
         const coords = this.state.coordinates;
-        if (getHighValueAnswerAdd("all").includes(value)) coords.updateY(2);else if (getMidValueAnswerAdd("all").includes(value)) coords.updateY(1);else if (getMidValueAnswerSub("all").includes(value)) coords.updateY(-1);else if (getHighValueAnswerSub("all").includes(value)) coords.updateY(-2);
+        /*if(getHighValueAnswerAdd("all").includes(value))
+            coords.updateY(2);
+        else if (getMidValueAnswerAdd("all").includes(value))
+            coords.updateY(1);
+        else if (getMidValueAnswerSub("all").includes(value))
+            coords.updateY(-1);
+        else if (getHighValueAnswerSub("all").includes(value))
+            coords.updateY(-2);*/
     }
 
     saveData() {
@@ -103355,14 +103374,14 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
-        this.updateCoordinatesFromCheck(event.target.label);
+        //this.updateCoordinatesFromCheck(event.target.label);
         this.setState({ [event.target.value]: event.target.checked });
     }
 
     handleChangeRadio(event) {
         const values = this.state.values;
-        values[event.target.name] = event.target.label;
-        this.updateCoordinatesFromRadio(event.target.value);
+        values[event.target.name] = event.target.value;
+        //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({ values });
     }
 
@@ -103436,10 +103455,10 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormGroup"],
                             { row: true },
-                            this.getCheckboxForm("ageReq", "Warunek wiekowy", this.state.ageReq),
-                            this.getCheckboxForm("eduReq", "Odpowiednie wykrztałcenie", this.state.eduReq),
-                            this.getCheckboxForm("wealthReq", "Odpowiednia majętność", this.state.wealthReq),
-                            this.getCheckboxForm("ethnicityReq", "Przynależność do grupy etnicznej", this.state.ethnicityReq)
+                            this.getCheckboxForm("ageReq", answers.set4.ans1.text, this.state.ageReq),
+                            this.getCheckboxForm("eduReq", answers.set4.ans2.text, this.state.eduReq),
+                            this.getCheckboxForm("wealthReq", answers.set4.ans3.text, this.state.wealthReq),
+                            this.getCheckboxForm("ethnicityReq", answers.set4.ans4.text, this.state.ethnicityReq)
                         )
                     )
                 ),
@@ -103455,7 +103474,7 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(4)
                         ),
-                        this.getRadioPair("Popieram", "Nie popieram", "militaryService", this.state.values.militaryService)
+                        this.getRadioPair(answers.set5, "militaryService", this.state.values.militaryService)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103470,7 +103489,7 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(5)
                         ),
-                        this.getRadioGroup("Izolacjonizm", "Neutralność", "Interwencjonizm", "Ekpsansjonizm", "foreignPolicy", this.state.values.foreignPolicy)
+                        this.getRadioGroup(answers.set6, "foreignPolicy", this.state.values.foreignPolicy)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103488,10 +103507,10 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_5_material_ui_Form__["FormGroup"],
                             { row: true },
-                            this.getCheckboxForm("languageIReq", "Język", this.state.languageIReq),
-                            this.getCheckboxForm("eduIReq", "Poziom wykrztałcenia", this.state.eduIReq),
-                            this.getCheckboxForm("ethnicityIReq", "Grupa etniczna", this.state.ethnicityIReq),
-                            this.getCheckboxForm("religionIReq", "Religia", this.state.religionIReq)
+                            this.getCheckboxForm("languageIReq", answers.set7.ans1.text, this.state.languageIReq),
+                            this.getCheckboxForm("eduIReq", answers.set7.ans2.text, this.state.eduIReq),
+                            this.getCheckboxForm("ethnicityIReq", answers.set7.ans3.text, this.state.ethnicityIReq),
+                            this.getCheckboxForm("religionIReq", answers.set7.ans4.text, this.state.religionIReq)
                         )
                     )
                 ),
@@ -103507,7 +103526,7 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(7)
                         ),
-                        this.getRadioGroup("Brak praw", "Ustalony limit praw", "Równe prawa", "Równe prawa oraz benefity", "immigrationRights", this.state.values.immigrationRights)
+                        this.getRadioGroup(answers.set8, "immigrationRights", this.state.values.immigrationRights)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103522,7 +103541,7 @@ class StateView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(8)
                         ),
-                        this.getRadioGroup("Tylko media publiczne", "Dopuszczalne media prywatne, z narzuconymi restrykcjami", "Odrębne media puczline oraz prywatne", "Tylko media prywatne", "media", this.state.values.media)
+                        this.getRadioGroup(answers.set9, "media", this.state.values.media)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)

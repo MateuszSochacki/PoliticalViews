@@ -167,27 +167,27 @@ class SocialView extends Component {
 
     updateCoordinatesFromRadio() {
         const coords = this.state.coordinates;
-        if(getHighValueAnswerAdd("all").includes(value))
+        /*if(getHighValueAnswerAdd("all").includes(value))
             coords.updateY(2);
         else if (getMidValueAnswerAdd("all").includes(value))
             coords.updateY(1);
         else if (getMidValueAnswerSub("all").includes(value))
             coords.updateY(-1);
         else if (getHighValueAnswerSub("all").includes(value))
-            coords.updateY(-2);
+            coords.updateY(-2);*/
     }
 
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
-        this.updateCoordinatesFromCheck(event.target.label);
+       // this.updateCoordinatesFromCheck(event.target.label);
         this.setState({[event.target.value] : event.target.checked});
     };
 
     handleChangeRadio(event) {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
-        this.updateCoordinatesFromRadio(event.target.value);
+        //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({values});
     }
 
