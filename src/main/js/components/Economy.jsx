@@ -35,8 +35,63 @@ function getQuestion(num) {
     ];
     return (questions[num]);
 }
+const answers = {
 
-function getHighValueAnswerAdd(value) {
+    set1: {
+        ans1: {text: "Zanieczyszczenia powietrza", value: [-1, 1]},
+        ans2: {text: "Zanieczyszczenia wodne", value: [-1, 1]},
+        ans3: {text: "Zanieczyszczenia gleby", value: [-1, 1]},
+        ans4: {text: "Zmiany klimatu", value: [-1, 1]}
+    },
+    set2: {
+        ans1: {text: "Państwo unitarne", value: [0, 2]},
+        ans2: {text: "Federacja", value: [0, 1]},
+        ans3: {text: "Konfederacja", value: [0, -1]},
+        ans4: {text: "Unia", value: [0, -2]}
+    },
+    set3: {
+        ans1: {text: "Rządy autorytarne", value: [0, 2]},
+        ans2: {text: "Ustrój jednopartyjny", value: [0, 1]},
+        ans3: {text: "demokracja parlamentarna(pośrednia)", value: [0, -1]},
+        ans4: {text: "Demokracja bezpośrednia", value: [0, -2]}
+    },
+    set4: {
+        ans1: {text: "Warunek wiekowy", value: [0, 1]},
+        ans2: {text: "Odpowiednie wykrztałcenie", value: [0, 1]},
+        ans3: {text: "Odpowiednia majętność", value: [0, 1]},
+        ans4: {text: "Przynależność do grupy etnicznej", value: [0, 1]}
+    },
+    set5: {
+        ans1: {text: "Popieram", value: [0, 1]},
+        ans2: {text: "Nie popieram", value: [0, -1]}
+    },
+    set6: {
+        ans1: {text: "Izolacjonizm", value: [0, -2]},
+        ans2: {text: "Neutralność", value: [0, -1]},
+        ans3: {text: "Interwencjonizm", value: [0, 1]},
+        ans4: {text: "Ekpsansjonizm", value: [2, 0]}
+    },
+    set7: {
+        ans1: {text: "Język", value: [0, 1]},
+        ans2: {text: "Poziom wykrztałcenia", value: [0, 1]},
+        ans3: {text: "Grupa etniczna", value: [0, 1]},
+        ans4: {text: "Religia", value: [0, 1]}
+    },
+    set8: {
+        ans1: {text: "Brak praw", value: [0, 2]},
+        ans2: {text: "Ustalony limit praw", value: [0, 1]},
+        ans3: {text: "Równe prawa", value: [0, -1]},
+        ans4: {text: "Równe prawa oraz benefity", value: [0, -2]}
+    },
+    set9: {
+        ans1: {text: "Tylko media publiczne", value: [0, 2]},
+        ans2: {text: "Dopuszczalne media prywatne, z narzuconymi restrykcjami", value: [0, 1]},
+        ans3: {text: "Odrębne media puczline oraz prywatne", value: [0, -1]},
+        ans4: {text: "Tylko media prywatne", value: [0, -2]}
+    }
+};
+
+/*function getHighValueAnswerAdd(value) {
 
     const answers = [];
 
@@ -74,7 +129,7 @@ function getMidValueAnswerSub(value) {
 }
 function getCheckAnswerSub(value) {
 
-}
+}*/
 
 class Economy extends Component {
 
@@ -112,37 +167,41 @@ class Economy extends Component {
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
 
-    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+    getRadioGroup(set, name, groupValue) {
 
         return (
-            <RadioGroup
-                aria-label={name}
-                name={name}
-                value={groupValue}
-                onChange={this.handleChangeRadio}
-                row={true}
-            >
-                <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
-                <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
-                <FormControlLabel value={text3} control={<Radio/>} label={text3}/>
-                <FormControlLabel value={text4} control={<Radio/>} label={text4}/>
-            </RadioGroup>
+            <div>
+                <RadioGroup
+                    aria-label={name}
+                    name={name}
+                    value={groupValue}
+                    onChange={this.handleChangeRadio}
+                    row={true}
+                >
+                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans3.text} control={<Radio/>} label={set.ans3.text}/>
+                    <FormControlLabel value={set.ans4.text} control={<Radio/>} label={set.ans4.text}/>
+                </RadioGroup>
+            </div>
         )
     }
 
-    getRadioPair(text1, text2, name, groupValue) {
+    getRadioPair(set, name, groupValue) {
 
         return (
-            <RadioGroup
-                aria-label={name}
-                name={name}
-                value={groupValue}
-                onChange={this.handleChangeRadio}
-                row={true}
-            >
-                <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
-                <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
-            </RadioGroup>
+            <div>
+                <RadioGroup
+                    aria-label={name}
+                    name={name}
+                    value={groupValue}
+                    onChange={this.handleChangeRadio}
+                    row={true}
+                >
+                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
+                </RadioGroup>
+            </div>
         )
     }
 

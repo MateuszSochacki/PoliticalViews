@@ -38,8 +38,60 @@ function getQuestion(num) {
 
     return (questions[num]);
 }
+const answers = {
 
-function getHighValueAnswerAdd(value) {
+    set1: {
+        ans1: {text: "Duży(państwo wyznaniowe)", value: [0, 2]},
+        ans2: {text: "Średni(kultura oparta o religię)", value: [0, 1]},
+        ans3: {text: "Mniejszy(pomniejsze dotacje z publicznego budżetu)", value: [0, -1]},
+        ans4: {text: "Żaden(całkowity rozdział)", value: [0, -2]}
+    },
+    set2: {
+        ans1: {text: "Równe prawa do edukacji", value: [0, -1]},
+        ans2: {text: "Równe prawa do zatrudnienia", value: [0, -1]},
+        ans3: {text: "Prawo do głosowania", value: [0, -1]},
+        ans4: {text: "Regulowany brak różnic w wynagrodzeniu", value: [0, -1]},
+        ans5: {text: "Urlop macierzyński", value: [1, -1]}
+    },
+    set3: {
+        ans1: {text: "Brak kary śmierci", value: [0, -2]},
+        ans2: {text: "Kara śmierci za najcięższe zbrodnie", value: [0, -1]},
+        ans3: {text: "Kara śmierci za cięższe przewinienia", value: [0, 1]},
+        ans4: {text: "Powszechna kara śmierci", value: [0, 2]}
+    },
+    set4: {
+        ans1: {text: "Alkohol", value: [0, -1]},
+        ans2: {text: "Nikotyna", value: [0, -1]},
+        ans3: {text: "Marihuana", value: [0, -1]},
+        ans4: {text: "Narkotyki twarde i psychodeliki", value: [0, -1]}
+    },
+    set5: {
+        ans1: {text: "Inne orietnacje powinny być zwalczane", value: [0, 2]},
+        ans2: {text: "Brak równouprawnienia", value: [0, 1]},
+        ans3: {text: "Związki partnerskie", value: [0, -1]},
+        ans4: {text: "Związki partnerskie oraz prawo do adopcji", value: [0, -2]}
+    },
+    set6: {
+        ans1: {text: "W każdym przypadku(brak kontroli)", value: [0, -2]},
+        ans2: {text: "W przypadkach z komprosimu aborcyjnego", value: [0, -1]},
+        ans3: {text: "Prawo powinno zostać zaostrzone", value: [0, 1]},
+        ans4: {text: "Aborcja powinna być nielegalna", value: [2, 0]}
+    },
+    set7: {
+        ans1: {text: "W każdym przypadku(brak kontroli)", value: [0, -2]},
+        ans2: {text: "W przypadku chronicznego bólu", value: [0, -1]},
+        ans3: {text: "W przypadku chorób nieuleczalnych", value: [0, 1]},
+        ans4: {text: "Eutanazja powinna być nielegalna", value: [0, 2]}
+    },
+    set8: {
+        ans1: {text: "Brak regulacji", value: [0, -2]},
+        ans2: {text: "Stabilność psychiczna oraz brak przeszłości kryminalnej", value: [0, -1]},
+        ans3: {text: "Licencja poparta testami", value: [0, 1]},
+        ans4: {text: "Brak prawa do posiadania", value: [0, 2]}
+    }
+};
+
+/*function getHighValueAnswerAdd(value) {
 
     const answers = [];
 
@@ -77,7 +129,7 @@ function getMidValueAnswerSub(value) {
 }
 function getCheckAnswerSub(value) {
 
-}
+}*/
 
 class SocialView extends Component {
     constructor(props) {
@@ -112,21 +164,23 @@ class SocialView extends Component {
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
 
-    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+    getRadioGroup(set, name, groupValue) {
 
         return (
-            <RadioGroup
-                aria-label={name}
-                name={name}
-                value={groupValue}
-                onChange={this.handleChangeRadio}
-                row={true}
-            >
-                <FormControlLabel value={text1} control={<Radio/>} label={text1}/>
-                <FormControlLabel value={text2} control={<Radio/>} label={text2}/>
-                <FormControlLabel value={text3} control={<Radio/>} label={text3}/>
-                <FormControlLabel value={text4} control={<Radio/>} label={text4}/>
-            </RadioGroup>
+            <div>
+                <RadioGroup
+                    aria-label={name}
+                    name={name}
+                    value={groupValue}
+                    onChange={this.handleChangeRadio}
+                    row={true}
+                >
+                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans3.text} control={<Radio/>} label={set.ans3.text}/>
+                    <FormControlLabel value={set.ans4.text} control={<Radio/>} label={set.ans4.text}/>
+                </RadioGroup>
+            </div>
         )
     }
 
@@ -200,62 +254,56 @@ class SocialView extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(0)}</FormLabel>
-                            {this.getRadioGroup("Duży(państwo wyznaniowe)", "Średni(kultura oparta o religię)",
-                                "Mniejszy(pomniejsze dotacje z publicznego budżetu)", "Żaden(całkowity rozdział)", "religion", this.state.values.religion)}
+                            {this.getRadioGroup(answers.set1, "religion", this.state.values.religion)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(1)}</FormLabel>
-                            {this.getCheckboxForm("womenEdu", "Równe prawa do edukacji", this.state.womenEdu)}
-                            {this.getCheckboxForm("womenEmploy", "Równe prawa do zatrudnienia", this.state.waterPollutions)}
-                            {this.getCheckboxForm("womenVoting", "Prawo do głosowania", this.state.womenVoting)}
-                            {this.getCheckboxForm("womenWage", "Regulowany brak różnic w wynagrodzeniu", this.state.womenWage)}
-                            {this.getCheckboxForm("womenMaternity", "Urlop macierzyński", this.state.womenMaternity)}
+                            {this.getCheckboxForm("womenEdu", answers.set2.ans1.text, this.state.womenEdu)}
+                            {this.getCheckboxForm("womenEmploy", answers.set2.ans2.text, this.state.womenEmploy)}
+                            {this.getCheckboxForm("womenVoting", answers.set2.ans3.text, this.state.womenVoting)}
+                            {this.getCheckboxForm("womenWage", answers.set2.ans4.text, this.state.womenWage)}
+                            {this.getCheckboxForm("womenMaternity", answers.set2.ans5.text, this.state.womenMaternity)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(2)}</FormLabel>
-                            {this.getRadioGroup("Brak kary śmierci", "Kara śmierci za najcięższe zbrodnie",
-                                "Kara śmierci za cięższe przewinienia", "Powszechna kara śmierci", "deathPenalty", this.state.values.deathPenalty)}
+                            {this.getRadioGroup(answers.set3, "deathPenalty", this.state.values.deathPenalty)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
-                            {this.getCheckboxForm("stimAlcohol", "Alkohol", this.state.stimAlcohol)}
-                            {this.getCheckboxForm("stimNicotine", "Nikotyna", this.state.stimNicotine)}
-                            {this.getCheckboxForm("stimCannabis", "Marihuana", this.state.stimCannabis)}
-                            {this.getCheckboxForm("stimHard", "Narkotyki twarde i psychodeliki", this.state.stimHard)}}
+                            {this.getCheckboxForm("stimAlcohol", answers.set4.ans1.text, this.state.stimAlcohol)}
+                            {this.getCheckboxForm("stimNicotine", answers.set4.ans2.text, this.state.stimNicotine)}
+                            {this.getCheckboxForm("stimCannabis", answers.set4.ans2.text, this.state.stimCannabis)}
+                            {this.getCheckboxForm("stimHard", answers.set4.ans2.text, this.state.stimHard)}}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(4)}</FormLabel>
-                            {this.getRadioGroup("Zwalczanie innych orietnacji", "Brak równouprawnienia",
-                                "Związki partnerskie", "Związki partnerskie oraz prawo do adopcji", "orientation", this.state.values.orientation)}
+                            {this.getRadioGroup(answers.set5, "orientation", this.state.values.orientation)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(5)}</FormLabel>
-                            {this.getRadioGroup("W każdym przypadku(brak kontroli)", "W przypadkach z komprosimu aborcyjnego",
-                                "Prawo powinno zostać zaostrzone", "Aborcja powinna być nielegalna", "abortion", this.state.values.abortion)}
+                            {this.getRadioGroup(answers.set6, "abortion", this.state.values.abortion)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(6)}</FormLabel>
-                            {this.getRadioGroup("W każdym przypadku(brak kontroli)", "W przypadku chronicznego bólu",
-                                "W przypadku chorób nieuleczalnych", "Eutanazja powinna być nielegalna", "euthanasia", this.state.values.euthanasia)}
+                            {this.getRadioGroup(answers.set7, "euthanasia", this.state.values.euthanasia)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(7)}</FormLabel>
-                            {this.getRadioGroup("Brak regulacji", "Stabilność psychiczna oraz brak przeszłości kryminalnej",
-                                "Licencja poparta testami", "Brak prawa do posiadania", "race", this.state.values.race)}
+                            {this.getRadioGroup(answers.set7, "race", this.state.values.race)}
                         </FormContainer>
                     </FormControl><br/>
                 </Typography>
