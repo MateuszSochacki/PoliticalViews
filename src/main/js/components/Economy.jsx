@@ -38,22 +38,22 @@ function getQuestion(num) {
 const answers = {
 
     set1: {
-        ans1: {text: "Zanieczyszczenia powietrza", value: [-1, 1]},
-        ans2: {text: "Zanieczyszczenia wodne", value: [-1, 1]},
-        ans3: {text: "Zanieczyszczenia gleby", value: [-1, 1]},
-        ans4: {text: "Zmiany klimatu", value: [-1, 1]}
+        ans1: {text: "Brak podatku", value: [2, 0]},
+        ans2: {text: "Podatek pogłówny", value: [1, 0]},
+        ans3: {text: "Podatek liniowy", value: [0, 0]},
+        ans4: {text: "Podatek progresywny", value: [-2, 0]}
     },
     set2: {
-        ans1: {text: "Państwo unitarne", value: [0, 2]},
-        ans2: {text: "Federacja", value: [0, 1]},
-        ans3: {text: "Konfederacja", value: [0, -1]},
-        ans4: {text: "Unia", value: [0, -2]}
+        ans1: {text: "Wszystkich powinny obowiązywać te same zasady", value: [2, 0]},
+        ans2: {text: "Dodatkowy podatek na służby publiczne, lub wyższy próg PIT", value: [0, 0]},
+        ans3: {text: "Dochód nie powinien przekraczać pewnej kwoty", value: [-1, 0]},
+        ans4: {text: "Nie powinno być ludzi zbyt bogatych", value: [-2, 0]}
     },
     set3: {
-        ans1: {text: "Rządy autorytarne", value: [0, 2]},
-        ans2: {text: "Ustrój jednopartyjny", value: [0, 1]},
-        ans3: {text: "demokracja parlamentarna(pośrednia)", value: [0, -1]},
-        ans4: {text: "Demokracja bezpośrednia", value: [0, -2]}
+        ans1: {text: "Brak podatku", value: [2, 0]},
+        ans2: {text: "Podatek pogłówny", value: [1, 0]},
+        ans3: {text: "Podatek liniowy", value: [0, 0]},
+        ans4: {text: "Podatek progresywny", value: [-2, 0]}
     },
     set4: {
         ans1: {text: "Warunek wiekowy", value: [0, 1]},
@@ -274,22 +274,19 @@ class Economy extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(0)}</FormLabel>
-                            {this.getRadioGroup("Brak podatku", "Podatek pogłówny",
-                                "Podatek liniowy", "Podatek progresywny", "incTax", this.state.values.incTax)}
+                            {this.getRadioGroup(answers.set1, "incTax", this.state.values.incTax)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(1)}</FormLabel>
-                            {this.getRadioGroup("Wszystkich powinny obowiązywać te same zasady", "Dodatkowy podatek na służby publiczne, lub wyższy próg PIT",
-                                "Dochód nie powinien przekraczać pewnej kwoty", "Nie powinno być ludzi zbyt bogatych", "rich", this.state.values.rich)}
+                            {this.getRadioGroup(answers.set2, "rich", this.state.values.rich)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(2)}</FormLabel>
-                            {this.getRadioGroup("Brak podatku", "Podatek pogłówny",
-                                "Podatek liniowy", "Podatek progresywny", "corpTax", this.state.values.corpTax)}
+                            {this.getRadioGroup(answers.set3, "corpTax", this.state.values.corpTax)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
@@ -297,6 +294,7 @@ class Economy extends Component {
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
                             {this.getRadioGroup("Brak płacy minimalnej", "Powinna obowiązywać tylko w korporacjach",
                                 "Stała płaca minimalna", "Płaca minimalna uzależniona od inflacji", "minWage", this.state.values.minWage)}
+                            {this.getRadioGroup(answers.set4, "minWage", this.state.values.minWage)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
