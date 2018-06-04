@@ -56,38 +56,62 @@ const answers = {
         ans4: {text: "Podatek progresywny", value: [-2, 0]}
     },
     set4: {
-        ans1: {text: "Warunek wiekowy", value: [0, 1]},
-        ans2: {text: "Odpowiednie wykrztałcenie", value: [0, 1]},
-        ans3: {text: "Odpowiednia majętność", value: [0, 1]},
-        ans4: {text: "Przynależność do grupy etnicznej", value: [0, 1]}
+        ans1: {text: "Brak płacy minimalnej", value: [2, 0]},
+        ans2: {text: "Powinna obowiązywać tylko w korporacjach", value: [1, 0]},
+        ans3: {text: "Stała płaca minimalna", value: [-1, 0]},
+        ans4: {text: "Płaca minimalna uzależniona od inflacji", value: [-2, 0]}
     },
     set5: {
-        ans1: {text: "Popieram", value: [0, 1]},
-        ans2: {text: "Nie popieram", value: [0, -1]}
+        ans1: {text: "Cła na eksport i import", value: [-1, 0]},
+        ans2: {text: "Wprowadzenie licencji na importowane produkty", value: [-1, 0]},
+        ans3: {text: "Zakaz sprzedaży polskich produktów za granicę po niższej cenie", value: [-1, 0]},
+        ans4: {text: "Kontrola kursu walutowego", value: [-1, 0]}
     },
     set6: {
-        ans1: {text: "Izolacjonizm", value: [0, -2]},
-        ans2: {text: "Neutralność", value: [0, -1]},
-        ans3: {text: "Interwencjonizm", value: [0, 1]},
-        ans4: {text: "Ekpsansjonizm", value: [2, 0]}
+        ans1: {text: "Ziemia nie powinna być obiektem kupna i sprzedaży", value: [-2, 0]},
+        ans2: {text: "Większość ziem powinna być publiczna", value: [-1, 0]},
+        ans3: {text: "Tylko niektóre obszary, jak lasy państwowe lub miejsca administracji", value: [1, 0]},
+        ans4: {text: "Grunty powinny być wyłącznie własnością prywatną", value: [2, 0]}
     },
     set7: {
-        ans1: {text: "Język", value: [0, 1]},
-        ans2: {text: "Poziom wykrztałcenia", value: [0, 1]},
-        ans3: {text: "Grupa etniczna", value: [0, 1]},
-        ans4: {text: "Religia", value: [0, 1]}
+        ans1: {text: "Dla ludzi skrajnie biednych", value: [-1, 0]},
+        ans2: {text: "Zasiłek dla bezrobotnych", value: [-1, 0]},
+        ans3: {text: "Z przyczyny zarobków na poziomie minimum krajowego", value: [-1, 0]},
+        ans4: {text: "Jako dodatek do pensji", value: [-1, 0]}
     },
     set8: {
-        ans1: {text: "Brak praw", value: [0, 2]},
-        ans2: {text: "Ustalony limit praw", value: [0, 1]},
-        ans3: {text: "Równe prawa", value: [0, -1]},
-        ans4: {text: "Równe prawa oraz benefity", value: [0, -2]}
+        ans1: {text: "Brak udziału państwa(pełna prywatyzacja)", value: [2, 0]},
+        ans2: {text: "Całkowita prywatyzacja szkolnictwa wyższego", value: [1, 0]},
+        ans3: {text: "Szkoły publiczne oraz prywatne", value: [-1, 0]},
+        ans4: {text: "Brak zezwolenia na szkoły prywatne", value: [-2, 0]}
     },
     set9: {
-        ans1: {text: "Tylko media publiczne", value: [0, 2]},
-        ans2: {text: "Dopuszczalne media prywatne, z narzuconymi restrykcjami", value: [0, 1]},
-        ans3: {text: "Odrębne media puczline oraz prywatne", value: [0, -1]},
-        ans4: {text: "Tylko media prywatne", value: [0, -2]}
+        ans1: {text: "Brak udziału państwa(pełna prywatyzacja)", value: [2, 0]},
+        ans2: {text: "Istnieje nieobowiązkowa w składkach publiczna opieka medyczna", value: [1, 0]},
+        ans3: {text: "Składki na opieke medyczną są obowiązkowe", value: [-1, 0]},
+        ans4: {text: "Brak zezwolenia prywatne firmy opiekii zdrowotnej", value: [-2, 0]}
+    },
+    set10: {
+        ans1: {text: "Nie powinny istnieć jakiekolwiek ograniczenia", value: [2, 0]},
+        ans2: {text: "Drobne regulacje antymonopolowe", value: [1, 0]},
+        ans3: {text: "Znaczne ograniczenia dla korporacji", value: [-1, 0]},
+        ans4: {text: "Im więcej kontroli nad prywatnym przedsiebiorstwem, tym lepiej", value: [-2, 0]}
+    },
+    set11: {
+        ans1: {text: "Brak publicznego finansowania", value: [2, 0]},
+        ans2: {text: "Nieobowiązkowe ubezpieczenia publiczne, oraz prywatne", value: [1, 0]},
+        ans3: {text: "Obowiązkowe składki", value: [-1, 0]},
+        ans4: {text: "Brak zezwolenia na prywatne ubezpieczenia emerytalne", value: [-2, 0]}
+    },
+    set12: {
+        ans1: {text: "Popieram", value: [-1, 0]},
+        ans2: {text: "Nie popieram", value: [1, 0]},
+    },
+    set13: {
+        ans1: {text: "Od 0% do 10%", value: [2, 0]},
+        ans2: {text: "Od 10% do 20%", value: [1, 0]},
+        ans3: {text: "Od 20% do 30%", value: [-1, 0]},
+        ans4: {text: "Powyżej 30%", value: [-2, 0]}
     }
 };
 
@@ -292,77 +316,67 @@ class Economy extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
-                            {this.getRadioGroup("Brak płacy minimalnej", "Powinna obowiązywać tylko w korporacjach",
-                                "Stała płaca minimalna", "Płaca minimalna uzależniona od inflacji", "minWage", this.state.values.minWage)}
                             {this.getRadioGroup(answers.set4, "minWage", this.state.values.minWage)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(4)}</FormLabel>
-                            {this.getCheckboxForm("protectTariffs", "Cła na eksport i import", this.state.protectTariffs)}
-                            {this.getCheckboxForm("protectLicenses", "Wprowadzenie licencji na importowane produkty", this.state.protectLicenses)}
-                            {this.getCheckboxForm("antiDumping", "Zakaz sprzedaży polskich produktów za granicę po niższej cenie", this.state.antiDumping)}
-                            {this.getCheckboxForm("exchangeRate", "Kontrola kursu walutowego", this.state.exchangeRate)}
+                            {this.getCheckboxForm("protectTariffs", answers.set5.ans1.text, this.state.protectTariffs)}
+                            {this.getCheckboxForm("protectLicenses", answers.set5.ans2.text, this.state.protectLicenses)}
+                            {this.getCheckboxForm("antiDumping", answers.set5.ans3.text, this.state.antiDumping)}
+                            {this.getCheckboxForm("exchangeRate", answers.set5.ans4.text, this.state.exchangeRate)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(5)}</FormLabel>
-                            {this.getRadioGroup("Ziemia nie powinna być obiektem kupna i sprzedaży", "Większość ziem powinna być publiczna",
-                                "Tylko niektóre obszary, jak lasy państwowe lub miejsca administracji", "Grunty powinny być wyłącznie własnością prywatną",
-                                "ground", this.state.values.ground)}
+                            {this.getRadioGroup(answers.set6, "ground", this.state.values.ground)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(6)}</FormLabel>
-                            {this.getCheckboxForm("welfarePoverty", "Dla ludzi skrajnie biednych", this.state.welfarePoverty)}
-                            {this.getCheckboxForm("welfareUnemployed", "Zasiłek dla bezrobotnych", this.state.welfareUnemployed)}
-                            {this.getCheckboxForm("welfareMin", "Z powodu zarobków na poziomie minimum krajowego", this.state.welfareMin)}
-                            {this.getCheckboxForm("welfarePension", "Jako dodatek do pensji", this.state.welfarePension)}
+                            {this.getCheckboxForm("welfarePoverty", answers.set6.ans1.text, this.state.welfarePoverty)}
+                            {this.getCheckboxForm("welfareUnemployed", answers.set7.ans2.text, this.state.welfareUnemployed)}
+                            {this.getCheckboxForm("welfareMin", answers.set7.ans3.text, this.state.welfareMin)}
+                            {this.getCheckboxForm("welfarePension", answers.set7.ans4.text, this.state.welfarePension)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(7)}</FormLabel>
-                            {this.getRadioGroup("Brak udziału państwa(pełna prywatyzacja)", "Całkowita prywatyzacja szkolnictwa wyższego",
-                                "Szkoły publiczne oraz prywatne", "Brak zezwolenia na szkoły prywatne", "education", this.state.values.education)}
+                            {this.getRadioGroup(answers.set8, "education", this.state.values.education)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(8)}</FormLabel>
-                            {this.getRadioGroup("Brak udziału państwa(pełna prywatyzacja)", "Istnieje nieobowiązkowa w składkach publiczna opieka medyczna",
-                                "Składki na opieke medyczną są obowiązkowe", "Brak zezwolenia prywatne firmy medyczne", "healthcare", this.state.values.healthcare)}
+                            {this.getRadioGroup(answers.set9, "healthcare", this.state.values.healthcare)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(9)}</FormLabel>
-                            {this.getRadioGroup("Nie powinno być jakichkolwiek ograniczeń", "Drobne regulacje antymonopolowe",
-                                "Znaczne ograniczenia dla korporacji", "Im więcej kontroli nad prywatnym przedsiebiorstwem, tym lepiej",
-                                "monopolies", this.state.values.monopolies)}
+                            {this.getRadioGroup(answers.set10, "monopolies", this.state.values.monopolies)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(10)}</FormLabel>
-                            {this.getRadioGroup("Brak publicznego finansowania", "Nieobowiązkowe ubezpieczenia publiczne, oraz prywatne",
-                                "Obowiązkowe składki", "Brak zezwolenia na prywatne ubezpieczenia emerytalne", "retirenment", this.state.values.retirenment)}
+                            {this.getRadioGroup(answers.set11, "retirenment", this.state.values.retirenment)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(11)}</FormLabel>
-                            {this.getRadioPair("Popieram", "Nie popieram", "tradeUnions", this.state.values.tradeUnions)}
+                            {this.getRadioGroup(answers.set12, "tradeUnions", this.state.values.tradeUnions)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(12)}</FormLabel>
-                            {this.getRadioGroup("Od 0% do 10%", "Od 10% do 20%",
-                                "Od 20% do 30%", "Powyżej 30%", "vat", this.state.values.vat)}
+                            {this.getRadioGroup(answers.set13, "vat", this.state.values.vat)}
                         </FormContainer>
                     </FormControl><br/>
                 </Typography>

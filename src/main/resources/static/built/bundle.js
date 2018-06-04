@@ -30574,32 +30574,125 @@ function getQuestion(num) {
     const questions = ["Jaki typ opodatkowania od osób fizycznych powinień obowiązywać?", "Czy uważasz, że osoby bogate powinny zostać dodatkowo opodatkowane?", "Jaki typ opodatkowania od przedsiębiorstw powinień obowiązywać?", "Jak powinna funkcjonować płaca minimalna?", "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę, przed interesem zagranicznym?", "Jaka część gruntów powinna należeć do państwa?", "W jakich sytuacjach powinien być przyznawany zasiłek?", "Jaka powinan być rola państwa w sektorze edukacji?", "Jaka powinna być rola państwa w sektorze ochrony zdrowia?", "Czy w wolnym rynku potrzebne są ograniczenia przeciwko powstawaniu monopoli?", "Jak Twoim zdaniem, powinna być rozwiązana kwiestia emerytur?", "Czy popierasz wpływ związków zawodowych na prywatne przedsiębiorstwa?", "Jakie Twoim zdaniem powinna opowiązywać stawka podatku VAT?"];
     return questions[num];
 }
+const answers = {
 
-function getHighValueAnswerAdd(value) {
+    set1: {
+        ans1: { text: "Brak podatku", value: [2, 0] },
+        ans2: { text: "Podatek pogłówny", value: [1, 0] },
+        ans3: { text: "Podatek liniowy", value: [0, 0] },
+        ans4: { text: "Podatek progresywny", value: [-2, 0] }
+    },
+    set2: {
+        ans1: { text: "Wszystkich powinny obowiązywać te same zasady", value: [2, 0] },
+        ans2: { text: "Dodatkowy podatek na służby publiczne, lub wyższy próg PIT", value: [0, 0] },
+        ans3: { text: "Dochód nie powinien przekraczać pewnej kwoty", value: [-1, 0] },
+        ans4: { text: "Nie powinno być ludzi zbyt bogatych", value: [-2, 0] }
+    },
+    set3: {
+        ans1: { text: "Brak podatku", value: [2, 0] },
+        ans2: { text: "Podatek pogłówny", value: [1, 0] },
+        ans3: { text: "Podatek liniowy", value: [0, 0] },
+        ans4: { text: "Podatek progresywny", value: [-2, 0] }
+    },
+    set4: {
+        ans1: { text: "Brak płacy minimalnej", value: [2, 0] },
+        ans2: { text: "Powinna obowiązywać tylko w korporacjach", value: [1, 0] },
+        ans3: { text: "Stała płaca minimalna", value: [-1, 0] },
+        ans4: { text: "Płaca minimalna uzależniona od inflacji", value: [-2, 0] }
+    },
+    set5: {
+        ans1: { text: "Cła na eksport i import", value: [-1, 0] },
+        ans2: { text: "Wprowadzenie licencji na importowane produkty", value: [-1, 0] },
+        ans3: { text: "Zakaz sprzedaży polskich produktów za granicę po niższej cenie", value: [-1, 0] },
+        ans4: { text: "Kontrola kursu walutowego", value: [-1, 0] }
+    },
+    set6: {
+        ans1: { text: "Ziemia nie powinna być obiektem kupna i sprzedaży", value: [-2, 0] },
+        ans2: { text: "Większość ziem powinna być publiczna", value: [-1, 0] },
+        ans3: { text: "Tylko niektóre obszary, jak lasy państwowe lub miejsca administracji", value: [1, 0] },
+        ans4: { text: "Grunty powinny być wyłącznie własnością prywatną", value: [2, 0] }
+    },
+    set7: {
+        ans1: { text: "Dla ludzi skrajnie biednych", value: [-1, 0] },
+        ans2: { text: "Zasiłek dla bezrobotnych", value: [-1, 0] },
+        ans3: { text: "Z przyczyny zarobków na poziomie minimum krajowego", value: [-1, 0] },
+        ans4: { text: "Jako dodatek do pensji", value: [-1, 0] }
+    },
+    set8: {
+        ans1: { text: "Brak udziału państwa(pełna prywatyzacja)", value: [2, 0] },
+        ans2: { text: "Całkowita prywatyzacja szkolnictwa wyższego", value: [1, 0] },
+        ans3: { text: "Szkoły publiczne oraz prywatne", value: [-1, 0] },
+        ans4: { text: "Brak zezwolenia na szkoły prywatne", value: [-2, 0] }
+    },
+    set9: {
+        ans1: { text: "Brak udziału państwa(pełna prywatyzacja)", value: [2, 0] },
+        ans2: { text: "Istnieje nieobowiązkowa w składkach publiczna opieka medyczna", value: [1, 0] },
+        ans3: { text: "Składki na opieke medyczną są obowiązkowe", value: [-1, 0] },
+        ans4: { text: "Brak zezwolenia prywatne firmy opiekii zdrowotnej", value: [-2, 0] }
+    },
+    set10: {
+        ans1: { text: "Nie powinny istnieć jakiekolwiek ograniczenia", value: [2, 0] },
+        ans2: { text: "Drobne regulacje antymonopolowe", value: [1, 0] },
+        ans3: { text: "Znaczne ograniczenia dla korporacji", value: [-1, 0] },
+        ans4: { text: "Im więcej kontroli nad prywatnym przedsiebiorstwem, tym lepiej", value: [-2, 0] }
+    },
+    set11: {
+        ans1: { text: "Brak publicznego finansowania", value: [2, 0] },
+        ans2: { text: "Nieobowiązkowe ubezpieczenia publiczne, oraz prywatne", value: [1, 0] },
+        ans3: { text: "Obowiązkowe składki", value: [-1, 0] },
+        ans4: { text: "Brak zezwolenia na prywatne ubezpieczenia emerytalne", value: [-2, 0] }
+    },
+    set12: {
+        ans1: { text: "Popieram", value: [-1, 0] },
+        ans2: { text: "Nie popieram", value: [1, 0] }
+    },
+    set13: {
+        ans1: { text: "Od 0% do 10%", value: [2, 0] },
+        ans2: { text: "Od 10% do 20%", value: [1, 0] },
+        ans3: { text: "Od 20% do 30%", value: [-1, 0] },
+        ans4: { text: "Powyżej 30%", value: [-2, 0] }
+    }
+};
+
+/*function getHighValueAnswerAdd(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
 function getMidValueAnswerAdd(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
 function getHighValueAnswerSub(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
 function getMidValueAnswerSub(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
-function getCheckAnswerSub(value) {}
+function getCheckAnswerSub(value) {
+
+}*/
 
 class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
@@ -30637,37 +30730,45 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
 
-    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+    getRadioGroup(set, name, groupValue) {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_2_material_ui_Radio__["RadioGroup"],
-            {
-                'aria-label': name,
-                name: name,
-                value: groupValue,
-                onChange: this.handleChangeRadio,
-                row: true
-            },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text1 }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text2 }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text3, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text3 }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text4, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text4 })
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_2_material_ui_Radio__["RadioGroup"],
+                {
+                    'aria-label': name,
+                    name: name,
+                    value: groupValue,
+                    onChange: this.handleChangeRadio,
+                    row: true
+                },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: set.ans1.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: set.ans1.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: set.ans2.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: set.ans2.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: set.ans3.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: set.ans3.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: set.ans4.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: set.ans4.text })
+            )
         );
     }
 
-    getRadioPair(text1, text2, name, groupValue) {
+    getRadioPair(set, name, groupValue) {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_2_material_ui_Radio__["RadioGroup"],
-            {
-                'aria-label': name,
-                name: name,
-                value: groupValue,
-                onChange: this.handleChangeRadio,
-                row: true
-            },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text1 }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: text2 })
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_2_material_ui_Radio__["RadioGroup"],
+                {
+                    'aria-label': name,
+                    name: name,
+                    value: groupValue,
+                    onChange: this.handleChangeRadio,
+                    row: true
+                },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: set.ans1.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: set.ans1.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Form__["FormControlLabel"], { value: set.ans2.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_Radio___default.a, null), label: set.ans2.text })
+            )
         );
     }
 
@@ -30743,7 +30844,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(0)
                         ),
-                        this.getRadioGroup("Brak podatku", "Podatek pogłówny", "Podatek liniowy", "Podatek progresywny", "incTax", this.state.values.incTax)
+                        this.getRadioGroup(answers.set1, "incTax", this.state.values.incTax)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30758,7 +30859,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(1)
                         ),
-                        this.getRadioGroup("Wszystkich powinny obowiązywać te same zasady", "Dodatkowy podatek na służby publiczne, lub wyższy próg PIT", "Dochód nie powinien przekraczać pewnej kwoty", "Nie powinno być ludzi zbyt bogatych", "rich", this.state.values.rich)
+                        this.getRadioGroup(answers.set2, "rich", this.state.values.rich)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30773,7 +30874,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(2)
                         ),
-                        this.getRadioGroup("Brak podatku", "Podatek pogłówny", "Podatek liniowy", "Podatek progresywny", "corpTax", this.state.values.corpTax)
+                        this.getRadioGroup(answers.set3, "corpTax", this.state.values.corpTax)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30788,7 +30889,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(3)
                         ),
-                        this.getRadioGroup("Brak płacy minimalnej", "Powinna obowiązywać tylko w korporacjach", "Stała płaca minimalna", "Płaca minimalna uzależniona od inflacji", "minWage", this.state.values.minWage)
+                        this.getRadioGroup(answers.set4, "minWage", this.state.values.minWage)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30803,10 +30904,10 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(4)
                         ),
-                        this.getCheckboxForm("protectTariffs", "Cła na eksport i import", this.state.protectTariffs),
-                        this.getCheckboxForm("protectLicenses", "Wprowadzenie licencji na importowane produkty", this.state.protectLicenses),
-                        this.getCheckboxForm("antiDumping", "Zakaz sprzedaży polskich produktów za granicę po niższej cenie", this.state.antiDumping),
-                        this.getCheckboxForm("exchangeRate", "Kontrola kursu walutowego", this.state.exchangeRate)
+                        this.getCheckboxForm("protectTariffs", answers.set5.ans1.text, this.state.protectTariffs),
+                        this.getCheckboxForm("protectLicenses", answers.set5.ans2.text, this.state.protectLicenses),
+                        this.getCheckboxForm("antiDumping", answers.set5.ans3.text, this.state.antiDumping),
+                        this.getCheckboxForm("exchangeRate", answers.set5.ans4.text, this.state.exchangeRate)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30821,7 +30922,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(5)
                         ),
-                        this.getRadioGroup("Ziemia nie powinna być obiektem kupna i sprzedaży", "Większość ziem powinna być publiczna", "Tylko niektóre obszary, jak lasy państwowe lub miejsca administracji", "Grunty powinny być wyłącznie własnością prywatną", "ground", this.state.values.ground)
+                        this.getRadioGroup(answers.set6, "ground", this.state.values.ground)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30836,10 +30937,10 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(6)
                         ),
-                        this.getCheckboxForm("welfarePoverty", "Dla ludzi skrajnie biednych", this.state.welfarePoverty),
-                        this.getCheckboxForm("welfareUnemployed", "Zasiłek dla bezrobotnych", this.state.welfareUnemployed),
-                        this.getCheckboxForm("welfareMin", "Z powodu zarobków na poziomie minimum krajowego", this.state.welfareMin),
-                        this.getCheckboxForm("welfarePension", "Jako dodatek do pensji", this.state.welfarePension)
+                        this.getCheckboxForm("welfarePoverty", answers.set6.ans1.text, this.state.welfarePoverty),
+                        this.getCheckboxForm("welfareUnemployed", answers.set7.ans2.text, this.state.welfareUnemployed),
+                        this.getCheckboxForm("welfareMin", answers.set7.ans3.text, this.state.welfareMin),
+                        this.getCheckboxForm("welfarePension", answers.set7.ans4.text, this.state.welfarePension)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30854,7 +30955,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(7)
                         ),
-                        this.getRadioGroup("Brak udziału państwa(pełna prywatyzacja)", "Całkowita prywatyzacja szkolnictwa wyższego", "Szkoły publiczne oraz prywatne", "Brak zezwolenia na szkoły prywatne", "education", this.state.values.education)
+                        this.getRadioGroup(answers.set8, "education", this.state.values.education)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30869,7 +30970,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(8)
                         ),
-                        this.getRadioGroup("Brak udziału państwa(pełna prywatyzacja)", "Istnieje nieobowiązkowa w składkach publiczna opieka medyczna", "Składki na opieke medyczną są obowiązkowe", "Brak zezwolenia prywatne firmy medyczne", "healthcare", this.state.values.healthcare)
+                        this.getRadioGroup(answers.set9, "healthcare", this.state.values.healthcare)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30884,7 +30985,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(9)
                         ),
-                        this.getRadioGroup("Nie powinno być jakichkolwiek ograniczeń", "Drobne regulacje antymonopolowe", "Znaczne ograniczenia dla korporacji", "Im więcej kontroli nad prywatnym przedsiebiorstwem, tym lepiej", "monopolies", this.state.values.monopolies)
+                        this.getRadioGroup(answers.set10, "monopolies", this.state.values.monopolies)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30899,7 +31000,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(10)
                         ),
-                        this.getRadioGroup("Brak publicznego finansowania", "Nieobowiązkowe ubezpieczenia publiczne, oraz prywatne", "Obowiązkowe składki", "Brak zezwolenia na prywatne ubezpieczenia emerytalne", "retirenment", this.state.values.retirenment)
+                        this.getRadioGroup(answers.set11, "retirenment", this.state.values.retirenment)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30914,7 +31015,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(11)
                         ),
-                        this.getRadioPair("Popieram", "Nie popieram", "tradeUnions", this.state.values.tradeUnions)
+                        this.getRadioGroup(answers.set12, "tradeUnions", this.state.values.tradeUnions)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -30929,7 +31030,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(12)
                         ),
-                        this.getRadioGroup("Od 0% do 10%", "Od 10% do 20%", "Od 20% do 30%", "Powyżej 30%", "vat", this.state.values.vat)
+                        this.getRadioGroup(answers.set13, "vat", this.state.values.vat)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)
@@ -102839,32 +102940,98 @@ function getQuestion(num) {
 
     return questions[num];
 }
+const answers = {
 
-function getHighValueAnswerAdd(value) {
+    set1: {
+        ans1: { text: "Duży(państwo wyznaniowe)", value: [0, 2] },
+        ans2: { text: "Średni(kultura oparta o religię)", value: [0, 1] },
+        ans3: { text: "Mniejszy(pomniejsze dotacje z publicznego budżetu)", value: [0, -1] },
+        ans4: { text: "Żaden(całkowity rozdział)", value: [0, -2] }
+    },
+    set2: {
+        ans1: { text: "Równe prawa do edukacji", value: [0, -1] },
+        ans2: { text: "Równe prawa do zatrudnienia", value: [0, -1] },
+        ans3: { text: "Prawo do głosowania", value: [0, -1] },
+        ans4: { text: "Regulowany brak różnic w wynagrodzeniu", value: [0, -1] },
+        ans5: { text: "Urlop macierzyński", value: [1, -1] }
+    },
+    set3: {
+        ans1: { text: "Brak kary śmierci", value: [0, -2] },
+        ans2: { text: "Kara śmierci za najcięższe zbrodnie", value: [0, -1] },
+        ans3: { text: "Kara śmierci za cięższe przewinienia", value: [0, 1] },
+        ans4: { text: "Powszechna kara śmierci", value: [0, 2] }
+    },
+    set4: {
+        ans1: { text: "Alkohol", value: [0, -1] },
+        ans2: { text: "Nikotyna", value: [0, -1] },
+        ans3: { text: "Marihuana", value: [0, -1] },
+        ans4: { text: "Narkotyki twarde i psychodeliki", value: [0, -1] }
+    },
+    set5: {
+        ans1: { text: "Inne orietnacje powinny być zwalczane", value: [0, 2] },
+        ans2: { text: "Brak równouprawnienia", value: [0, 1] },
+        ans3: { text: "Związki partnerskie", value: [0, -1] },
+        ans4: { text: "Związki partnerskie oraz prawo do adopcji", value: [0, -2] }
+    },
+    set6: {
+        ans1: { text: "W każdym przypadku(brak kontroli)", value: [0, -2] },
+        ans2: { text: "W przypadkach z komprosimu aborcyjnego", value: [0, -1] },
+        ans3: { text: "Prawo powinno zostać zaostrzone", value: [0, 1] },
+        ans4: { text: "Aborcja powinna być nielegalna", value: [2, 0] }
+    },
+    set7: {
+        ans1: { text: "W każdym przypadku(brak kontroli)", value: [0, -2] },
+        ans2: { text: "W przypadku chronicznego bólu", value: [0, -1] },
+        ans3: { text: "W przypadku chorób nieuleczalnych", value: [0, 1] },
+        ans4: { text: "Eutanazja powinna być nielegalna", value: [0, 2] }
+    },
+    set8: {
+        ans1: { text: "Brak regulacji", value: [0, -2] },
+        ans2: { text: "Stabilność psychiczna oraz brak przeszłości kryminalnej", value: [0, -1] },
+        ans3: { text: "Licencja poparta testami", value: [0, 1] },
+        ans4: { text: "Brak prawa do posiadania", value: [0, 2] }
+    }
+};
+
+/*function getHighValueAnswerAdd(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
 function getMidValueAnswerAdd(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
 function getHighValueAnswerSub(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
 function getMidValueAnswerSub(value) {
 
     const answers = [];
 
-    if (value === "all") return answers;else return answers[value];
+    if (value === "all")
+        return answers;
+    else return (answers[value]);
+
 }
-function getCheckAnswerSub(value) {}
+function getCheckAnswerSub(value) {
+
+}*/
 
 class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {
@@ -102899,21 +103066,25 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
     }
 
-    getRadioGroup(text1, text2, text3, text4, name, groupValue) {
+    getRadioGroup(set, name, groupValue) {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_5_material_ui_Radio__["RadioGroup"],
-            {
-                'aria-label': name,
-                name: name,
-                value: groupValue,
-                onChange: this.handleChangeRadio,
-                row: true
-            },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: text1, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: text1 }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: text2, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: text2 }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: text3, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: text3 }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: text4, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: text4 })
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_5_material_ui_Radio__["RadioGroup"],
+                {
+                    'aria-label': name,
+                    name: name,
+                    value: groupValue,
+                    onChange: this.handleChangeRadio,
+                    row: true
+                },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: set.ans1.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: set.ans1.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: set.ans2.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: set.ans2.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: set.ans3.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: set.ans3.text }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Form__["FormControlLabel"], { value: set.ans4.text, control: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Radio___default.a, null), label: set.ans4.text })
+            )
         );
     }
 
@@ -102990,7 +103161,7 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(0)
                         ),
-                        this.getRadioGroup("Duży(państwo wyznaniowe)", "Średni(kultura oparta o religię)", "Mniejszy(pomniejsze dotacje z publicznego budżetu)", "Żaden(całkowity rozdział)", "religion", this.state.values.religion)
+                        this.getRadioGroup(answers.set1, "religion", this.state.values.religion)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103005,11 +103176,11 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(1)
                         ),
-                        this.getCheckboxForm("womenEdu", "Równe prawa do edukacji", this.state.womenEdu),
-                        this.getCheckboxForm("womenEmploy", "Równe prawa do zatrudnienia", this.state.waterPollutions),
-                        this.getCheckboxForm("womenVoting", "Prawo do głosowania", this.state.womenVoting),
-                        this.getCheckboxForm("womenWage", "Regulowany brak różnic w wynagrodzeniu", this.state.womenWage),
-                        this.getCheckboxForm("womenMaternity", "Urlop macierzyński", this.state.womenMaternity)
+                        this.getCheckboxForm("womenEdu", answers.set2.ans1.text, this.state.womenEdu),
+                        this.getCheckboxForm("womenEmploy", answers.set2.ans2.text, this.state.womenEmploy),
+                        this.getCheckboxForm("womenVoting", answers.set2.ans3.text, this.state.womenVoting),
+                        this.getCheckboxForm("womenWage", answers.set2.ans4.text, this.state.womenWage),
+                        this.getCheckboxForm("womenMaternity", answers.set2.ans5.text, this.state.womenMaternity)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103024,7 +103195,7 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(2)
                         ),
-                        this.getRadioGroup("Brak kary śmierci", "Kara śmierci za najcięższe zbrodnie", "Kara śmierci za cięższe przewinienia", "Powszechna kara śmierci", "deathPenalty", this.state.values.deathPenalty)
+                        this.getRadioGroup(answers.set3, "deathPenalty", this.state.values.deathPenalty)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103039,10 +103210,10 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(3)
                         ),
-                        this.getCheckboxForm("stimAlcohol", "Alkohol", this.state.stimAlcohol),
-                        this.getCheckboxForm("stimNicotine", "Nikotyna", this.state.stimNicotine),
-                        this.getCheckboxForm("stimCannabis", "Marihuana", this.state.stimCannabis),
-                        this.getCheckboxForm("stimHard", "Narkotyki twarde i psychodeliki", this.state.stimHard),
+                        this.getCheckboxForm("stimAlcohol", answers.set4.ans1.text, this.state.stimAlcohol),
+                        this.getCheckboxForm("stimNicotine", answers.set4.ans2.text, this.state.stimNicotine),
+                        this.getCheckboxForm("stimCannabis", answers.set4.ans2.text, this.state.stimCannabis),
+                        this.getCheckboxForm("stimHard", answers.set4.ans2.text, this.state.stimHard),
                         '}'
                     )
                 ),
@@ -103058,7 +103229,7 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(4)
                         ),
-                        this.getRadioGroup("Zwalczanie innych orietnacji", "Brak równouprawnienia", "Związki partnerskie", "Związki partnerskie oraz prawo do adopcji", "orientation", this.state.values.orientation)
+                        this.getRadioGroup(answers.set5, "orientation", this.state.values.orientation)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103073,7 +103244,7 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(5)
                         ),
-                        this.getRadioGroup("W każdym przypadku(brak kontroli)", "W przypadkach z komprosimu aborcyjnego", "Prawo powinno zostać zaostrzone", "Aborcja powinna być nielegalna", "abortion", this.state.values.abortion)
+                        this.getRadioGroup(answers.set6, "abortion", this.state.values.abortion)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103088,7 +103259,7 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(6)
                         ),
-                        this.getRadioGroup("W każdym przypadku(brak kontroli)", "W przypadku chronicznego bólu", "W przypadku chorób nieuleczalnych", "Eutanazja powinna być nielegalna", "euthanasia", this.state.values.euthanasia)
+                        this.getRadioGroup(answers.set7, "euthanasia", this.state.values.euthanasia)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103103,7 +103274,7 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(7)
                         ),
-                        this.getRadioGroup("Brak regulacji", "Stabilność psychiczna oraz brak przeszłości kryminalnej", "Licencja poparta testami", "Brak prawa do posiadania", "race", this.state.values.race)
+                        this.getRadioGroup(answers.set7, "race", this.state.values.race)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)
