@@ -278,8 +278,8 @@ class SocialView extends Component {
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
                             {this.getCheckboxForm("stimAlcohol", answers.set4.ans1.text, this.state.stimAlcohol)}
                             {this.getCheckboxForm("stimNicotine", answers.set4.ans2.text, this.state.stimNicotine)}
-                            {this.getCheckboxForm("stimCannabis", answers.set4.ans2.text, this.state.stimCannabis)}
-                            {this.getCheckboxForm("stimHard", answers.set4.ans2.text, this.state.stimHard)}}
+                            {this.getCheckboxForm("stimCannabis", answers.set4.ans3.text, this.state.stimCannabis)}
+                            {this.getCheckboxForm("stimHard", answers.set4.ans4.text, this.state.stimHard)}}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>

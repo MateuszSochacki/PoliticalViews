@@ -31015,7 +31015,7 @@ class Economy extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             { component: 'legend' },
                             getQuestion(11)
                         ),
-                        this.getRadioGroup(answers.set12, "tradeUnions", this.state.values.tradeUnions)
+                        this.getRadioPair(answers.set12, "tradeUnions", this.state.values.tradeUnions)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
@@ -103212,8 +103212,8 @@ class SocialView extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                         ),
                         this.getCheckboxForm("stimAlcohol", answers.set4.ans1.text, this.state.stimAlcohol),
                         this.getCheckboxForm("stimNicotine", answers.set4.ans2.text, this.state.stimNicotine),
-                        this.getCheckboxForm("stimCannabis", answers.set4.ans2.text, this.state.stimCannabis),
-                        this.getCheckboxForm("stimHard", answers.set4.ans2.text, this.state.stimHard),
+                        this.getCheckboxForm("stimCannabis", answers.set4.ans3.text, this.state.stimCannabis),
+                        this.getCheckboxForm("stimHard", answers.set4.ans4.text, this.state.stimHard),
                         '}'
                     )
                 ),

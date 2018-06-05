@@ -370,7 +370,7 @@ class Economy extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(11)}</FormLabel>
-                            {this.getRadioGroup(answers.set12, "tradeUnions", this.state.values.tradeUnions)}
+                            {this.getRadioPair(answers.set12, "tradeUnions", this.state.values.tradeUnions)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
