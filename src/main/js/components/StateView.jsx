@@ -167,6 +167,7 @@ class StateView extends Component {
     }
 
     componentWillUnmount() {
+        this.updateCoordinates();
         this.saveData();
     }
 
@@ -222,6 +223,19 @@ class StateView extends Component {
                 label={label}
             />
         );
+    }
+
+    updateCoordinates() {
+
+        this.props.answers.map((set) =>
+            set.map((ans) => this.state.values.forEach((value) => {
+                    if (value === ans.text) {
+                        this.state.coordiantes.updateX(ans.value[0]);
+                        this.state.coordiantes.updateY(ans.value[1]);
+                    }
+                })
+            )
+        )
     }
 
     updateCoordinatesFromCheck(value) {
