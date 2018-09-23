@@ -140,6 +140,60 @@ class StateView extends Component {
                 immigrationReq: "",
                 immigrationRights: "",
             },
+            answers : [
+                [
+                    {text: "Zanieczyszczenia powietrza", value: [-1, 1]},
+                    {text: "Zanieczyszczenia wodne", value: [-1, 1]},
+                    {text: "Zanieczyszczenia gleby", value: [-1, 1]},
+                    {text: "Zmiany klimatu", value: [-1, 1]}
+                ],
+                [
+                    {text: "Państwo unitarne", value: [0, 2]},
+                    {text: "Federacja", value: [0, 1]},
+                    {text: "Konfederacja", value: [0, -1]},
+                    {text: "Unia", value: [0, -2]}
+                ],
+                [
+                    {text: "Rządy autorytarne", value: [0, 2]},
+                    {text: "Ustrój jednopartyjny", value: [0, 1]},
+                    {text: "demokracja parlamentarna(pośrednia)", value: [0, -1]},
+                    {text: "Demokracja bezpośrednia", value: [0, -2]}
+                ],
+                [
+                    {text: "Warunek wiekowy", value: [0, 1]},
+                    {text: "Odpowiednie wykrztałcenie", value: [0, 1]},
+                    {text: "Odpowiednia majętność", value: [0, 1]},
+                    {text: "Przynależność do grupy etnicznej", value: [0, 1]}
+                ],
+                [
+                    {text: "Popieram", value: [0, 1]},
+                    {text: "Nie popieram", value: [0, -1]}
+                ],
+                [
+                    {text: "Izolacjonizm", value: [0, -2]},
+                    {text: "Neutralność", value: [0, -1]},
+                    {text: "Interwencjonizm", value: [0, 1]},
+                    {text: "Ekpsansjonizm", value: [2, 0]}
+                ],
+                [
+                    {text: "Język", value: [0, 1]},
+                    {text: "Poziom wykrztałcenia", value: [0, 1]},
+                    {text: "Grupa etniczna", value: [0, 1]},
+                    {text: "Religia", value: [0, 1]}
+                ],
+                [
+                    {text: "Brak praw", value: [0, 2]},
+                    {text: "Ustalony limit praw", value: [0, 1]},
+                    {text: "Równe prawa", value: [0, -1]},
+                    {text: "Równe prawa oraz benefity", value: [0, -2]}
+                ],
+               [
+                   {text: "Tylko media publiczne", value: [0, 2]},
+                   {text: "Dopuszczalne media prywatne, z narzuconymi restrykcjami", value: [0, 1]},
+                   {text: "Odrębne media puczline oraz prywatne", value: [0, -1]},
+                   {text: "Tylko media prywatne", value: [0, -2]}
+                ]
+            ],
 
             airPollutions: false,
             waterPollutions: false,
@@ -227,8 +281,10 @@ class StateView extends Component {
 
     updateCoordinates() {
 
-        this.props.answers.map((set) =>
-            set.map((ans) => this.state.values.forEach((value) => {
+        const values = Array.from(this.state.values);
+
+        this.state.answers.map((set) =>
+            set.map((ans) => values.forEach((value) => {
                     if (value === ans.text) {
                         this.state.coordiantes.updateX(ans.value[0]);
                         this.state.coordiantes.updateY(ans.value[1]);
