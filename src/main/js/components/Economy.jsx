@@ -5,10 +5,10 @@ import {
     FormGroup,
     FormControlLabel,
     FormHelperText,
-} from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import Typography from "material-ui/Typography";
-import {Checkbox} from "material-ui";
+} from '@material-ui/core';
+import Checkbox from "@material-ui/core/Checkbox/";
+import { RadioGroup, Radio } from '@material-ui/core/';
+import Typography from "@material-ui/core/Typography/";
 
 function FormContainer(props) {
     return (

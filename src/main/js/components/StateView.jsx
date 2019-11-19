@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import green from "material-ui/es/colors/green";
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Checkbox from "material-ui/es/Checkbox/Checkbox";
 import {
     FormLabel,
     FormControl,
     FormGroup,
     FormControlLabel,
-} from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import Typography from "material-ui/Typography/";
+} from '@material-ui/core/';
+import Checkbox from "@material-ui/core/Checkbox/";
+import { RadioGroup, Radio } from '@material-ui/core/';
+import Typography from "@material-ui/core/Typography/";
 
 
 function FormContainer(props) {
@@ -68,7 +67,7 @@ const answers = {
         ans1: {text: "Izolacjonizm", value: [0, -2]},
         ans2: {text: "Neutralność", value: [0, -1]},
         ans3: {text: "Interwencjonizm", value: [0, 1]},
-        ans4: {text: "Ekpsansjonizm", value: [2, 0]}
+        ans4: {text: "Ekspansjonizm", value: [2, 0]}
     },
     set7: {
         ans1: {text: "Język", value: [0, 1]},
@@ -133,67 +132,14 @@ class StateView extends Component {
             values: {
                 environment: "",
                 autonomy: "",
-                system: "",
+                zyzdem: "",
                 votingReq: "",
                 militaryService: "",
                 foreignPolicy: "",
                 immigrationReq: "",
                 immigrationRights: "",
+                media: ""
             },
-            answers : [
-                [
-                    {text: "Zanieczyszczenia powietrza", value: [-1, 1]},
-                    {text: "Zanieczyszczenia wodne", value: [-1, 1]},
-                    {text: "Zanieczyszczenia gleby", value: [-1, 1]},
-                    {text: "Zmiany klimatu", value: [-1, 1]}
-                ],
-                [
-                    {text: "Państwo unitarne", value: [0, 2]},
-                    {text: "Federacja", value: [0, 1]},
-                    {text: "Konfederacja", value: [0, -1]},
-                    {text: "Unia", value: [0, -2]}
-                ],
-                [
-                    {text: "Rządy autorytarne", value: [0, 2]},
-                    {text: "Ustrój jednopartyjny", value: [0, 1]},
-                    {text: "demokracja parlamentarna(pośrednia)", value: [0, -1]},
-                    {text: "Demokracja bezpośrednia", value: [0, -2]}
-                ],
-                [
-                    {text: "Warunek wiekowy", value: [0, 1]},
-                    {text: "Odpowiednie wykrztałcenie", value: [0, 1]},
-                    {text: "Odpowiednia majętność", value: [0, 1]},
-                    {text: "Przynależność do grupy etnicznej", value: [0, 1]}
-                ],
-                [
-                    {text: "Popieram", value: [0, 1]},
-                    {text: "Nie popieram", value: [0, -1]}
-                ],
-                [
-                    {text: "Izolacjonizm", value: [0, -2]},
-                    {text: "Neutralność", value: [0, -1]},
-                    {text: "Interwencjonizm", value: [0, 1]},
-                    {text: "Ekpsansjonizm", value: [2, 0]}
-                ],
-                [
-                    {text: "Język", value: [0, 1]},
-                    {text: "Poziom wykrztałcenia", value: [0, 1]},
-                    {text: "Grupa etniczna", value: [0, 1]},
-                    {text: "Religia", value: [0, 1]}
-                ],
-                [
-                    {text: "Brak praw", value: [0, 2]},
-                    {text: "Ustalony limit praw", value: [0, 1]},
-                    {text: "Równe prawa", value: [0, -1]},
-                    {text: "Równe prawa oraz benefity", value: [0, -2]}
-                ],
-               [
-                   {text: "Tylko media publiczne", value: [0, 2]},
-                   {text: "Dopuszczalne media prywatne, z narzuconymi restrykcjami", value: [0, 1]},
-                   {text: "Odrębne media puczline oraz prywatne", value: [0, -1]},
-                   {text: "Tylko media prywatne", value: [0, -2]}
-                ]
-            ],
 
             airPollutions: false,
             waterPollutions: false,
@@ -221,7 +167,7 @@ class StateView extends Component {
     }
 
     componentWillUnmount() {
-        this.updateCoordinates();
+        //this.updateCoordinates();
         this.saveData();
     }
 
@@ -360,7 +306,7 @@ class StateView extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(2)}</FormLabel>
-                            {this.getRadioGroup(answers.set3, "system", this.state.values.system)}
+                            {this.getRadioGroup(answers.set3, "zyzdem", this.state.values.zyzdem)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
@@ -393,7 +339,7 @@ class StateView extends Component {
                                 {this.getCheckboxForm("languageIReq", answers.set7.ans1.text, this.state.languageIReq)}
                                 {this.getCheckboxForm("eduIReq", answers.set7.ans2.text, this.state.eduIReq)}
                                 {this.getCheckboxForm("ethnicityIReq", answers.set7.ans3.text, this.state.ethnicityIReq)}
-                                {this.getCheckboxForm("religionIReq", answers.set7.ans4.text, this.state.religionIReq)}
+                                {this.getCheckboxForm("religionIReq", answers.set7.ans4.text, this.state.religionReq)}
                             </FormGroup>
                         </FormContainer>
                     </FormControl><br/>

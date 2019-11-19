@@ -1,7 +1,6 @@
 package com.react.reacttest.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "Coordinates", schema = "ii302782", catalog = "")
@@ -9,9 +8,6 @@ public class CoordinatesEntity {
     private int idCoordinates;
     private Double xAxis;
     private Double yAxis;
-    private Collection<IdeologiesEntity> ideologiesByIdCoordinates;
-    private Collection<PoliticalPartyEntity> politicalPartiesByIdCoordinates;
-    private Collection<UserEntity> usersByIdCoordinates;
 
     @Id
     @Column(name = "idCoordinates")
@@ -63,32 +59,5 @@ public class CoordinatesEntity {
         result = 31 * result + (xAxis != null ? xAxis.hashCode() : 0);
         result = 31 * result + (yAxis != null ? yAxis.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "coordinatesByCoordinatesIdCoordinates")
-    public Collection<IdeologiesEntity> getIdeologiesByIdCoordinates() {
-        return ideologiesByIdCoordinates;
-    }
-
-    public void setIdeologiesByIdCoordinates(Collection<IdeologiesEntity> ideologiesByIdCoordinates) {
-        this.ideologiesByIdCoordinates = ideologiesByIdCoordinates;
-    }
-
-    @OneToMany(mappedBy = "coordinatesByCoordinatesIdCoordinates")
-    public Collection<PoliticalPartyEntity> getPoliticalPartiesByIdCoordinates() {
-        return politicalPartiesByIdCoordinates;
-    }
-
-    public void setPoliticalPartiesByIdCoordinates(Collection<PoliticalPartyEntity> politicalPartiesByIdCoordinates) {
-        this.politicalPartiesByIdCoordinates = politicalPartiesByIdCoordinates;
-    }
-
-    @OneToMany(mappedBy = "coordinatesByCoordinatesIdCoordinates")
-    public Collection<UserEntity> getUsersByIdCoordinates() {
-        return usersByIdCoordinates;
-    }
-
-    public void setUsersByIdCoordinates(Collection<UserEntity> usersByIdCoordinates) {
-        this.usersByIdCoordinates = usersByIdCoordinates;
     }
 }

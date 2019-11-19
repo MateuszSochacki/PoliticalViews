@@ -7,14 +7,9 @@ import javax.persistence.*;
 @IdClass(UserEntityPK.class)
 public class UserEntity {
     private int idUser;
-    private int coordinatesIdCoordinates;
     private int socialViewIdSocialView;
     private int economyIdEconomy;
-    private CoordinatesEntity coordinatesByCoordinatesIdCoordinates;
-    private SocialViewEntity socialViewBySocialViewIdSocialView;
-    private EconomyEntity economyByEconomyIdEconomy;
     private int stateViewIdStateView;
-    private StateViewEntity stateViewByStateViewIdStateView;
 
     @Id
     @Column(name = "idUser")
@@ -24,16 +19,6 @@ public class UserEntity {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
-    }
-
-    @Basic
-    @Column(name = "Coordinates_idCoordinates")
-    public int getCoordinatesIdCoordinates() {
-        return coordinatesIdCoordinates;
-    }
-
-    public void setCoordinatesIdCoordinates(int coordinatesIdCoordinates) {
-        this.coordinatesIdCoordinates = coordinatesIdCoordinates;
     }
 
     @Id
@@ -47,16 +32,6 @@ public class UserEntity {
     }
 
     @Id
-    @Column(name = "StateView_idStateView")
-    public int getStateViewIdStateView() {
-        return stateViewIdStateView;
-    }
-
-    public void setStateViewIdStateView(int stateViewIdStateView) {
-        this.stateViewIdStateView = stateViewIdStateView;
-    }
-
-    @Id
     @Column(name = "Economy_idEconomy")
     public int getEconomyIdEconomy() {
         return economyIdEconomy;
@@ -64,6 +39,16 @@ public class UserEntity {
 
     public void setEconomyIdEconomy(int economyIdEconomy) {
         this.economyIdEconomy = economyIdEconomy;
+    }
+
+    @Id
+    @Column(name = "StateView_idStateView")
+    public int getStateViewIdStateView() {
+        return stateViewIdStateView;
+    }
+
+    public void setStateViewIdStateView(int stateViewIdStateView) {
+        this.stateViewIdStateView = stateViewIdStateView;
     }
 
     @Override
@@ -74,9 +59,9 @@ public class UserEntity {
         UserEntity that = (UserEntity) o;
 
         if (idUser != that.idUser) return false;
-        if (coordinatesIdCoordinates != that.coordinatesIdCoordinates) return false;
         if (socialViewIdSocialView != that.socialViewIdSocialView) return false;
         if (economyIdEconomy != that.economyIdEconomy) return false;
+        if (stateViewIdStateView != that.stateViewIdStateView) return false;
 
         return true;
     }
@@ -84,50 +69,9 @@ public class UserEntity {
     @Override
     public int hashCode() {
         int result = idUser;
-        result = 31 * result + coordinatesIdCoordinates;
         result = 31 * result + socialViewIdSocialView;
         result = 31 * result + economyIdEconomy;
+        result = 31 * result + stateViewIdStateView;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumns({@JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false, insertable = false, updatable = false)})
-    public CoordinatesEntity getCoordinatesByCoordinatesIdCoordinates() {
-        return coordinatesByCoordinatesIdCoordinates;
-    }
-
-    public void setCoordinatesByCoordinatesIdCoordinates(CoordinatesEntity coordinatesByCoordinatesIdCoordinates) {
-        this.coordinatesByCoordinatesIdCoordinates = coordinatesByCoordinatesIdCoordinates;
-    }
-
-    @ManyToOne
-    @JoinColumns({@JoinColumn(name = "SocialView_idSocialView", referencedColumnName = "idSocialView", nullable = false, insertable = false, updatable = false)})
-    public SocialViewEntity getSocialViewBySocialViewIdSocialView() {
-        return socialViewBySocialViewIdSocialView;
-    }
-
-    public void setSocialViewBySocialViewIdSocialView(SocialViewEntity socialViewBySocialViewIdSocialView) {
-        this.socialViewBySocialViewIdSocialView = socialViewBySocialViewIdSocialView;
-    }
-
-    @ManyToOne
-    @JoinColumns({@JoinColumn(name = "Economy_idEconomy", referencedColumnName = "idEconomy", nullable = false, insertable = false, updatable = false)})
-    public EconomyEntity getEconomyByEconomyIdEconomy() {
-        return economyByEconomyIdEconomy;
-    }
-
-    public void setEconomyByEconomyIdEconomy(EconomyEntity economyByEconomyIdEconomy) {
-        this.economyByEconomyIdEconomy = economyByEconomyIdEconomy;
-    }
-
-
-    @ManyToOne
-    @JoinColumn(name = "StateView_idStateView", referencedColumnName = "idStateView", nullable = false, insertable = false, updatable = false)
-    public StateViewEntity getStateViewByStateViewIdStateView() {
-        return stateViewByStateViewIdStateView;
-    }
-
-    public void setStateViewByStateViewIdStateView(StateViewEntity stateViewByStateViewIdStateView) {
-        this.stateViewByStateViewIdStateView = stateViewByStateViewIdStateView;
     }
 }

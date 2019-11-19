@@ -28,8 +28,8 @@ class Coordinates extends Component {
     saveData() {
         fetch('http://localhost:8080/api/coordinates',
             {   headers: {
-                'Content-Type': 'application/json',
-            },
+                    'Content-Type': 'application/json',
+                },
                 method: 'POST',
                 body: JSON.stringify(this.state)
             }).catch( err => console.error(err));

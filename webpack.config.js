@@ -2,6 +2,8 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
 module.exports = {
 
+    mode: 'none',
+
     entry: {
         app: ['./src/main/js/app.jsx']
 
@@ -28,9 +30,22 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: 'css-loader/locals'
+                use: ['style-loader','css-loader']
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
+                        }
+                    }
+                ]
             }
-        ]
+        ],
+
     },
         devServer: {
             historyApiFallback: true,
@@ -41,4 +56,4 @@ module.exports = {
         ],
         watch: true
 
-}
+};

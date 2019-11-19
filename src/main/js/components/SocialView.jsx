@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import green from "material-ui/es/colors/green";
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import {
     FormLabel,
     FormControl,
     FormGroup,
     FormControlLabel
-} from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import Typography from "material-ui/Typography";
-import {Checkbox} from "material-ui";
+} from '@material-ui/core';
+import Checkbox from "@material-ui/core/Checkbox/";
+import { RadioGroup, Radio } from '@material-ui/core/';
+import Typography from "@material-ui/core/Typography/";
 
 /*const styles = {
     checked: {
@@ -75,7 +74,7 @@ const answers = {
         ans1: {text: "W każdym przypadku(brak kontroli)", value: [0, -2]},
         ans2: {text: "W przypadkach z komprosimu aborcyjnego", value: [0, -1]},
         ans3: {text: "Prawo powinno zostać zaostrzone", value: [0, 1]},
-        ans4: {text: "Aborcja powinna być nielegalna", value: [2, 0]}
+        ans4: {text: "Aborcja powinna być nielegalna", value: [0, 2]}
     },
     set7: {
         ans1: {text: "W każdym przypadku(brak kontroli)", value: [0, -2]},

@@ -40,6 +40,16 @@ public class UserEntityPK implements Serializable {
         this.economyIdEconomy = economyIdEconomy;
     }
 
+    @Column(name = "StateView_idStateView")
+    @Id
+    public int getStateViewIdStateView() {
+        return stateViewIdStateView;
+    }
+
+    public void setStateViewIdStateView(int stateViewIdStateView) {
+        this.stateViewIdStateView = stateViewIdStateView;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +60,7 @@ public class UserEntityPK implements Serializable {
         if (idUser != that.idUser) return false;
         if (socialViewIdSocialView != that.socialViewIdSocialView) return false;
         if (economyIdEconomy != that.economyIdEconomy) return false;
+        if (stateViewIdStateView != that.stateViewIdStateView) return false;
 
         return true;
     }
@@ -59,16 +70,7 @@ public class UserEntityPK implements Serializable {
         int result = idUser;
         result = 31 * result + socialViewIdSocialView;
         result = 31 * result + economyIdEconomy;
+        result = 31 * result + stateViewIdStateView;
         return result;
-    }
-
-    @Column(name = "StateView_idStateView")
-    @Id
-    public int getStateViewIdStateView() {
-        return stateViewIdStateView;
-    }
-
-    public void setStateViewIdStateView(int stateViewIdStateView) {
-        this.stateViewIdStateView = stateViewIdStateView;
     }
 }

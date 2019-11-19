@@ -1,13 +1,11 @@
 package com.react.reacttest.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "Economy", schema = "ii302782", catalog = "")
 public class EconomyEntity {
     private int idEconomy;
-    private String environment;
     private String rich;
     private String minWage;
     private String protectionism;
@@ -22,7 +20,6 @@ public class EconomyEntity {
     private String tradeUnions;
     private String vat;
     private String controls;
-    private Collection<UserEntity> usersByIdEconomy;
 
     @Id
     @Column(name = "idEconomy")
@@ -32,16 +29,6 @@ public class EconomyEntity {
 
     public void setIdEconomy(int idEconomy) {
         this.idEconomy = idEconomy;
-    }
-
-    @Basic
-    @Column(name = "environment")
-    public String getEnvironment() {
-        return environment;
-    }
-
-    public void setEnvironment(String environment) {
-        this.environment = environment;
     }
 
     @Basic
@@ -192,7 +179,6 @@ public class EconomyEntity {
         EconomyEntity that = (EconomyEntity) o;
 
         if (idEconomy != that.idEconomy) return false;
-        if (environment != null ? !environment.equals(that.environment) : that.environment != null) return false;
         if (rich != null ? !rich.equals(that.rich) : that.rich != null) return false;
         if (minWage != null ? !minWage.equals(that.minWage) : that.minWage != null) return false;
         if (protectionism != null ? !protectionism.equals(that.protectionism) : that.protectionism != null)
@@ -215,7 +201,6 @@ public class EconomyEntity {
     @Override
     public int hashCode() {
         int result = idEconomy;
-        result = 31 * result + (environment != null ? environment.hashCode() : 0);
         result = 31 * result + (rich != null ? rich.hashCode() : 0);
         result = 31 * result + (minWage != null ? minWage.hashCode() : 0);
         result = 31 * result + (protectionism != null ? protectionism.hashCode() : 0);
@@ -231,14 +216,5 @@ public class EconomyEntity {
         result = 31 * result + (vat != null ? vat.hashCode() : 0);
         result = 31 * result + (controls != null ? controls.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "economyByEconomyIdEconomy")
-    public Collection<UserEntity> getUsersByIdEconomy() {
-        return usersByIdEconomy;
-    }
-
-    public void setUsersByIdEconomy(Collection<UserEntity> usersByIdEconomy) {
-        this.usersByIdEconomy = usersByIdEconomy;
     }
 }

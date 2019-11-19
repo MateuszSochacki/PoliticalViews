@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Tabs, { Tab } from 'material-ui/Tabs';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { Tabs, Tab } from '@material-ui/core/';
 import Chart from './Chart';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
-import ForwardIcon from 'material-ui-icons/ArrowForward';
+import Forward from '@material-ui/icons/Forward';
 import SocialView from "./SocialView";
 import StateView from "./StateView";
-import Typography from "material-ui/es/Typography/Typography";
-import Button from "material-ui/es/Button/Button";
+import Button from '@material-ui/core/Button';
+import Typography from "@material-ui/core/Typography/";
 
 
 function TabContainer(props) {
@@ -68,7 +68,7 @@ class Navigation extends Component {
                 {/*<MuiThemeProvider>*/}
                 <AppBar position="fixed">
                     <Toolbar>
-                        <Typography variant="title" color="inherit">
+                        <Typography variant="h5" color="inherit">
                             Sekcje testu:
                         </Typography>
                         <Typography variant ="body2" color="inherit">
@@ -91,11 +91,11 @@ class Navigation extends Component {
                 <br/>
                 <Typography align="center">
                     {this.state.value < 2 ?
-                        <Button variant="raised" size="medium" onClick={this.handleClick}>
-                            Następny dział <ForwardIcon/>
+                        <Button variant="contained" size="medium" onClick={this.handleClick}>
+                            Następny dział <Forward/>
                         </Button> :
                         <Button variant="raised" size="medium" onClick={this.handleClick}>
-                            Pokaż wyniki <ForwardIcon/>
+                            Pokaż wyniki <Forward/>
                         </Button>
                     }
 
