@@ -10,6 +10,8 @@ import {
 import Checkbox from "@material-ui/core/Checkbox/";
 import { RadioGroup, Radio } from '@material-ui/core/';
 import Typography from "@material-ui/core/Typography/";
+import Forward from "@material-ui/core/SvgIcon/SvgIcon";
+import Button from "@material-ui/core/Button/Button";
 
 /*const styles = {
     checked: {
@@ -90,60 +92,20 @@ const answers = {
     }
 };
 
-/*function getHighValueAnswerAdd(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getMidValueAnswerAdd(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getHighValueAnswerSub(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getMidValueAnswerSub(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getCheckAnswerSub(value) {
-
-}*/
-
 class SocialView extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             values : {
-                religion : "",
-                women : "",
-                deathPenalty : "",
-                stimulants : "",
-                orientation : "",
-                abortion : "",
-                euthanasia : "",
-                race : ""
+                religion : "0,0",
+                women : "0,0",
+                deathPenalty : "0,0",
+                stimulants : "0,0",
+                orientation : "0,0",
+                abortion : "0,0",
+                euthanasia : "0,0",
+                race : "0,0"
             },
 
             womenEdu: false,
@@ -156,11 +118,15 @@ class SocialView extends Component {
             stimHard: false,
             stimNicotine: false,
 
-            coordinates: props.coordinates
+            coordinates: {
+                yAxis: this.props.yAxis,
+                xAxis: this.props.xAxis
+            }
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     getRadioGroup(set, name, groupValue) {
@@ -174,10 +140,10 @@ class SocialView extends Component {
                     onChange={this.handleChangeRadio}
                     row={true}
                 >
-                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
-                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
-                    <FormControlLabel value={set.ans3.text} control={<Radio/>} label={set.ans3.text}/>
-                    <FormControlLabel value={set.ans4.text} control={<Radio/>} label={set.ans4.text}/>
+                    <FormControlLabel value={set.ans1.value.toString()} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.value.toString()} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans3.value.toString()} control={<Radio/>} label={set.ans3.text}/>
+                    <FormControlLabel value={set.ans4.value.toString()} control={<Radio/>} label={set.ans4.text}/>
                 </RadioGroup>
             </div>
         )
@@ -210,24 +176,40 @@ class SocialView extends Component {
             }).catch(err => console.error(err));
     }
 
+    saveCoordinatesData() {
+
+
+        fetch('http://localhost:8080/api/coordinates',
+            {   headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(this.state.coordinates)
+            }).catch( err => console.error(err));
+    }
+
     componentWillUnmount() {
         this.saveData();
+        this.saveCoordinatesData();
     }
 
-    updateCoordinatesFromCheck() {
-
+    updateCoordinatesToSave() {
+        const values = this.state.coordinates;
+        values.yAxis  = this.state.coordinates.yAxis + this.state.yAxis;
+        this.setState({coordinates: values});
     }
 
-    updateCoordinatesFromRadio() {
-        const coords = this.state.coordinates;
-        /*if(getHighValueAnswerAdd("all").includes(value))
-            coords.updateY(2);
-        else if (getMidValueAnswerAdd("all").includes(value))
-            coords.updateY(1);
-        else if (getMidValueAnswerSub("all").includes(value))
-            coords.updateY(-1);
-        else if (getHighValueAnswerSub("all").includes(value))
-            coords.updateY(-2);*/
+    updateCoordinates() {
+        const values = this.state.values;
+        let yAxis = 0;
+
+        Object.keys(values).forEach(function(key) {
+            yAxis += Number(values[key].split(',')[1]);
+        });
+        let coordinates = this.state.coordinates;
+        coordinates.yAxis += yAxis;
+        this.setState({coordinates});
+
     }
 
     handleChangeCheck(event) {
@@ -235,6 +217,7 @@ class SocialView extends Component {
         /*value = (value !== true);*/
        // this.updateCoordinatesFromCheck(event.target.label);
         this.setState({[event.target.value] : event.target.checked});
+        //this.updateCoordinates();
     };
 
     handleChangeRadio(event) {
@@ -242,6 +225,11 @@ class SocialView extends Component {
         values[event.target.name] = event.target.value;
         //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({values});
+    }
+
+    handleClick(event) {
+        this.updateCoordinates();
+        this.props.parentUpdate(0, this.state.yAxis);
     }
 
     render() {
@@ -305,14 +293,13 @@ class SocialView extends Component {
                             {this.getRadioGroup(answers.set7, "race", this.state.values.race)}
                         </FormContainer>
                     </FormControl><br/>
+                    <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
+                        Zatwierdź odpowiedzi <Forward/>
+                    </Button>
                 </Typography>
             </div>
 
         );
     }
 }
-/*SocialView.propTypes = {
-    classes: PropTypes.object.isRequired,
-};*/
-
 export default SocialView;

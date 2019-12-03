@@ -31,33 +31,29 @@ class Navigation extends Component {
 
         this.state = {
             value : 0,
-            coordinates : new Coordinates()
+            coordinates : {
+                xAxis: 0,
+                yAxis: 0
+            }
         }
     }
 
     handleChange(event, value) {
-
         this.setState({ value });
     }
 
     handleClick(event) {
 
-        /*if (this.state.value === 0) {
-            saveData(this.state);
-        } else if (this.state.value === 1) {
-            this.state.stateView.saveData();
-        } else if (this.state.value === 2) {
-            this.state.socialView.saveData();
-        }*/
-
         const val = this.state.value + 1;
-        this.setState({value : val})
-
+        this.setState({value : val});
     }
 
-    updateCoordinates(props) {
+    updateCoordinates(xValue, yValue) {
 
-        this.setState({coordinates: props});
+        const values = this.state.coordinates;
+        values.xAxis = this.state.coordinates.xAxis + xValue;
+        values.yAxis = this.state.coordinates.yAxis + yValue;
+        this.setState({coordinates: values});
     }
 
     render() {
@@ -82,19 +78,18 @@ class Navigation extends Component {
 
                     </Toolbar>
                 </AppBar><br/>
-                {value === 0 && <Economy coordinates={this.state.coordinates}
-                                         parentUpdate={this.updateCoordinates}/>}
-                {value === 1 && <StateView coordinates={this.state.coordinates}
-                                           parentUpdate={this.updateCoordinates}/>}
-                {value === 2 && <SocialView coordinates={this.state.coordinates}
+                {value === 0 && <Economy parentUpdate={this.updateCoordinates}/>}
+                {value === 1 && <StateView parentUpdate={this.updateCoordinates}/>}
+                {value === 2 && <SocialView xAxis={this.state.coordinates.xAxis}
+                                            yAxis={this.state.coordinates.yAxis}
                                             parentUpdate={this.updateCoordinates}/>}
                 <br/>
                 <Typography align="center">
-                    {this.state.value < 2 ?
+                     {this.state.value < 2 ?
                         <Button variant="contained" size="medium" onClick={this.handleClick}>
                             Następny dział <Forward/>
                         </Button> :
-                        <Button variant="raised" size="medium" onClick={this.handleClick}>
+                        <Button variant="contained" size="medium" onClick={this.handleClick}>
                             Pokaż wyniki <Forward/>
                         </Button>
                     }

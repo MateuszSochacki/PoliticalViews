@@ -8,7 +8,8 @@ class Coordinates extends Component {
             xAxis : 0,
             yAxis : 0
         };
-        //this.saveData(this.state.incTax);
+        this.updateX = this.updateX.bind(this);
+        this.updateY = this.updateY.bind(this);
     }
 
     componentDidMount() {

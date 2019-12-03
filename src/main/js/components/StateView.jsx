@@ -10,6 +10,8 @@ import {
 import Checkbox from "@material-ui/core/Checkbox/";
 import { RadioGroup, Radio } from '@material-ui/core/';
 import Typography from "@material-ui/core/Typography/";
+import Forward from "@material-ui/core/SvgIcon/SvgIcon";
+import Button from "@material-ui/core/Button/Button";
 
 
 function FormContainer(props) {
@@ -88,41 +90,6 @@ const answers = {
         ans4: {text: "Tylko media prywatne", value: [0, -2]}
     }
 };
-/*function getHighValueAnswerAdd(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-}
-function getMidValueAnswerAdd(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-}
-function getHighValueAnswerSub(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-}
-function getMidValueAnswerSub(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-}
-function getCheckAnswerAdd(value) {
-
-}*/
 
 class StateView extends Component {
     constructor(props) {
@@ -130,15 +97,15 @@ class StateView extends Component {
 
         this.state = {
             values: {
-                environment: "",
-                autonomy: "",
-                zyzdem: "",
-                votingReq: "",
-                militaryService: "",
-                foreignPolicy: "",
-                immigrationReq: "",
-                immigrationRights: "",
-                media: ""
+                environment: "0,0",
+                autonomy: "0,0",
+                zyzdem: "0,0",
+                votingReq: "0,0",
+                militaryService: "0,0",
+                foreignPolicy: "0,0",
+                immigrationReq: "0,0",
+                immigrationRights: "0,0",
+                media: "0,0"
             },
 
             airPollutions: false,
@@ -154,11 +121,13 @@ class StateView extends Component {
             ethnicityIReq : false,
             religionReq : false,
 
-            coordinates: props.coordinates
+            xAxis : 0,
+            yAxis : 0
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -167,7 +136,6 @@ class StateView extends Component {
     }
 
     componentWillUnmount() {
-        //this.updateCoordinates();
         this.saveData();
     }
 
@@ -182,10 +150,10 @@ class StateView extends Component {
                     onChange={this.handleChangeRadio}
                     row={true}
                 >
-                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
-                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
-                    <FormControlLabel value={set.ans3.text} control={<Radio/>} label={set.ans3.text}/>
-                    <FormControlLabel value={set.ans4.text} control={<Radio/>} label={set.ans4.text}/>
+                    <FormControlLabel value={set.ans1.value.toString()} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.value.toString()} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans3.value.toString()} control={<Radio/>} label={set.ans3.text}/>
+                    <FormControlLabel value={set.ans4.value.toString()} control={<Radio/>} label={set.ans4.text}/>
                 </RadioGroup>
             </div>
         )
@@ -202,8 +170,8 @@ class StateView extends Component {
                     onChange={this.handleChangeRadio}
                     row={true}
                 >
-                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
-                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans1.value.toString()} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.value.toString()} control={<Radio/>} label={set.ans2.text}/>
                 </RadioGroup>
             </div>
         )
@@ -226,34 +194,18 @@ class StateView extends Component {
     }
 
     updateCoordinates() {
+        const values = this.state.values;
+        let yAxis = 0;
+        let xAxis = 0;
 
-        const values = Array.from(this.state.values);
-
-        this.state.answers.map((set) =>
-            set.map((ans) => values.forEach((value) => {
-                    if (value === ans.text) {
-                        this.state.coordiantes.updateX(ans.value[0]);
-                        this.state.coordiantes.updateY(ans.value[1]);
-                    }
-                })
-            )
-        )
+        Object.keys(values).forEach(function(key) {
+            xAxis += Number(values[key].split(',')[0]);
+            yAxis += Number(values[key].split(',')[1]);
+        });
+        this.setState({xAxis, yAxis});
     }
 
     updateCoordinatesFromCheck(value) {
-
-    }
-
-    updateCoordinatesFromRadio(value) {
-        const coords = this.state.coordinates;
-        /*if(getHighValueAnswerAdd("all").includes(value))
-            coords.updateY(2);
-        else if (getMidValueAnswerAdd("all").includes(value))
-            coords.updateY(1);
-        else if (getMidValueAnswerSub("all").includes(value))
-            coords.updateY(-1);
-        else if (getHighValueAnswerSub("all").includes(value))
-            coords.updateY(-2);*/
 
     }
 
@@ -273,6 +225,7 @@ class StateView extends Component {
         /*value = (value !== true);*/
         //this.updateCoordinatesFromCheck(event.target.label);
         this.setState({[event.target.value]: event.target.checked});
+        this.updateCoordinates();
     };
 
     handleChangeRadio(event) {
@@ -280,6 +233,11 @@ class StateView extends Component {
         values[event.target.name] = event.target.value;
         //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({values});
+    }
+
+    handleClick(event) {
+        this.updateCoordinates();
+        this.props.parentUpdate(this.state.xAxis, this.state.yAxis);
     }
 
     render() {
@@ -355,6 +313,9 @@ class StateView extends Component {
                             {this.getRadioGroup(answers.set9, "media", this.state.values.media)}
                         </FormContainer>
                     </FormControl><br/>
+                    <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
+                        Zatwierdź odpowiedzi <Forward/>
+                    </Button>
                 </Typography>
             </div>
         );

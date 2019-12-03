@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     FormLabel,
     FormControl,
@@ -7,12 +7,15 @@ import {
     FormHelperText,
 } from '@material-ui/core';
 import Checkbox from "@material-ui/core/Checkbox/";
-import { RadioGroup, Radio } from '@material-ui/core/';
+import {RadioGroup, Radio} from '@material-ui/core/';
 import Typography from "@material-ui/core/Typography/";
+import coordinates from "./Coordinates";
+import Button from "@material-ui/core/Button/Button";
+import Forward from "@material-ui/core/SvgIcon/SvgIcon";
 
 function FormContainer(props) {
     return (
-        <Typography align="center" component="div" style={{ paddingBottom: 40 }}>
+        <Typography align="center" component="div" style={{paddingBottom: 40}}>
             {props.children}
         </Typography>
     );
@@ -20,21 +23,22 @@ function FormContainer(props) {
 
 function getQuestion(num) {
     const questions = ["Jaki typ opodatkowania od osób fizycznych powinień obowiązywać?",
-    "Czy uważasz, że osoby bogate powinny zostać dodatkowo opodatkowane?",
-    "Jaki typ opodatkowania od przedsiębiorstw powinień obowiązywać?",
-    "Jak powinna funkcjonować płaca minimalna?",
-    "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę, przed interesem zagranicznym?",
-    "Jaka część gruntów powinna należeć do państwa?",
-    "W jakich sytuacjach powinien być przyznawany zasiłek?",
-    "Jaka powinan być rola państwa w sektorze edukacji?",
-    "Jaka powinna być rola państwa w sektorze ochrony zdrowia?",
-    "Czy w wolnym rynku potrzebne są ograniczenia przeciwko powstawaniu monopoli?",
-    "Jak Twoim zdaniem, powinna być rozwiązana kwiestia emerytur?",
-    "Czy popierasz wpływ związków zawodowych na prywatne przedsiębiorstwa?",
-    "Jakie Twoim zdaniem powinna opowiązywać stawka podatku VAT?",
+        "Czy uważasz, że osoby bogate powinny zostać dodatkowo opodatkowane?",
+        "Jaki typ opodatkowania od przedsiębiorstw powinień obowiązywać?",
+        "Jak powinna funkcjonować płaca minimalna?",
+        "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę, przed interesem zagranicznym?",
+        "Jaka część gruntów powinna należeć do państwa?",
+        "W jakich sytuacjach powinien być przyznawany zasiłek?",
+        "Jaka powinan być rola państwa w sektorze edukacji?",
+        "Jaka powinna być rola państwa w sektorze ochrony zdrowia?",
+        "Czy w wolnym rynku potrzebne są ograniczenia przeciwko powstawaniu monopoli?",
+        "Jak Twoim zdaniem, powinna być rozwiązana kwiestia emerytur?",
+        "Czy popierasz wpływ związków zawodowych na prywatne przedsiębiorstwa?",
+        "Jakie Twoim zdaniem powinna oboowiązywać stawka podatku VAT?",
     ];
     return (questions[num]);
 }
+
 const answers = {
 
     set1: {
@@ -115,65 +119,25 @@ const answers = {
     }
 };
 
-/*function getHighValueAnswerAdd(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getMidValueAnswerAdd(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getHighValueAnswerSub(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getMidValueAnswerSub(value) {
-
-    const answers = [];
-
-    if (value === "all")
-        return answers;
-    else return (answers[value]);
-
-}
-function getCheckAnswerSub(value) {
-
-}*/
-
 class Economy extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            values : {
-                rich : "",
-                minWage : "",
-                protectionism : "",
-                corpTax : "",
-                incTax : "",
-                ground : "",
-                welfare : "",
-                education : "",
-                healthcare : "",
-                monopolies : "",
-                retirenment : "",
-                tradeUnions : "",
-                vat : ""
+            values: {
+                rich: "0,0",
+                minWage: "0,0",
+                protectionism: "0,0",
+                corpTax: "0,0",
+                incTax: "0,0",
+                ground: "0,0",
+                welfare: "0,0",
+                education: "0,0",
+                healthcare: "0,0",
+                monopolies: "0,0",
+                retirenment: "0,0",
+                tradeUnions: "0,0",
+                vat: "0,0"
             },
 
             protectTariffs: false,
@@ -185,10 +149,11 @@ class Economy extends Component {
             welfareMin: false,
             welfarePension: false,
 
-            coordinates: props.coordinates
+            xAxis: 0
         };
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     getRadioGroup(set, name, groupValue) {
@@ -202,10 +167,10 @@ class Economy extends Component {
                     onChange={this.handleChangeRadio}
                     row={true}
                 >
-                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
-                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
-                    <FormControlLabel value={set.ans3.text} control={<Radio/>} label={set.ans3.text}/>
-                    <FormControlLabel value={set.ans4.text} control={<Radio/>} label={set.ans4.text}/>
+                    <FormControlLabel value={set.ans1.value.toString()} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.value.toString()} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans3.value.toString()} control={<Radio/>} label={set.ans3.text}/>
+                    <FormControlLabel value={set.ans4.value.toString()} control={<Radio/>} label={set.ans4.text}/>
                 </RadioGroup>
             </div>
         )
@@ -222,8 +187,8 @@ class Economy extends Component {
                     onChange={this.handleChangeRadio}
                     row={true}
                 >
-                    <FormControlLabel value={set.ans1.text} control={<Radio/>} label={set.ans1.text}/>
-                    <FormControlLabel value={set.ans2.text} control={<Radio/>} label={set.ans2.text}/>
+                    <FormControlLabel value={set.ans1.value.toString()} control={<Radio/>} label={set.ans1.text}/>
+                    <FormControlLabel value={set.ans2.value.toString()} control={<Radio/>} label={set.ans2.text}/>
                 </RadioGroup>
             </div>
         )
@@ -247,52 +212,56 @@ class Economy extends Component {
 
     saveData() {
         fetch('http://localhost:8080/api/economy',
-            {   headers: {
-                'Content-Type': 'application/json',
-            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 method: 'POST',
                 body: JSON.stringify(this.state.values)
-            }).catch( err => console.error(err));
+            }).catch(err => console.error(err));
 
     }
 
     componentWillUnmount() {
         this.saveData();
+        this.props.parentUpdate(this.state.xAxis, 0);
     }
 
     updateCoordinatesFromCheck() {
 
     }
 
-    updateCoordinatesFromRadio() {
-        const coords = this.state.coordinates;
-        /*if(getHighValueAnswerAdd("all").includes(value))
-            coords.updateX(2);
-        else if (getMidValueAnswerAdd("all").includes(value))
-            coords.updateX(1);
-        else if (getMidValueAnswerSub("all").includes(value))
-            coords.updateX(-1);
-        else if (getHighValueAnswerSub("all").includes(value))
-            coords.updateX(-2);*/
+    updateCoordinates() {
+        const values = this.state.values;
+        let xAxis = 0;
+
+        Object.keys(values).forEach(function(key) {
+            xAxis += Number(values[key].split(',')[0]);
+        });
+        this.setState({xAxis});
     }
 
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
         //this.updateCoordinatesFromCheck(event.target.label);
-        this.setState({[event.target.value] : event.target.checked});
+        this.setState({[event.target.value]: event.target.checked});
+        this.updateCoordinates();
     };
 
     handleChangeRadio(event) {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
-        //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({values});
+    }
+
+    handleClick(event) {
+        this.updateCoordinates();
     }
 
     render() {
 
-        return(
+        return (
             <div>
                 <Typography align="center">
                     <FormControl component="fieldset" required>
@@ -379,9 +348,13 @@ class Economy extends Component {
                             {this.getRadioGroup(answers.set13, "vat", this.state.values.vat)}
                         </FormContainer>
                     </FormControl><br/>
+                    <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
+                        Zatwierdź odpowiedzi <Forward/>
+                    </Button>
                 </Typography>
             </div>
         );
     }
 }
+
 export default Economy;
