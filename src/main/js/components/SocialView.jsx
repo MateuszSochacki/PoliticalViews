@@ -119,8 +119,8 @@ class SocialView extends Component {
             stimNicotine: false,
 
             coordinates: {
-                yAxis: this.props.yAxis,
-                xAxis: this.props.xAxis
+                yAxis: 0,
+                xAxis: 0
             }
         };
 
@@ -176,21 +176,8 @@ class SocialView extends Component {
             }).catch(err => console.error(err));
     }
 
-    saveCoordinatesData() {
-
-
-        fetch('http://localhost:8080/api/coordinates',
-            {   headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST',
-                body: JSON.stringify(this.state.coordinates)
-            }).catch( err => console.error(err));
-    }
-
     componentWillUnmount() {
         this.saveData();
-        this.saveCoordinatesData();
     }
 
     updateCoordinatesToSave() {
@@ -208,8 +195,15 @@ class SocialView extends Component {
         });
         let coordinates = this.state.coordinates;
         coordinates.yAxis += yAxis;
-        this.setState({coordinates});
+        this.state.coordinates.xAxis = 0;
+        this.state.coordinates.yAxis = yAxis;
+        //this.setState({coordinates});
 
+    }
+
+    handleClick(event) {
+        this.updateCoordinates();
+        this.props.parentUpdate(this.state.coordinates.xAxis, this.state.coordinates.yAxis);
     }
 
     handleChangeCheck(event) {
@@ -225,11 +219,6 @@ class SocialView extends Component {
         values[event.target.name] = event.target.value;
         //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({values});
-    }
-
-    handleClick(event) {
-        this.updateCoordinates();
-        this.props.parentUpdate(0, this.state.yAxis);
     }
 
     render() {

@@ -5,15 +5,15 @@ class Coordinates extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            xAxis : 0,
-            yAxis : 0
+            xAxis: this.props.xAxis,
+            yAxis: this.props.yAxis
         };
         this.updateX = this.updateX.bind(this);
         this.updateY = this.updateY.bind(this);
     }
 
     componentDidMount() {
-
+        this.saveData();
     }
 
     updateX(val) {
@@ -37,7 +37,6 @@ class Coordinates extends Component {
     }
 
     render() {
-
         return(
             <div>bazatest</div>
         );

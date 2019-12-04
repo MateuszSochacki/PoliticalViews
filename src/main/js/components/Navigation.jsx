@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Tabs, Tab } from '@material-ui/core/';
+import {Tabs, Tab} from '@material-ui/core/';
 import Chart from './Chart';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography/";
 
 function TabContainer(props) {
     return (
-        <Typography component="div" style={{ paddingBottom: 8 * 3 }}>
+        <Typography component="div" style={{paddingBottom: 8 * 3}}>
             {props.children}
         </Typography>
     );
@@ -30,8 +30,8 @@ class Navigation extends Component {
         this.updateCoordinates = this.updateCoordinates.bind(this);
 
         this.state = {
-            value : 0,
-            coordinates : {
+            value: 0,
+            coordinates: {
                 xAxis: 0,
                 yAxis: 0
             }
@@ -39,13 +39,13 @@ class Navigation extends Component {
     }
 
     handleChange(event, value) {
-        this.setState({ value });
+        this.setState({value});
     }
 
     handleClick(event) {
 
         const val = this.state.value + 1;
-        this.setState({value : val});
+        this.setState({value: val});
     }
 
     updateCoordinates(xValue, yValue) {
@@ -57,7 +57,7 @@ class Navigation extends Component {
     }
 
     render() {
-        const { value } = this.state;
+        const {value} = this.state;
 
         return (
             <div>
@@ -67,15 +67,14 @@ class Navigation extends Component {
                         <Typography variant="h5" color="inherit">
                             Sekcje testu:
                         </Typography>
-                        <Typography variant ="body2" color="inherit">
+                        <Typography variant="body2" color="inherit">
 
                             <Tabs value={value} onChange={this.handleChange} indicatorColor="secondary">
                                 <Tab label="Ekonomia"/>
                                 <Tab label="Państwo"/>
-                                <Tab label="Światopogląd" />
+                                <Tab label="Światopogląd"/>
                             </Tabs>
                         </Typography>
-
                     </Toolbar>
                 </AppBar><br/>
                 {value === 0 && <Economy parentUpdate={this.updateCoordinates}/>}
@@ -83,9 +82,11 @@ class Navigation extends Component {
                 {value === 2 && <SocialView xAxis={this.state.coordinates.xAxis}
                                             yAxis={this.state.coordinates.yAxis}
                                             parentUpdate={this.updateCoordinates}/>}
+                {value === 3 && <Coordinates xAxis={this.state.coordinates.xAxis}
+                                            yAxis={this.state.coordinates.yAxis}/>}
                 <br/>
                 <Typography align="center">
-                     {this.state.value < 2 ?
+                    {this.state.value < 2 ?
                         <Button variant="contained" size="medium" onClick={this.handleClick}>
                             Następny dział <Forward/>
                         </Button> :
@@ -93,12 +94,11 @@ class Navigation extends Component {
                             Pokaż wyniki <Forward/>
                         </Button>
                     }
-
                 </Typography>
-
-               {/* </MuiThemeProvider>*/}
+                {/* </MuiThemeProvider>*/}
             </div>
         )
     }
 }
+
 export default Navigation;

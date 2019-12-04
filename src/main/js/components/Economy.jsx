@@ -224,7 +224,6 @@ class Economy extends Component {
 
     componentWillUnmount() {
         this.saveData();
-        this.props.parentUpdate(this.state.xAxis, 0);
     }
 
     updateCoordinatesFromCheck() {
@@ -238,7 +237,8 @@ class Economy extends Component {
         Object.keys(values).forEach(function(key) {
             xAxis += Number(values[key].split(',')[0]);
         });
-        this.setState({xAxis});
+        this.state.xAxis = xAxis;
+        //this.setState({xAxis});
     }
 
     handleChangeCheck(event) {
@@ -246,7 +246,7 @@ class Economy extends Component {
         /*value = (value !== true);*/
         //this.updateCoordinatesFromCheck(event.target.label);
         this.setState({[event.target.value]: event.target.checked});
-        this.updateCoordinates();
+        //this.updateCoordinates();
     };
 
     handleChangeRadio(event) {
@@ -257,6 +257,7 @@ class Economy extends Component {
 
     handleClick(event) {
         this.updateCoordinates();
+        this.props.parentUpdate(this.state.xAxis, 0);
     }
 
     render() {

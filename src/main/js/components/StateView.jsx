@@ -69,7 +69,7 @@ const answers = {
         ans1: {text: "Izolacjonizm", value: [0, -2]},
         ans2: {text: "Neutralność", value: [0, -1]},
         ans3: {text: "Interwencjonizm", value: [0, 1]},
-        ans4: {text: "Ekspansjonizm", value: [2, 0]}
+        ans4: {text: "Ekspansjonizm", value: [0, 2]}
     },
     set7: {
         ans1: {text: "Język", value: [0, 1]},
@@ -202,7 +202,9 @@ class StateView extends Component {
             xAxis += Number(values[key].split(',')[0]);
             yAxis += Number(values[key].split(',')[1]);
         });
-        this.setState({xAxis, yAxis});
+        this.state.xAxis = xAxis;
+        this.state.yAxis = yAxis;
+        //this.setState({xAxis, yAxis});
     }
 
     updateCoordinatesFromCheck(value) {
@@ -221,17 +223,12 @@ class StateView extends Component {
     }
 
     handleChangeCheck(event) {
-
-        /*value = (value !== true);*/
-        //this.updateCoordinatesFromCheck(event.target.label);
         this.setState({[event.target.value]: event.target.checked});
-        this.updateCoordinates();
     };
 
     handleChangeRadio(event) {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
-        //this.updateCoordinatesFromRadio(event.target.value);
         this.setState({values});
     }
 
