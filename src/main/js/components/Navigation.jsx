@@ -43,7 +43,6 @@ class Navigation extends Component {
     }
 
     handleClick(event) {
-
         const val = this.state.value + 1;
         this.setState({value: val});
     }
@@ -83,7 +82,8 @@ class Navigation extends Component {
                                             yAxis={this.state.coordinates.yAxis}
                                             parentUpdate={this.updateCoordinates}/>}
                 {value === 3 && <Coordinates xAxis={this.state.coordinates.xAxis}
-                                            yAxis={this.state.coordinates.yAxis}/>}
+                                            yAxis={this.state.coordinates.yAxis}/>
+                }
                 <br/>
                 <Typography align="center">
                     {this.state.value < 2 ?

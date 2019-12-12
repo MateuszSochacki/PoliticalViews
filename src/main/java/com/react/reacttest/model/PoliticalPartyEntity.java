@@ -3,7 +3,7 @@ package com.react.reacttest.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PoliticalParty", schema = "ii302782", catalog = "")
+@Table(name = "politicalparty", schema = "ii302782", catalog = "")
 public class PoliticalPartyEntity {
     private int idPoliticalParty;
     private String name;

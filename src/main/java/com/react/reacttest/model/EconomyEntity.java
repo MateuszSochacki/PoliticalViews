@@ -3,16 +3,14 @@ package com.react.reacttest.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Economy", schema = "ii302782", catalog = "")
+@Table(name = "economy", schema = "ii302782", catalog = "")
 public class EconomyEntity {
     private int idEconomy;
     private String rich;
-    private String minWage;
-    private String protectionism;
     private String corpTax;
+    private String minWage;
     private String incTax;
     private String ground;
-    private String welfare;
     private String education;
     private String healthcare;
     private String monopolies;
@@ -20,6 +18,14 @@ public class EconomyEntity {
     private String tradeUnions;
     private String vat;
     private String controls;
+    private Boolean protectTariffs;
+    private Boolean protectLicenses;
+    private Boolean antiDumping;
+    private Boolean exchangeRate;
+    private Boolean welfarePoverty;
+    private Boolean welfareUnemployed;
+    private Boolean welfareMin;
+    private Boolean welfarePension;
 
     @Id
     @Column(name = "idEconomy")
@@ -42,26 +48,6 @@ public class EconomyEntity {
     }
 
     @Basic
-    @Column(name = "minWage")
-    public String getMinWage() {
-        return minWage;
-    }
-
-    public void setMinWage(String minWage) {
-        this.minWage = minWage;
-    }
-
-    @Basic
-    @Column(name = "protectionism")
-    public String getProtectionism() {
-        return protectionism;
-    }
-
-    public void setProtectionism(String protectionism) {
-        this.protectionism = protectionism;
-    }
-
-    @Basic
     @Column(name = "corpTax")
     public String getCorpTax() {
         return corpTax;
@@ -69,6 +55,16 @@ public class EconomyEntity {
 
     public void setCorpTax(String corpTax) {
         this.corpTax = corpTax;
+    }
+
+    @Basic
+    @Column(name = "minWage")
+    public String getMinWage() {
+        return minWage;
+    }
+
+    public void setMinWage(String minWage) {
+        this.minWage = minWage;
     }
 
     @Basic
@@ -89,16 +85,6 @@ public class EconomyEntity {
 
     public void setGround(String ground) {
         this.ground = ground;
-    }
-
-    @Basic
-    @Column(name = "welfare")
-    public String getWelfare() {
-        return welfare;
-    }
-
-    public void setWelfare(String welfare) {
-        this.welfare = welfare;
     }
 
     @Basic
@@ -171,6 +157,86 @@ public class EconomyEntity {
         this.controls = controls;
     }
 
+    @Basic
+    @Column(name = "protectTariffs")
+    public Boolean getProtectTariffs() {
+        return protectTariffs;
+    }
+
+    public void setProtectTariffs(Boolean protectTariffs) {
+        this.protectTariffs = protectTariffs;
+    }
+
+    @Basic
+    @Column(name = "protectLicenses")
+    public Boolean getProtectLicenses() {
+        return protectLicenses;
+    }
+
+    public void setProtectLicenses(Boolean protectLicenses) {
+        this.protectLicenses = protectLicenses;
+    }
+
+    @Basic
+    @Column(name = "antiDumping")
+    public Boolean getAntiDumping() {
+        return antiDumping;
+    }
+
+    public void setAntiDumping(Boolean antiDumping) {
+        this.antiDumping = antiDumping;
+    }
+
+    @Basic
+    @Column(name = "exchangeRate")
+    public Boolean getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(Boolean exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
+    @Basic
+    @Column(name = "welfarePoverty")
+    public Boolean getWelfarePoverty() {
+        return welfarePoverty;
+    }
+
+    public void setWelfarePoverty(Boolean welfarePoverty) {
+        this.welfarePoverty = welfarePoverty;
+    }
+
+    @Basic
+    @Column(name = "welfareUnemployed")
+    public Boolean getWelfareUnemployed() {
+        return welfareUnemployed;
+    }
+
+    public void setWelfareUnemployed(Boolean welfareUnemployed) {
+        this.welfareUnemployed = welfareUnemployed;
+    }
+
+    @Basic
+    @Column(name = "welfareMin")
+    public Boolean getWelfareMin() {
+        return welfareMin;
+    }
+
+    public void setWelfareMin(Boolean welfareMin) {
+        this.welfareMin = welfareMin;
+    }
+
+    @Basic
+    @Column(name = "welfarePension")
+    public Boolean getWelfarePension() {
+        return welfarePension;
+    }
+
+    public void setWelfarePension(Boolean welfarePension) {
+        this.welfarePension = welfarePension;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -180,13 +246,10 @@ public class EconomyEntity {
 
         if (idEconomy != that.idEconomy) return false;
         if (rich != null ? !rich.equals(that.rich) : that.rich != null) return false;
-        if (minWage != null ? !minWage.equals(that.minWage) : that.minWage != null) return false;
-        if (protectionism != null ? !protectionism.equals(that.protectionism) : that.protectionism != null)
-            return false;
         if (corpTax != null ? !corpTax.equals(that.corpTax) : that.corpTax != null) return false;
+        if (minWage != null ? !minWage.equals(that.minWage) : that.minWage != null) return false;
         if (incTax != null ? !incTax.equals(that.incTax) : that.incTax != null) return false;
         if (ground != null ? !ground.equals(that.ground) : that.ground != null) return false;
-        if (welfare != null ? !welfare.equals(that.welfare) : that.welfare != null) return false;
         if (education != null ? !education.equals(that.education) : that.education != null) return false;
         if (healthcare != null ? !healthcare.equals(that.healthcare) : that.healthcare != null) return false;
         if (monopolies != null ? !monopolies.equals(that.monopolies) : that.monopolies != null) return false;
@@ -194,6 +257,19 @@ public class EconomyEntity {
         if (tradeUnions != null ? !tradeUnions.equals(that.tradeUnions) : that.tradeUnions != null) return false;
         if (vat != null ? !vat.equals(that.vat) : that.vat != null) return false;
         if (controls != null ? !controls.equals(that.controls) : that.controls != null) return false;
+        if (protectTariffs != null ? !protectTariffs.equals(that.protectTariffs) : that.protectTariffs != null)
+            return false;
+        if (protectLicenses != null ? !protectLicenses.equals(that.protectLicenses) : that.protectLicenses != null)
+            return false;
+        if (antiDumping != null ? !antiDumping.equals(that.antiDumping) : that.antiDumping != null) return false;
+        if (exchangeRate != null ? !exchangeRate.equals(that.exchangeRate) : that.exchangeRate != null) return false;
+        if (welfarePoverty != null ? !welfarePoverty.equals(that.welfarePoverty) : that.welfarePoverty != null)
+            return false;
+        if (welfareUnemployed != null ? !welfareUnemployed.equals(that.welfareUnemployed) : that.welfareUnemployed != null)
+            return false;
+        if (welfareMin != null ? !welfareMin.equals(that.welfareMin) : that.welfareMin != null) return false;
+        if (welfarePension != null ? !welfarePension.equals(that.welfarePension) : that.welfarePension != null)
+            return false;
 
         return true;
     }
@@ -202,12 +278,10 @@ public class EconomyEntity {
     public int hashCode() {
         int result = idEconomy;
         result = 31 * result + (rich != null ? rich.hashCode() : 0);
-        result = 31 * result + (minWage != null ? minWage.hashCode() : 0);
-        result = 31 * result + (protectionism != null ? protectionism.hashCode() : 0);
         result = 31 * result + (corpTax != null ? corpTax.hashCode() : 0);
+        result = 31 * result + (minWage != null ? minWage.hashCode() : 0);
         result = 31 * result + (incTax != null ? incTax.hashCode() : 0);
         result = 31 * result + (ground != null ? ground.hashCode() : 0);
-        result = 31 * result + (welfare != null ? welfare.hashCode() : 0);
         result = 31 * result + (education != null ? education.hashCode() : 0);
         result = 31 * result + (healthcare != null ? healthcare.hashCode() : 0);
         result = 31 * result + (monopolies != null ? monopolies.hashCode() : 0);
@@ -215,6 +289,14 @@ public class EconomyEntity {
         result = 31 * result + (tradeUnions != null ? tradeUnions.hashCode() : 0);
         result = 31 * result + (vat != null ? vat.hashCode() : 0);
         result = 31 * result + (controls != null ? controls.hashCode() : 0);
+        result = 31 * result + (protectTariffs != null ? protectTariffs.hashCode() : 0);
+        result = 31 * result + (protectLicenses != null ? protectLicenses.hashCode() : 0);
+        result = 31 * result + (antiDumping != null ? antiDumping.hashCode() : 0);
+        result = 31 * result + (exchangeRate != null ? exchangeRate.hashCode() : 0);
+        result = 31 * result + (welfarePoverty != null ? welfarePoverty.hashCode() : 0);
+        result = 31 * result + (welfareUnemployed != null ? welfareUnemployed.hashCode() : 0);
+        result = 31 * result + (welfareMin != null ? welfareMin.hashCode() : 0);
+        result = 31 * result + (welfarePension != null ? welfarePension.hashCode() : 0);
         return result;
     }
 }

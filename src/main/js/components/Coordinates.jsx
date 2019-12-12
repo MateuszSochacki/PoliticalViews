@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Chart from "./Chart";
 
 class Coordinates extends Component {
 
@@ -37,8 +38,9 @@ class Coordinates extends Component {
     }
 
     render() {
-        return(
-            <div>bazatest</div>
+        return (
+            <div><Chart xAxis={this.state.xAxis}
+                        yAxis={this.state.yAxis}/></div>
         );
     }
 }

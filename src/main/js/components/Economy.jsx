@@ -1,17 +1,9 @@
 import React, {Component} from 'react';
-import {
-    FormLabel,
-    FormControl,
-    FormGroup,
-    FormControlLabel,
-    FormHelperText,
-} from '@material-ui/core';
+import {FormControl, FormControlLabel, FormLabel,} from '@material-ui/core';
 import Checkbox from "@material-ui/core/Checkbox/";
-import {RadioGroup, Radio} from '@material-ui/core/';
+import {Radio, RadioGroup} from '@material-ui/core/';
 import Typography from "@material-ui/core/Typography/";
-import coordinates from "./Coordinates";
 import Button from "@material-ui/core/Button/Button";
-import Forward from "@material-ui/core/SvgIcon/SvgIcon";
 
 function FormContainer(props) {
     return (
@@ -127,11 +119,9 @@ class Economy extends Component {
             values: {
                 rich: "0,0",
                 minWage: "0,0",
-                protectionism: "0,0",
                 corpTax: "0,0",
                 incTax: "0,0",
                 ground: "0,0",
-                welfare: "0,0",
                 education: "0,0",
                 healthcare: "0,0",
                 monopolies: "0,0",
@@ -140,16 +130,18 @@ class Economy extends Component {
                 vat: "0,0"
             },
 
-            protectTariffs: false,
-            protectLicenses: false,
-            antiDumping: false,
-            exchangeRate: false,
-            welfarePoverty: false,
-            welfareUnemployed: false,
-            welfareMin: false,
-            welfarePension: false,
-
-            xAxis: 0
+            checkboxes: {
+                protectTariffs: false,
+                protectLicenses: false,
+                antiDumping: false,
+                exchangeRate: false,
+                welfarePoverty: false,
+                welfareUnemployed: false,
+                welfareMin: false,
+                welfarePension: false
+            },
+            xAxis: 4,
+            buttonValue: 0
         };
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
         this.handleChangeRadio = this.handleChangeRadio.bind(this);
@@ -211,42 +203,45 @@ class Economy extends Component {
     }
 
     saveData() {
+        const answers = {
+            ...this.state.values,
+            ...this.state.checkboxes
+        };
         fetch('http://localhost:8080/api/economy',
             {
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 method: 'POST',
-                body: JSON.stringify(this.state.values)
+                body: JSON.stringify(answers)
             }).catch(err => console.error(err));
-
     }
 
     componentWillUnmount() {
         this.saveData();
     }
 
-    updateCoordinatesFromCheck() {
-
-    }
-
     updateCoordinates() {
         const values = this.state.values;
-        let xAxis = 0;
+        const checks = this.state.checkboxes;
+        let xAxis = this.state.xAxis;
 
         Object.keys(values).forEach(function(key) {
             xAxis += Number(values[key].split(',')[0]);
         });
+        Object.keys(checks).forEach(function(key) {
+            if(checks[key]) --xAxis;
+        });
         this.state.xAxis = xAxis;
-        //this.setState({xAxis});
     }
 
     handleChangeCheck(event) {
 
         /*value = (value !== true);*/
         //this.updateCoordinatesFromCheck(event.target.label);
-        this.setState({[event.target.value]: event.target.checked});
-        //this.updateCoordinates();
+        const checkboxes = this.state.checkboxes;
+        checkboxes[event.target.value] = event.target.checked;
+        this.setState({checkboxes});
     };
 
     handleChangeRadio(event) {
@@ -256,6 +251,8 @@ class Economy extends Component {
     }
 
     handleClick(event) {
+        const val = this.state.buttonValue + 1;
+        this.setState({buttonValue: val});
         this.updateCoordinates();
         this.props.parentUpdate(this.state.xAxis, 0);
     }
@@ -292,10 +289,10 @@ class Economy extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(4)}</FormLabel>
-                            {this.getCheckboxForm("protectTariffs", answers.set5.ans1.text, this.state.protectTariffs)}
-                            {this.getCheckboxForm("protectLicenses", answers.set5.ans2.text, this.state.protectLicenses)}
-                            {this.getCheckboxForm("antiDumping", answers.set5.ans3.text, this.state.antiDumping)}
-                            {this.getCheckboxForm("exchangeRate", answers.set5.ans4.text, this.state.exchangeRate)}
+                            {this.getCheckboxForm("protectTariffs", answers.set5.ans1.text, this.state.checkboxes.protectTariffs)}
+                            {this.getCheckboxForm("protectLicenses", answers.set5.ans2.text, this.state.checkboxes.protectLicenses)}
+                            {this.getCheckboxForm("antiDumping", answers.set5.ans3.text, this.state.checkboxes.antiDumping)}
+                            {this.getCheckboxForm("exchangeRate", answers.set5.ans4.text, this.state.checkboxes.exchangeRate)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
@@ -307,10 +304,10 @@ class Economy extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(6)}</FormLabel>
-                            {this.getCheckboxForm("welfarePoverty", answers.set6.ans1.text, this.state.welfarePoverty)}
-                            {this.getCheckboxForm("welfareUnemployed", answers.set7.ans2.text, this.state.welfareUnemployed)}
-                            {this.getCheckboxForm("welfareMin", answers.set7.ans3.text, this.state.welfareMin)}
-                            {this.getCheckboxForm("welfarePension", answers.set7.ans4.text, this.state.welfarePension)}
+                            {this.getCheckboxForm("welfarePoverty", answers.set6.ans1.text, this.state.checkboxes.welfarePoverty)}
+                            {this.getCheckboxForm("welfareUnemployed", answers.set7.ans2.text, this.state.checkboxes.welfareUnemployed)}
+                            {this.getCheckboxForm("welfareMin", answers.set7.ans3.text, this.state.checkboxes.welfareMin)}
+                            {this.getCheckboxForm("welfarePension", answers.set7.ans4.text, this.state.checkboxes.welfarePension)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
@@ -349,9 +346,14 @@ class Economy extends Component {
                             {this.getRadioGroup(answers.set13, "vat", this.state.values.vat)}
                         </FormContainer>
                     </FormControl><br/>
-                    <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
-                        Zatwierdź odpowiedzi <Forward/>
-                    </Button>
+                    {this.state.buttonValue < 1 ?
+                        <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
+                            Zatwierdź odpowiedzi
+                        </Button> :
+                        <Button variant="contained" size="medium" disabled>
+                            Zatwierdź odpowiedzi
+                        </Button>
+                    }
                 </Typography>
             </div>
         );

@@ -3,7 +3,7 @@ package com.react.reacttest.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Coordinates", schema = "ii302782", catalog = "")
+@Table(name = "coordinates", schema = "ii302782", catalog = "")
 public class CoordinatesEntity {
     private int idCoordinates;
     private Double xAxis;

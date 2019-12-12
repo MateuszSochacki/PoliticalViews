@@ -1,16 +1,7 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import {
-    FormLabel,
-    FormControl,
-    FormGroup,
-    FormControlLabel,
-} from '@material-ui/core/';
+import React, {Component} from 'react';
+import {FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup,} from '@material-ui/core/';
 import Checkbox from "@material-ui/core/Checkbox/";
-import { RadioGroup, Radio } from '@material-ui/core/';
 import Typography from "@material-ui/core/Typography/";
-import Forward from "@material-ui/core/SvgIcon/SvgIcon";
 import Button from "@material-ui/core/Button/Button";
 
 
@@ -97,32 +88,34 @@ class StateView extends Component {
 
         this.state = {
             values: {
-                environment: "0,0",
                 autonomy: "0,0",
                 zyzdem: "0,0",
-                votingReq: "0,0",
                 militaryService: "0,0",
                 foreignPolicy: "0,0",
-                immigrationReq: "0,0",
                 immigrationRights: "0,0",
                 media: "0,0"
             },
 
-            airPollutions: false,
-            waterPollutions: false,
-            landPollutions: false,
-            climateChanges: false,
-            ageReq : false,
-            eduReq : false,
-            wealthReq : false,
-            ethnicityReq : false,
-            languageIReq : false,
-            eduIReq : false,
-            ethnicityIReq : false,
-            religionReq : false,
+            checkboxesClimate: {
+                airPollutions: false,
+                waterPollutions: false,
+                landPollutions: false,
+                climateChanges: false,
+            },
+            checkboxesReq: {
+                ageReq: false,
+                eduReq: false,
+                wealthReq: false,
+                ethnicityReq: false,
+                languageIReq: false,
+                eduIReq: false,
+                ethnicityIReq: false,
+                religionReq: false
+            },
 
             xAxis : 0,
-            yAxis : 0
+            yAxis : -4,
+            buttonValue: 0
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
@@ -195,35 +188,58 @@ class StateView extends Component {
 
     updateCoordinates() {
         const values = this.state.values;
-        let yAxis = 0;
-        let xAxis = 0;
+        const checksClimate = this.state.checkboxesClimate;
+        const checksReq = this.state.checkboxesReq;
+        let yAxis = this.state.yAxis;
+        let xAxis = this.state.xAxis;
 
         Object.keys(values).forEach(function(key) {
             xAxis += Number(values[key].split(',')[0]);
             yAxis += Number(values[key].split(',')[1]);
         });
+        Object.keys(checksClimate).forEach(function(key) {
+            if(checksReq[key]) {
+                --xAxis;
+                ++yAxis;
+            }
+        });
+        Object.keys(checksReq).forEach(function(key) {
+            if(checksReq[key]) ++yAxis;
+        });
+
         this.state.xAxis = xAxis;
         this.state.yAxis = yAxis;
-        //this.setState({xAxis, yAxis});
-    }
-
-    updateCoordinatesFromCheck(value) {
-
     }
 
     saveData() {
+        const answers = {
+            ...this.state.values,
+            ...this.state.checkboxesClimate,
+            ...this.state.checkboxesReq,
+        };
         fetch('http://localhost:8080/api/stateviews',
             {
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 method: 'POST',
-                body: JSON.stringify(this.state.values)
+                body: JSON.stringify(answers)
             }).catch(err => console.error(err));
     }
 
     handleChangeCheck(event) {
-        this.setState({[event.target.value]: event.target.checked});
+        const checkboxesClimate = this.state.checkboxesClimate;
+        Object.keys(checkboxesClimate).forEach(function(key) {
+            if (key === event.target.value)
+                checkboxesClimate[event.target.value] = event.target.checked;
+        });
+        this.setState({checkboxesClimate});
+        const checkboxesReq = this.state.checkboxesReq;
+        Object.keys(checkboxesReq).forEach(function(key) {
+            if (key === event.target.value)
+                checkboxesReq[event.target.value] = event.target.checked;
+        });
+        this.setState({checkboxesReq});
     };
 
     handleChangeRadio(event) {
@@ -233,6 +249,8 @@ class StateView extends Component {
     }
 
     handleClick(event) {
+        const val = this.state.buttonValue + 1;
+        this.setState({buttonValue: val});
         this.updateCoordinates();
         this.props.parentUpdate(this.state.xAxis, this.state.yAxis);
     }
@@ -246,10 +264,10 @@ class StateView extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(0)}</FormLabel>
-                                {this.getCheckboxForm("airPollutions", answers.set1.ans1.text, this.state.airPollutions)}
-                                {this.getCheckboxForm("waterPollutions", answers.set1.ans2.text, this.state.waterPollutions)}
-                                {this.getCheckboxForm("landPollutions", answers.set1.ans3.text, this.state.landPollutions)}
-                                {this.getCheckboxForm("climateChanges", answers.set1.ans4.text, this.state.climateChanges)}
+                                {this.getCheckboxForm("airPollutions", answers.set1.ans1.text, this.state.checkboxesClimate.airPollutions)}
+                                {this.getCheckboxForm("waterPollutions", answers.set1.ans2.text, this.state.checkboxesClimate.waterPollutions)}
+                                {this.getCheckboxForm("landPollutions", answers.set1.ans3.text, this.state.checkboxesClimate.landPollutions)}
+                                {this.getCheckboxForm("climateChanges", answers.set1.ans4.text, this.state.checkboxesClimate.climateChanges)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
@@ -268,10 +286,10 @@ class StateView extends Component {
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
                             <FormGroup row={true}>
-                                {this.getCheckboxForm("ageReq", answers.set4.ans1.text, this.state.ageReq)}
-                                {this.getCheckboxForm("eduReq", answers.set4.ans2.text, this.state.eduReq)}
-                                {this.getCheckboxForm("wealthReq", answers.set4.ans3.text, this.state.wealthReq)}
-                                {this.getCheckboxForm("ethnicityReq", answers.set4.ans4.text, this.state.ethnicityReq)}
+                                {this.getCheckboxForm("ageReq", answers.set4.ans1.text, this.state.checkboxesReq.ageReq)}
+                                {this.getCheckboxForm("eduReq", answers.set4.ans2.text, this.state.checkboxesReq.eduReq)}
+                                {this.getCheckboxForm("wealthReq", answers.set4.ans3.text, this.state.checkboxesReq.wealthReq)}
+                                {this.getCheckboxForm("ethnicityReq", answers.set4.ans4.text, this.state.checkboxesReq.ethnicityReq)}
                             </FormGroup>
                         </FormContainer>
                     </FormControl><br/>
@@ -291,10 +309,10 @@ class StateView extends Component {
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(6)}</FormLabel>
                             <FormGroup row={true}>
-                                {this.getCheckboxForm("languageIReq", answers.set7.ans1.text, this.state.languageIReq)}
-                                {this.getCheckboxForm("eduIReq", answers.set7.ans2.text, this.state.eduIReq)}
-                                {this.getCheckboxForm("ethnicityIReq", answers.set7.ans3.text, this.state.ethnicityIReq)}
-                                {this.getCheckboxForm("religionIReq", answers.set7.ans4.text, this.state.religionReq)}
+                                {this.getCheckboxForm("languageIReq", answers.set7.ans1.text, this.state.checkboxesReq.languageIReq)}
+                                {this.getCheckboxForm("eduIReq", answers.set7.ans2.text, this.state.checkboxesReq.eduIReq)}
+                                {this.getCheckboxForm("ethnicityIReq", answers.set7.ans3.text, this.state.checkboxesReq.ethnicityIReq)}
+                                {this.getCheckboxForm("religionReq", answers.set7.ans4.text, this.state.checkboxesReq.religionReq)}
                             </FormGroup>
                         </FormContainer>
                     </FormControl><br/>
@@ -310,9 +328,14 @@ class StateView extends Component {
                             {this.getRadioGroup(answers.set9, "media", this.state.values.media)}
                         </FormContainer>
                     </FormControl><br/>
-                    <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
-                        Zatwierdź odpowiedzi <Forward/>
-                    </Button>
+                    {this.state.buttonValue < 1 ?
+                        <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
+                            Zatwierdź odpowiedzi
+                        </Button> :
+                        <Button variant="contained" size="medium" disabled>
+                            Zatwierdź odpowiedzi
+                        </Button>
+                    }
                 </Typography>
             </div>
         );

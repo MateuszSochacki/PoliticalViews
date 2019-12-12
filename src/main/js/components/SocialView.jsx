@@ -1,16 +1,8 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import {
-    FormLabel,
-    FormControl,
-    FormGroup,
-    FormControlLabel
-} from '@material-ui/core';
+import React, {Component} from 'react';
+import {FormControl, FormControlLabel, FormLabel} from '@material-ui/core';
 import Checkbox from "@material-ui/core/Checkbox/";
-import { RadioGroup, Radio } from '@material-ui/core/';
+import {Radio, RadioGroup} from '@material-ui/core/';
 import Typography from "@material-ui/core/Typography/";
-import Forward from "@material-ui/core/SvgIcon/SvgIcon";
 import Button from "@material-ui/core/Button/Button";
 
 /*const styles = {
@@ -52,7 +44,7 @@ const answers = {
         ans2: {text: "Równe prawa do zatrudnienia", value: [0, -1]},
         ans3: {text: "Prawo do głosowania", value: [0, -1]},
         ans4: {text: "Regulowany brak różnic w wynagrodzeniu", value: [0, -1]},
-        ans5: {text: "Urlop macierzyński", value: [1, -1]}
+        ans5: {text: "Urlop macierzyński", value: [0, -1]}
     },
     set3: {
         ans1: {text: "Brak kary śmierci", value: [0, -2]},
@@ -99,29 +91,29 @@ class SocialView extends Component {
         this.state = {
             values : {
                 religion : "0,0",
-                women : "0,0",
                 deathPenalty : "0,0",
-                stimulants : "0,0",
                 orientation : "0,0",
                 abortion : "0,0",
                 euthanasia : "0,0",
                 race : "0,0"
             },
 
-            womenEdu: false,
-            womenEmploy: false,
-            womenVoting: false,
-            womenWage: false,
-            womenMaternity: false,
-            stimAlcohol: false,
-            stimCannabis: false,
-            stimHard: false,
-            stimNicotine: false,
-
+            checkboxes: {
+                womenEdu: false,
+                womenEmploy: false,
+                womenVoting: false,
+                womenWage: false,
+                womenMaternity: false,
+                stimAlcohol: false,
+                stimCannabis: false,
+                stimHard: false,
+                sitmNicotine: false
+            },
             coordinates: {
-                yAxis: 0,
-                xAxis: 0
-            }
+                xAxis: 0,
+                yAxis: 5
+            },
+            buttonValue: 0
         };
 
         this.handleChangeCheck = this.handleChangeCheck.bind(this);
@@ -166,13 +158,19 @@ class SocialView extends Component {
     }
 
     saveData() {
+        const values = this.state.values;
+        const checkboxes = this.state.checkboxes;
+        const answers = {
+            ...values,
+            ...checkboxes
+        };
         fetch('http://localhost:8080/api/socialviews',
             {
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 method: 'POST',
-                body: JSON.stringify(this.state.values)
+                body: JSON.stringify(answers)
             }).catch(err => console.error(err));
     }
 
@@ -188,30 +186,32 @@ class SocialView extends Component {
 
     updateCoordinates() {
         const values = this.state.values;
-        let yAxis = 0;
+        const checks = this.state.checkboxes;
+        let yAxis = this.state.coordinates.yAxis;
 
         Object.keys(values).forEach(function(key) {
             yAxis += Number(values[key].split(',')[1]);
+        });
+        Object.keys(checks).forEach(function(key) {
+            if(checks[key]) --yAxis;
         });
         let coordinates = this.state.coordinates;
         coordinates.yAxis += yAxis;
         this.state.coordinates.xAxis = 0;
         this.state.coordinates.yAxis = yAxis;
-        //this.setState({coordinates});
-
     }
 
     handleClick(event) {
+        const val = this.state.buttonValue + 1;
+        this.setState({buttonValue: val});
         this.updateCoordinates();
         this.props.parentUpdate(this.state.coordinates.xAxis, this.state.coordinates.yAxis);
     }
 
     handleChangeCheck(event) {
-
-        /*value = (value !== true);*/
-       // this.updateCoordinatesFromCheck(event.target.label);
-        this.setState({[event.target.value] : event.target.checked});
-        //this.updateCoordinates();
+        const checkboxes = this.state.checkboxes;
+        checkboxes[event.target.value] = event.target.checked;
+        this.setState({checkboxes});
     };
 
     handleChangeRadio(event) {
@@ -253,7 +253,7 @@ class SocialView extends Component {
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
                             {this.getCheckboxForm("stimAlcohol", answers.set4.ans1.text, this.state.stimAlcohol)}
-                            {this.getCheckboxForm("stimNicotine", answers.set4.ans2.text, this.state.stimNicotine)}
+                            {this.getCheckboxForm("sitmNicotine", answers.set4.ans2.text, this.state.sitmNicotine)}
                             {this.getCheckboxForm("stimCannabis", answers.set4.ans3.text, this.state.stimCannabis)}
                             {this.getCheckboxForm("stimHard", answers.set4.ans4.text, this.state.stimHard)}}
                         </FormContainer>
@@ -282,9 +282,14 @@ class SocialView extends Component {
                             {this.getRadioGroup(answers.set7, "race", this.state.values.race)}
                         </FormContainer>
                     </FormControl><br/>
-                    <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
-                        Zatwierdź odpowiedzi <Forward/>
-                    </Button>
+                    {this.state.buttonValue < 1 ?
+                        <Button variant="contained" size="medium" color="secondary" onClick={this.handleClick}>
+                            Zatwierdź odpowiedzi
+                        </Button> :
+                        <Button variant="contained" size="medium" disabled>
+                            Zatwierdź odpowiedzi
+                        </Button>
+                    }
                 </Typography>
             </div>
 

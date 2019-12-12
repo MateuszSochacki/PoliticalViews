@@ -3,17 +3,24 @@ package com.react.reacttest.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "SocialView", schema = "ii302782", catalog = "")
+@Table(name = "socialview", schema = "ii302782", catalog = "")
 public class SocialViewEntity {
     private int idSocialView;
     private String religion;
-    private String women;
     private String deathPenalty;
-    private String stimulants;
     private String orientation;
     private String abortion;
     private String euthanasia;
     private String race;
+    private Boolean womenEdu;
+    private Boolean womenEmploy;
+    private Boolean womenVoting;
+    private Boolean womenWage;
+    private Boolean womenMaternity;
+    private Boolean stimAlcohol;
+    private Boolean stimCannabis;
+    private Boolean stimHard;
+    private Boolean sitmNicotine;
 
     @Id
     @Column(name = "idSocialView")
@@ -36,16 +43,6 @@ public class SocialViewEntity {
     }
 
     @Basic
-    @Column(name = "women")
-    public String getWomen() {
-        return women;
-    }
-
-    public void setWomen(String women) {
-        this.women = women;
-    }
-
-    @Basic
     @Column(name = "deathPenalty")
     public String getDeathPenalty() {
         return deathPenalty;
@@ -53,16 +50,6 @@ public class SocialViewEntity {
 
     public void setDeathPenalty(String deathPenalty) {
         this.deathPenalty = deathPenalty;
-    }
-
-    @Basic
-    @Column(name = "stimulants")
-    public String getStimulants() {
-        return stimulants;
-    }
-
-    public void setStimulants(String stimulants) {
-        this.stimulants = stimulants;
     }
 
     @Basic
@@ -105,6 +92,96 @@ public class SocialViewEntity {
         this.race = race;
     }
 
+    @Basic
+    @Column(name = "womenEdu")
+    public Boolean getWomenEdu() {
+        return womenEdu;
+    }
+
+    public void setWomenEdu(Boolean womenEdu) {
+        this.womenEdu = womenEdu;
+    }
+
+    @Basic
+    @Column(name = "womenEmploy")
+    public Boolean getWomenEmploy() {
+        return womenEmploy;
+    }
+
+    public void setWomenEmploy(Boolean womenEmploy) {
+        this.womenEmploy = womenEmploy;
+    }
+
+    @Basic
+    @Column(name = "womenVoting")
+    public Boolean getWomenVoting() {
+        return womenVoting;
+    }
+
+    public void setWomenVoting(Boolean womenVoting) {
+        this.womenVoting = womenVoting;
+    }
+
+    @Basic
+    @Column(name = "womenWage")
+    public Boolean getWomenWage() {
+        return womenWage;
+    }
+
+    public void setWomenWage(Boolean womenWage) {
+        this.womenWage = womenWage;
+    }
+
+    @Basic
+    @Column(name = "womenMaternity")
+    public Boolean getWomenMaternity() {
+        return womenMaternity;
+    }
+
+    public void setWomenMaternity(Boolean womenMaternity) {
+        this.womenMaternity = womenMaternity;
+    }
+
+    @Basic
+    @Column(name = "stimAlcohol")
+    public Boolean getStimAlcohol() {
+        return stimAlcohol;
+    }
+
+    public void setStimAlcohol(Boolean stimAlcohol) {
+        this.stimAlcohol = stimAlcohol;
+    }
+
+    @Basic
+    @Column(name = "stimCannabis")
+    public Boolean getStimCannabis() {
+        return stimCannabis;
+    }
+
+    public void setStimCannabis(Boolean stimCannabis) {
+        this.stimCannabis = stimCannabis;
+    }
+
+    @Basic
+    @Column(name = "stimHard")
+    public Boolean getStimHard() {
+        return stimHard;
+    }
+
+    public void setStimHard(Boolean stimHard) {
+        this.stimHard = stimHard;
+    }
+
+    @Basic
+    @Column(name = "sitmNicotine")
+    public Boolean getSitmNicotine() {
+        return sitmNicotine;
+    }
+
+    public void setSitmNicotine(Boolean sitmNicotine) {
+        this.sitmNicotine = sitmNicotine;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,13 +191,21 @@ public class SocialViewEntity {
 
         if (idSocialView != that.idSocialView) return false;
         if (religion != null ? !religion.equals(that.religion) : that.religion != null) return false;
-        if (women != null ? !women.equals(that.women) : that.women != null) return false;
         if (deathPenalty != null ? !deathPenalty.equals(that.deathPenalty) : that.deathPenalty != null) return false;
-        if (stimulants != null ? !stimulants.equals(that.stimulants) : that.stimulants != null) return false;
         if (orientation != null ? !orientation.equals(that.orientation) : that.orientation != null) return false;
         if (abortion != null ? !abortion.equals(that.abortion) : that.abortion != null) return false;
         if (euthanasia != null ? !euthanasia.equals(that.euthanasia) : that.euthanasia != null) return false;
         if (race != null ? !race.equals(that.race) : that.race != null) return false;
+        if (womenEdu != null ? !womenEdu.equals(that.womenEdu) : that.womenEdu != null) return false;
+        if (womenEmploy != null ? !womenEmploy.equals(that.womenEmploy) : that.womenEmploy != null) return false;
+        if (womenVoting != null ? !womenVoting.equals(that.womenVoting) : that.womenVoting != null) return false;
+        if (womenWage != null ? !womenWage.equals(that.womenWage) : that.womenWage != null) return false;
+        if (womenMaternity != null ? !womenMaternity.equals(that.womenMaternity) : that.womenMaternity != null)
+            return false;
+        if (stimAlcohol != null ? !stimAlcohol.equals(that.stimAlcohol) : that.stimAlcohol != null) return false;
+        if (stimCannabis != null ? !stimCannabis.equals(that.stimCannabis) : that.stimCannabis != null) return false;
+        if (stimHard != null ? !stimHard.equals(that.stimHard) : that.stimHard != null) return false;
+        if (sitmNicotine != null ? !sitmNicotine.equals(that.sitmNicotine) : that.sitmNicotine != null) return false;
 
         return true;
     }
@@ -129,13 +214,20 @@ public class SocialViewEntity {
     public int hashCode() {
         int result = idSocialView;
         result = 31 * result + (religion != null ? religion.hashCode() : 0);
-        result = 31 * result + (women != null ? women.hashCode() : 0);
         result = 31 * result + (deathPenalty != null ? deathPenalty.hashCode() : 0);
-        result = 31 * result + (stimulants != null ? stimulants.hashCode() : 0);
         result = 31 * result + (orientation != null ? orientation.hashCode() : 0);
         result = 31 * result + (abortion != null ? abortion.hashCode() : 0);
         result = 31 * result + (euthanasia != null ? euthanasia.hashCode() : 0);
         result = 31 * result + (race != null ? race.hashCode() : 0);
+        result = 31 * result + (womenEdu != null ? womenEdu.hashCode() : 0);
+        result = 31 * result + (womenEmploy != null ? womenEmploy.hashCode() : 0);
+        result = 31 * result + (womenVoting != null ? womenVoting.hashCode() : 0);
+        result = 31 * result + (womenWage != null ? womenWage.hashCode() : 0);
+        result = 31 * result + (womenMaternity != null ? womenMaternity.hashCode() : 0);
+        result = 31 * result + (stimAlcohol != null ? stimAlcohol.hashCode() : 0);
+        result = 31 * result + (stimCannabis != null ? stimCannabis.hashCode() : 0);
+        result = 31 * result + (stimHard != null ? stimHard.hashCode() : 0);
+        result = 31 * result + (sitmNicotine != null ? sitmNicotine.hashCode() : 0);
         return result;
     }
 }
