@@ -14,12 +14,12 @@ function FormContainer(props) {
 }
 
 function getQuestion(num) {
-    const questions = ["Które z podanych czynników wpływających na środowisko, " +
+    const questions = ["Które z podanych czynników wpływających na środowisko " +
     "powinny być poddane państwowej regulacji?", "Którą z podanych form państwowych uważasz " +
     "za najodpowiedniejszą?", "Jaki z podanych systemów sprawowania władzy popierasz?",
-    "Jakie wymagania powininna spełniać osoba chcąca głosować w wyborach?",
-    "Czy popierasz obowiązkową służbę wojoskową?", "Który z podanych typów " +
-    "polityki zagranicznej popierasz, uwzględniając użycie armii?",
+    "Jakie wymagania powinna spełniać osoba chcąca głosować w wyborach?",
+    "Czy popierasz obowiązkową służbę wojskową?", "Który z podanych typów " +
+    "polityki zagranicznej popierasz (uwzględniając użycie armii)?",
     "Jakie czynniki powinne być brane pod uwagę podczas przyjmowania imigrantów?",
     "Jakie powinny obowiązywać prawa imigranckie w porównaniu do rodowitych obywateli",
     "Jak powinna zostać rozwiązana kwestia mediów w państwie?"];
@@ -43,12 +43,12 @@ const answers = {
     set3: {
         ans1: {text: "Rządy autorytarne", value: [0, 2]},
         ans2: {text: "Ustrój jednopartyjny", value: [0, 1]},
-        ans3: {text: "demokracja parlamentarna(pośrednia)", value: [0, -1]},
+        ans3: {text: "Demokracja parlamentarna (pośrednia)", value: [0, -1]},
         ans4: {text: "Demokracja bezpośrednia", value: [0, -2]}
     },
     set4: {
         ans1: {text: "Warunek wiekowy", value: [0, 1]},
-        ans2: {text: "Odpowiednie wykrztałcenie", value: [0, 1]},
+        ans2: {text: "Odpowiednie wykształcenie", value: [0, 1]},
         ans3: {text: "Odpowiednia majętność", value: [0, 1]},
         ans4: {text: "Przynależność do grupy etnicznej", value: [0, 1]}
     },
@@ -64,7 +64,7 @@ const answers = {
     },
     set7: {
         ans1: {text: "Język", value: [0, 1]},
-        ans2: {text: "Poziom wykrztałcenia", value: [0, 1]},
+        ans2: {text: "Poziom wykształcenia", value: [0, 1]},
         ans3: {text: "Grupa etniczna", value: [0, 1]},
         ans4: {text: "Religia", value: [0, 1]}
     },
@@ -76,8 +76,8 @@ const answers = {
     },
     set9: {
         ans1: {text: "Tylko media publiczne", value: [0, 2]},
-        ans2: {text: "Dopuszczalne media prywatne, z narzuconymi restrykcjami", value: [0, 1]},
-        ans3: {text: "Odrębne media puczline oraz prywatne", value: [0, -1]},
+        ans2: {text: "Dopuszczalne media prywatne z narzuconymi restrykcjami", value: [0, 1]},
+        ans3: {text: "Odrębne media publiczne oraz prywatne", value: [0, -1]},
         ans4: {text: "Tylko media prywatne", value: [0, -2]}
     }
 };
@@ -123,14 +123,14 @@ class StateView extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidMount() {
-        console.log("halohalowyłaczam");
-
+    componentWillMount() {
+        window.scrollTo(0, 0);
     }
 
     componentWillUnmount() {
         this.saveData();
     }
+
 
     getRadioGroup(set, name, groupValue) {
 
@@ -155,7 +155,7 @@ class StateView extends Component {
     getRadioPair(set, name, groupValue) {
 
         return (
-            <div>
+            <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
                 <RadioGroup
                     aria-label={name}
                     name={name}
@@ -259,7 +259,9 @@ class StateView extends Component {
 
         return (
 
-            <div>
+            <div style={{
+                paddingTop: '50px'
+            }}>
                 <Typography align="center">
                     <FormControl component="fieldset" required>
                         <FormContainer>

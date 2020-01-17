@@ -1,6 +1,7 @@
 package com.react.reacttest.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "economy", schema = "ii302782", catalog = "")
@@ -18,14 +19,15 @@ public class EconomyEntity {
     private String tradeUnions;
     private String vat;
     private String controls;
-    private Boolean protectTariffs;
-    private Boolean protectLicenses;
-    private Boolean antiDumping;
-    private Boolean exchangeRate;
-    private Boolean welfarePoverty;
-    private Boolean welfareUnemployed;
-    private Boolean welfareMin;
-    private Boolean welfarePension;
+    private Byte protectTariffs;
+    private Byte protectLicenses;
+    private Byte antiDumping;
+    private Byte exchangeRate;
+    private Byte welfarePoverty;
+    private Byte welfareUnemployed;
+    private Byte welfareMin;
+    private Byte welfarePension;
+    private Collection<UserEntity> users;
 
     @Id
     @Column(name = "idEconomy")
@@ -159,81 +161,81 @@ public class EconomyEntity {
 
     @Basic
     @Column(name = "protectTariffs")
-    public Boolean getProtectTariffs() {
+    public Byte getProtectTariffs() {
         return protectTariffs;
     }
 
-    public void setProtectTariffs(Boolean protectTariffs) {
+    public void setProtectTariffs(Byte protectTariffs) {
         this.protectTariffs = protectTariffs;
     }
 
     @Basic
     @Column(name = "protectLicenses")
-    public Boolean getProtectLicenses() {
+    public Byte getProtectLicenses() {
         return protectLicenses;
     }
 
-    public void setProtectLicenses(Boolean protectLicenses) {
+    public void setProtectLicenses(Byte protectLicenses) {
         this.protectLicenses = protectLicenses;
     }
 
     @Basic
     @Column(name = "antiDumping")
-    public Boolean getAntiDumping() {
+    public Byte getAntiDumping() {
         return antiDumping;
     }
 
-    public void setAntiDumping(Boolean antiDumping) {
+    public void setAntiDumping(Byte antiDumping) {
         this.antiDumping = antiDumping;
     }
 
     @Basic
     @Column(name = "exchangeRate")
-    public Boolean getExchangeRate() {
+    public Byte getExchangeRate() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(Boolean exchangeRate) {
+    public void setExchangeRate(Byte exchangeRate) {
         this.exchangeRate = exchangeRate;
     }
 
     @Basic
     @Column(name = "welfarePoverty")
-    public Boolean getWelfarePoverty() {
+    public Byte getWelfarePoverty() {
         return welfarePoverty;
     }
 
-    public void setWelfarePoverty(Boolean welfarePoverty) {
+    public void setWelfarePoverty(Byte welfarePoverty) {
         this.welfarePoverty = welfarePoverty;
     }
 
     @Basic
     @Column(name = "welfareUnemployed")
-    public Boolean getWelfareUnemployed() {
+    public Byte getWelfareUnemployed() {
         return welfareUnemployed;
     }
 
-    public void setWelfareUnemployed(Boolean welfareUnemployed) {
+    public void setWelfareUnemployed(Byte welfareUnemployed) {
         this.welfareUnemployed = welfareUnemployed;
     }
 
     @Basic
     @Column(name = "welfareMin")
-    public Boolean getWelfareMin() {
+    public Byte getWelfareMin() {
         return welfareMin;
     }
 
-    public void setWelfareMin(Boolean welfareMin) {
+    public void setWelfareMin(Byte welfareMin) {
         this.welfareMin = welfareMin;
     }
 
     @Basic
     @Column(name = "welfarePension")
-    public Boolean getWelfarePension() {
+    public Byte getWelfarePension() {
         return welfarePension;
     }
 
-    public void setWelfarePension(Boolean welfarePension) {
+    public void setWelfarePension(Byte welfarePension) {
         this.welfarePension = welfarePension;
     }
 
@@ -298,5 +300,14 @@ public class EconomyEntity {
         result = 31 * result + (welfareMin != null ? welfareMin.hashCode() : 0);
         result = 31 * result + (welfarePension != null ? welfarePension.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "economy")
+    public Collection<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<UserEntity> userEntities) {
+        this.users = userEntities;
     }
 }

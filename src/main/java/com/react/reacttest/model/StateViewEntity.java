@@ -1,6 +1,7 @@
 package com.react.reacttest.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "stateview", schema = "ii302782", catalog = "")
@@ -12,18 +13,19 @@ public class StateViewEntity {
     private String foreignPolicy;
     private String immigrationRights;
     private String media;
-    private Boolean airPollutions;
-    private Boolean waterPollutions;
-    private Boolean landPollutions;
-    private Boolean climateChanges;
-    private Boolean ageReq;
-    private Boolean eduReq;
-    private Boolean wealthReq;
-    private Boolean ethnicityReq;
-    private Boolean languageIReq;
-    private Boolean eduIReq;
-    private Boolean ethnicityIReq;
-    private Boolean religionReq;
+    private Byte airPollutions;
+    private Byte waterPollutions;
+    private Byte landPollutions;
+    private Byte climateChanges;
+    private Byte ageReq;
+    private Byte eduReq;
+    private Byte wealthReq;
+    private Byte ethnicityReq;
+    private Byte languageIReq;
+    private Byte eduIReq;
+    private Byte ethnicityIReq;
+    private Byte religionReq;
+    private Collection<UserEntity> users;
 
     @Id
     @Column(name = "idStateView")
@@ -97,121 +99,121 @@ public class StateViewEntity {
 
     @Basic
     @Column(name = "airPollutions")
-    public Boolean getAirPollutions() {
+    public Byte getAirPollutions() {
         return airPollutions;
     }
 
-    public void setAirPollutions(Boolean airPollutions) {
+    public void setAirPollutions(Byte airPollutions) {
         this.airPollutions = airPollutions;
     }
 
     @Basic
     @Column(name = "waterPollutions")
-    public Boolean getWaterPollutions() {
+    public Byte getWaterPollutions() {
         return waterPollutions;
     }
 
-    public void setWaterPollutions(Boolean waterPollutions) {
+    public void setWaterPollutions(Byte waterPollutions) {
         this.waterPollutions = waterPollutions;
     }
 
     @Basic
     @Column(name = "landPollutions")
-    public Boolean getLandPollutions() {
+    public Byte getLandPollutions() {
         return landPollutions;
     }
 
-    public void setLandPollutions(Boolean landPollutions) {
+    public void setLandPollutions(Byte landPollutions) {
         this.landPollutions = landPollutions;
     }
 
     @Basic
     @Column(name = "climateChanges")
-    public Boolean getClimateChanges() {
+    public Byte getClimateChanges() {
         return climateChanges;
     }
 
-    public void setClimateChanges(Boolean climateChanges) {
+    public void setClimateChanges(Byte climateChanges) {
         this.climateChanges = climateChanges;
     }
 
     @Basic
     @Column(name = "ageReq")
-    public Boolean getAgeReq() {
+    public Byte getAgeReq() {
         return ageReq;
     }
 
-    public void setAgeReq(Boolean ageReq) {
+    public void setAgeReq(Byte ageReq) {
         this.ageReq = ageReq;
     }
 
     @Basic
     @Column(name = "eduReq")
-    public Boolean getEduReq() {
+    public Byte getEduReq() {
         return eduReq;
     }
 
-    public void setEduReq(Boolean eduReq) {
+    public void setEduReq(Byte eduReq) {
         this.eduReq = eduReq;
     }
 
     @Basic
     @Column(name = "wealthReq")
-    public Boolean getWealthReq() {
+    public Byte getWealthReq() {
         return wealthReq;
     }
 
-    public void setWealthReq(Boolean wealthReq) {
+    public void setWealthReq(Byte wealthReq) {
         this.wealthReq = wealthReq;
     }
 
     @Basic
     @Column(name = "ethnicityReq")
-    public Boolean getEthnicityReq() {
+    public Byte getEthnicityReq() {
         return ethnicityReq;
     }
 
-    public void setEthnicityReq(Boolean ethnicityReq) {
+    public void setEthnicityReq(Byte ethnicityReq) {
         this.ethnicityReq = ethnicityReq;
     }
 
     @Basic
     @Column(name = "languageIReq")
-    public Boolean getLanguageIReq() {
+    public Byte getLanguageIReq() {
         return languageIReq;
     }
 
-    public void setLanguageIReq(Boolean languageIReq) {
+    public void setLanguageIReq(Byte languageIReq) {
         this.languageIReq = languageIReq;
     }
 
     @Basic
     @Column(name = "eduIReq")
-    public Boolean getEduIReq() {
+    public Byte getEduIReq() {
         return eduIReq;
     }
 
-    public void setEduIReq(Boolean eduIReq) {
+    public void setEduIReq(Byte eduIReq) {
         this.eduIReq = eduIReq;
     }
 
     @Basic
     @Column(name = "ethnicityIReq")
-    public Boolean getEthnicityIReq() {
+    public Byte getEthnicityIReq() {
         return ethnicityIReq;
     }
 
-    public void setEthnicityIReq(Boolean ethnicityIReq) {
+    public void setEthnicityIReq(Byte ethnicityIReq) {
         this.ethnicityIReq = ethnicityIReq;
     }
 
     @Basic
     @Column(name = "religionReq")
-    public Boolean getReligionReq() {
+    public Byte getReligionReq() {
         return religionReq;
     }
 
-    public void setReligionReq(Boolean religionReq) {
+    public void setReligionReq(Byte religionReq) {
         this.religionReq = religionReq;
     }
 
@@ -275,5 +277,14 @@ public class StateViewEntity {
         result = 31 * result + (ethnicityIReq != null ? ethnicityIReq.hashCode() : 0);
         result = 31 * result + (religionReq != null ? religionReq.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "stateView")
+    public Collection<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<UserEntity> userEntities) {
+        this.users = userEntities;
     }
 }

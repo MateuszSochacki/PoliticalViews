@@ -20,24 +20,24 @@ function FormContainer(props) {
 }
 
 function getQuestion(num) {
-    const questions = ["Jak duży wpływ powinna mieć religia na rząd lub władce?",
+    const questions = ["Jak duży wpływ powinna mieć religia na władzę?",
     "Jakie prawa oraz zasady powinny obejmować osoby płci żeńskiej w państwie?",
     "Czy jesteś za stosowaniem kary śmierci, jeśli tak to w jakich okolicznościach?",
     "Które z podanych substancji powinny być legalne na rynku handlowym?",
     "Jak duży zakres praw powinny mieć osoby innej orientacji niż heteroseksualna?",
     "W jakich przypadkach aborcja powinna być możliwa do wykonania?",
     "W jakich przypadkach eutanazja powinna być możliwa do wykonania?",
-    "Jakie regulacje powinny obowiązywać w kwestii posiadania bronii palnej?"];
+    "Jakie regulacje powinny obowiązywać w kwestii posiadania broni palnej?"];
 
     return (questions[num]);
 }
 const answers = {
 
     set1: {
-        ans1: {text: "Duży(państwo wyznaniowe)", value: [0, 2]},
-        ans2: {text: "Średni(kultura oparta o religię)", value: [0, 1]},
-        ans3: {text: "Mniejszy(pomniejsze dotacje z publicznego budżetu)", value: [0, -1]},
-        ans4: {text: "Żaden(całkowity rozdział)", value: [0, -2]}
+        ans1: {text: "Duży (państwo wyznaniowe)", value: [0, 2]},
+        ans2: {text: "Średni (kultura oparta o religię)", value: [0, 1]},
+        ans3: {text: "Mniejszy (pomniejsze dotacje z publicznego budżetu)", value: [0, -1]},
+        ans4: {text: "Żaden (całkowity rozdział)", value: [0, -2]}
     },
     set2: {
         ans1: {text: "Równe prawa do edukacji", value: [0, -1]},
@@ -48,7 +48,7 @@ const answers = {
     },
     set3: {
         ans1: {text: "Brak kary śmierci", value: [0, -2]},
-        ans2: {text: "Kara śmierci za najcięższe zbrodnie", value: [0, -1]},
+        ans2: {text: "Kara śmierci w szczególnych przypadkach", value: [0, -1]},
         ans3: {text: "Kara śmierci za cięższe przewinienia", value: [0, 1]},
         ans4: {text: "Powszechna kara śmierci", value: [0, 2]}
     },
@@ -59,19 +59,19 @@ const answers = {
         ans4: {text: "Narkotyki twarde i psychodeliki", value: [0, -1]}
     },
     set5: {
-        ans1: {text: "Inne orietnacje powinny być zwalczane", value: [0, 2]},
+        ans1: {text: "Inne orientacje powinny być zwalczane", value: [0, 2]},
         ans2: {text: "Brak równouprawnienia", value: [0, 1]},
         ans3: {text: "Związki partnerskie", value: [0, -1]},
         ans4: {text: "Związki partnerskie oraz prawo do adopcji", value: [0, -2]}
     },
     set6: {
-        ans1: {text: "W każdym przypadku(brak kontroli)", value: [0, -2]},
-        ans2: {text: "W przypadkach z komprosimu aborcyjnego", value: [0, -1]},
+        ans1: {text: "W każdym przypadku (brak kontroli)", value: [0, -2]},
+        ans2: {text: "W przypadkach z kompromisu aborcyjnego", value: [0, -1]},
         ans3: {text: "Prawo powinno zostać zaostrzone", value: [0, 1]},
         ans4: {text: "Aborcja powinna być nielegalna", value: [0, 2]}
     },
     set7: {
-        ans1: {text: "W każdym przypadku(brak kontroli)", value: [0, -2]},
+        ans1: {text: "W każdym przypadku (brak kontroli)", value: [0, -2]},
         ans2: {text: "W przypadku chronicznego bólu", value: [0, -1]},
         ans3: {text: "W przypadku chorób nieuleczalnych", value: [0, 1]},
         ans4: {text: "Eutanazja powinna być nielegalna", value: [0, 2]}
@@ -174,6 +174,10 @@ class SocialView extends Component {
             }).catch(err => console.error(err));
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     componentWillUnmount() {
         this.saveData();
     }
@@ -224,7 +228,9 @@ class SocialView extends Component {
     render() {
 
         return (
-            <div>
+            <div style={{
+                paddingTop: '50px'
+            }}>
                 <Typography align="center">
 
                     <FormControl component="fieldset" required>
@@ -255,7 +261,7 @@ class SocialView extends Component {
                             {this.getCheckboxForm("stimAlcohol", answers.set4.ans1.text, this.state.stimAlcohol)}
                             {this.getCheckboxForm("sitmNicotine", answers.set4.ans2.text, this.state.sitmNicotine)}
                             {this.getCheckboxForm("stimCannabis", answers.set4.ans3.text, this.state.stimCannabis)}
-                            {this.getCheckboxForm("stimHard", answers.set4.ans4.text, this.state.stimHard)}}
+                            {this.getCheckboxForm("stimHard", answers.set4.ans4.text, this.state.stimHard)}
                         </FormContainer>
                     </FormControl><br/>
                     <FormControl component="fieldset" required>
@@ -279,7 +285,7 @@ class SocialView extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(7)}</FormLabel>
-                            {this.getRadioGroup(answers.set7, "race", this.state.values.race)}
+                            {this.getRadioGroup(answers.set8, "race", this.state.values.race)}
                         </FormContainer>
                     </FormControl><br/>
                     {this.state.buttonValue < 1 ?

@@ -8,6 +8,7 @@ public class PoliticalPartyEntity {
     private int idPoliticalParty;
     private String name;
     private String description;
+    private CoordinatesEntity coordinates;
 
     @Id
     @Column(name = "idPoliticalParty")
@@ -59,5 +60,15 @@ public class PoliticalPartyEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false)
+    public CoordinatesEntity getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(CoordinatesEntity coordinatesEntity) {
+        this.coordinates = coordinatesEntity;
     }
 }

@@ -1,6 +1,7 @@
 package com.react.reacttest.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "socialview", schema = "ii302782", catalog = "")
@@ -12,15 +13,16 @@ public class SocialViewEntity {
     private String abortion;
     private String euthanasia;
     private String race;
-    private Boolean womenEdu;
-    private Boolean womenEmploy;
-    private Boolean womenVoting;
-    private Boolean womenWage;
-    private Boolean womenMaternity;
-    private Boolean stimAlcohol;
-    private Boolean stimCannabis;
-    private Boolean stimHard;
-    private Boolean sitmNicotine;
+    private Byte womenEdu;
+    private Byte womenEmploy;
+    private Byte womenVoting;
+    private Byte womenWage;
+    private Byte womenMaternity;
+    private Byte stimAlcohol;
+    private Byte stimCannabis;
+    private Byte stimHard;
+    private Byte sitmNicotine;
+    private Collection<UserEntity> users;
 
     @Id
     @Column(name = "idSocialView")
@@ -94,91 +96,91 @@ public class SocialViewEntity {
 
     @Basic
     @Column(name = "womenEdu")
-    public Boolean getWomenEdu() {
+    public Byte getWomenEdu() {
         return womenEdu;
     }
 
-    public void setWomenEdu(Boolean womenEdu) {
+    public void setWomenEdu(Byte womenEdu) {
         this.womenEdu = womenEdu;
     }
 
     @Basic
     @Column(name = "womenEmploy")
-    public Boolean getWomenEmploy() {
+    public Byte getWomenEmploy() {
         return womenEmploy;
     }
 
-    public void setWomenEmploy(Boolean womenEmploy) {
+    public void setWomenEmploy(Byte womenEmploy) {
         this.womenEmploy = womenEmploy;
     }
 
     @Basic
     @Column(name = "womenVoting")
-    public Boolean getWomenVoting() {
+    public Byte getWomenVoting() {
         return womenVoting;
     }
 
-    public void setWomenVoting(Boolean womenVoting) {
+    public void setWomenVoting(Byte womenVoting) {
         this.womenVoting = womenVoting;
     }
 
     @Basic
     @Column(name = "womenWage")
-    public Boolean getWomenWage() {
+    public Byte getWomenWage() {
         return womenWage;
     }
 
-    public void setWomenWage(Boolean womenWage) {
+    public void setWomenWage(Byte womenWage) {
         this.womenWage = womenWage;
     }
 
     @Basic
     @Column(name = "womenMaternity")
-    public Boolean getWomenMaternity() {
+    public Byte getWomenMaternity() {
         return womenMaternity;
     }
 
-    public void setWomenMaternity(Boolean womenMaternity) {
+    public void setWomenMaternity(Byte womenMaternity) {
         this.womenMaternity = womenMaternity;
     }
 
     @Basic
     @Column(name = "stimAlcohol")
-    public Boolean getStimAlcohol() {
+    public Byte getStimAlcohol() {
         return stimAlcohol;
     }
 
-    public void setStimAlcohol(Boolean stimAlcohol) {
+    public void setStimAlcohol(Byte stimAlcohol) {
         this.stimAlcohol = stimAlcohol;
     }
 
     @Basic
     @Column(name = "stimCannabis")
-    public Boolean getStimCannabis() {
+    public Byte getStimCannabis() {
         return stimCannabis;
     }
 
-    public void setStimCannabis(Boolean stimCannabis) {
+    public void setStimCannabis(Byte stimCannabis) {
         this.stimCannabis = stimCannabis;
     }
 
     @Basic
     @Column(name = "stimHard")
-    public Boolean getStimHard() {
+    public Byte getStimHard() {
         return stimHard;
     }
 
-    public void setStimHard(Boolean stimHard) {
+    public void setStimHard(Byte stimHard) {
         this.stimHard = stimHard;
     }
 
     @Basic
     @Column(name = "sitmNicotine")
-    public Boolean getSitmNicotine() {
+    public Byte getSitmNicotine() {
         return sitmNicotine;
     }
 
-    public void setSitmNicotine(Boolean sitmNicotine) {
+    public void setSitmNicotine(Byte sitmNicotine) {
         this.sitmNicotine = sitmNicotine;
     }
 
@@ -229,5 +231,14 @@ public class SocialViewEntity {
         result = 31 * result + (stimHard != null ? stimHard.hashCode() : 0);
         result = 31 * result + (sitmNicotine != null ? sitmNicotine.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "socialView")
+    public Collection<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<UserEntity> userEntities) {
+        this.users = userEntities;
     }
 }

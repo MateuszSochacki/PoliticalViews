@@ -1,10 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {
-    BrowserRouter as Router,
-    NavLink, Route
-
-} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 import Routes from './Routes.jsx'
 import 'typeface-roboto'
 
@@ -21,14 +17,6 @@ class App extends Component {
         return (
             <Router >
                 <div className="container">
-                    <ul>
-                        <li>
-                            <NavLink to="/">Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/Test">Test</NavLink>
-                        </li>
-                    </ul>
                     <Routes />
                 </div>
             </Router>

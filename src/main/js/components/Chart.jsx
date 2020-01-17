@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Bar, Scatter} from 'react-chartjs-2';
+import {Scatter} from 'react-chartjs-2';
 
 class Chart extends Component {
 

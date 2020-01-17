@@ -1,6 +1,7 @@
 package com.react.reacttest.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "coordinates", schema = "ii302782", catalog = "")
@@ -8,6 +9,8 @@ public class CoordinatesEntity {
     private int idCoordinates;
     private Double xAxis;
     private Double yAxis;
+    private Collection<PoliticalPartyEntity> politicalParties;
+    private Collection<UserEntity> users;
 
     @Id
     @Column(name = "idCoordinates")
@@ -59,5 +62,23 @@ public class CoordinatesEntity {
         result = 31 * result + (xAxis != null ? xAxis.hashCode() : 0);
         result = 31 * result + (yAxis != null ? yAxis.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "coordinates")
+    public Collection<PoliticalPartyEntity> getPoliticalParties() {
+        return politicalParties;
+    }
+
+    public void setPoliticalParties(Collection<PoliticalPartyEntity> politicalPartyEntities) {
+        this.politicalParties = politicalPartyEntities;
+    }
+
+    @OneToMany(mappedBy = "coordinates")
+    public Collection<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<UserEntity> userEntities) {
+        this.users = userEntities;
     }
 }

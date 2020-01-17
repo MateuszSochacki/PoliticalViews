@@ -1,7 +1,4 @@
 import React from 'react';
-import Chart from './Chart';
-import Economy from "./Economy";
-import Coordinates from "./Coordinates";
 import Navigation from "./Navigation";
 
 

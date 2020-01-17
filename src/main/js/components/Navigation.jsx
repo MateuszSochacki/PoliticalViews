@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import {Tabs, Tab} from '@material-ui/core/';
-import Chart from './Chart';
+import {Tab, Tabs} from '@material-ui/core/';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
 import Forward from '@material-ui/icons/Forward';
@@ -11,15 +10,6 @@ import StateView from "./StateView";
 import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography/";
 
-
-function TabContainer(props) {
-    return (
-        <Typography component="div" style={{paddingBottom: 8 * 3}}>
-            {props.children}
-        </Typography>
-    );
-}
-
 class Navigation extends Component {
 
     constructor(props) {
@@ -27,6 +17,7 @@ class Navigation extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleReturn = this.handleReturn.bind(this);
         this.updateCoordinates = this.updateCoordinates.bind(this);
 
         this.state = {
@@ -47,6 +38,10 @@ class Navigation extends Component {
         this.setState({value: val});
     }
 
+    handleReturn(event) {
+        window.location.reload(true);
+    }
+
     updateCoordinates(xValue, yValue) {
 
         const values = this.state.coordinates;
@@ -59,7 +54,7 @@ class Navigation extends Component {
         const {value} = this.state;
 
         return (
-            <div>
+            <div id ='navigation' >
                 {/*<MuiThemeProvider>*/}
                 <AppBar position="fixed">
                     <Toolbar>
@@ -69,9 +64,9 @@ class Navigation extends Component {
                         <Typography variant="body2" color="inherit">
 
                             <Tabs value={value} onChange={this.handleChange} indicatorColor="secondary">
-                                <Tab label="Ekonomia"/>
-                                <Tab label="Państwo"/>
-                                <Tab label="Światopogląd"/>
+                                <Tab label="Ekonomia" disabled/>
+                                <Tab label="Państwo" disabled/>
+                                <Tab label="Światopogląd" disabled/>
                             </Tabs>
                         </Typography>
                     </Toolbar>
@@ -90,9 +85,13 @@ class Navigation extends Component {
                         <Button variant="contained" size="medium" onClick={this.handleClick}>
                             Następny dział <Forward/>
                         </Button> :
+                        this.state.value === 2 ?
                         <Button variant="contained" size="medium" onClick={this.handleClick}>
                             Pokaż wyniki <Forward/>
-                        </Button>
+                        </Button> :
+                            <Button variant="contained" size="medium" onClick={this.handleReturn}>
+                                Powtórz test <Forward/>
+                            </Button>
                     }
                 </Typography>
                 {/* </MuiThemeProvider>*/}

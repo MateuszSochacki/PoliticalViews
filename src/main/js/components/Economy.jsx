@@ -14,19 +14,19 @@ function FormContainer(props) {
 }
 
 function getQuestion(num) {
-    const questions = ["Jaki typ opodatkowania od osób fizycznych powinień obowiązywać?",
+    const questions = ["Jaki typ opodatkowania od osób fizycznych powinien obowiązywać?",
         "Czy uważasz, że osoby bogate powinny zostać dodatkowo opodatkowane?",
-        "Jaki typ opodatkowania od przedsiębiorstw powinień obowiązywać?",
+        "Jaki typ opodatkowania od przedsiębiorstw powinien obowiązywać?",
         "Jak powinna funkcjonować płaca minimalna?",
-        "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę, przed interesem zagranicznym?",
+        "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę przed interesem zagranicznym?",
         "Jaka część gruntów powinna należeć do państwa?",
         "W jakich sytuacjach powinien być przyznawany zasiłek?",
-        "Jaka powinan być rola państwa w sektorze edukacji?",
+        "Jaka powinna być rola państwa w sektorze edukacji?",
         "Jaka powinna być rola państwa w sektorze ochrony zdrowia?",
         "Czy w wolnym rynku potrzebne są ograniczenia przeciwko powstawaniu monopoli?",
-        "Jak Twoim zdaniem, powinna być rozwiązana kwiestia emerytur?",
+        "Jak Twoim zdaniem, powinna być rozwiązana kwestia emerytur?",
         "Czy popierasz wpływ związków zawodowych na prywatne przedsiębiorstwa?",
-        "Jakie Twoim zdaniem powinna oboowiązywać stawka podatku VAT?",
+        "Jakie Twoim zdaniem powinna obowiązywać stawka podatku VAT?",
     ];
     return (questions[num]);
 }
@@ -36,19 +36,19 @@ const answers = {
     set1: {
         ans1: {text: "Brak podatku", value: [2, 0]},
         ans2: {text: "Podatek pogłówny", value: [1, 0]},
-        ans3: {text: "Podatek liniowy", value: [0, 0]},
+        ans3: {text: "Podatek liniowy", value: [-1, 0]},
         ans4: {text: "Podatek progresywny", value: [-2, 0]}
     },
     set2: {
         ans1: {text: "Wszystkich powinny obowiązywać te same zasady", value: [2, 0]},
-        ans2: {text: "Dodatkowy podatek na służby publiczne, lub wyższy próg PIT", value: [0, 0]},
+        ans2: {text: "Dodatkowy podatek na służby publiczne lub wyższy próg PIT", value: [1, 0]},
         ans3: {text: "Dochód nie powinien przekraczać pewnej kwoty", value: [-1, 0]},
         ans4: {text: "Nie powinno być ludzi zbyt bogatych", value: [-2, 0]}
     },
     set3: {
         ans1: {text: "Brak podatku", value: [2, 0]},
         ans2: {text: "Podatek pogłówny", value: [1, 0]},
-        ans3: {text: "Podatek liniowy", value: [0, 0]},
+        ans3: {text: "Podatek liniowy", value: [-1, 0]},
         ans4: {text: "Podatek progresywny", value: [-2, 0]}
     },
     set4: {
@@ -76,26 +76,26 @@ const answers = {
         ans4: {text: "Jako dodatek do pensji", value: [-1, 0]}
     },
     set8: {
-        ans1: {text: "Brak udziału państwa(pełna prywatyzacja)", value: [2, 0]},
+        ans1: {text: "Brak udziału państwa (pełna prywatyzacja)", value: [2, 0]},
         ans2: {text: "Całkowita prywatyzacja szkolnictwa wyższego", value: [1, 0]},
         ans3: {text: "Szkoły publiczne oraz prywatne", value: [-1, 0]},
         ans4: {text: "Brak zezwolenia na szkoły prywatne", value: [-2, 0]}
     },
     set9: {
-        ans1: {text: "Brak udziału państwa(pełna prywatyzacja)", value: [2, 0]},
+        ans1: {text: "Brak udziału państwa (pełna prywatyzacja)", value: [2, 0]},
         ans2: {text: "Istnieje nieobowiązkowa w składkach publiczna opieka medyczna", value: [1, 0]},
-        ans3: {text: "Składki na opieke medyczną są obowiązkowe", value: [-1, 0]},
-        ans4: {text: "Brak zezwolenia prywatne firmy opiekii zdrowotnej", value: [-2, 0]}
+        ans3: {text: "Składki na opiekę medyczną są obowiązkowe", value: [-1, 0]},
+        ans4: {text: "Brak zezwolenia prywatne firmy opieki zdrowotnej", value: [-2, 0]}
     },
     set10: {
         ans1: {text: "Nie powinny istnieć jakiekolwiek ograniczenia", value: [2, 0]},
         ans2: {text: "Drobne regulacje antymonopolowe", value: [1, 0]},
         ans3: {text: "Znaczne ograniczenia dla korporacji", value: [-1, 0]},
-        ans4: {text: "Im więcej kontroli nad prywatnym przedsiebiorstwem, tym lepiej", value: [-2, 0]}
+        ans4: {text: "Im więcej kontroli nad prywatnym przedsiębiorstwem, tym lepiej", value: [-2, 0]}
     },
     set11: {
         ans1: {text: "Brak publicznego finansowania", value: [2, 0]},
-        ans2: {text: "Nieobowiązkowe ubezpieczenia publiczne, oraz prywatne", value: [1, 0]},
+        ans2: {text: "Nieobowiązkowe ubezpieczenia publiczne oraz prywatne", value: [1, 0]},
         ans3: {text: "Obowiązkowe składki", value: [-1, 0]},
         ans4: {text: "Brak zezwolenia na prywatne ubezpieczenia emerytalne", value: [-2, 0]}
     },
@@ -171,7 +171,7 @@ class Economy extends Component {
     getRadioPair(set, name, groupValue) {
 
         return (
-            <div>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <RadioGroup
                     aria-label={name}
                     name={name}
@@ -217,6 +217,10 @@ class Economy extends Component {
             }).catch(err => console.error(err));
     }
 
+    componentWillMount() {
+        window.scrollTo(0, 0);
+    }
+
     componentWillUnmount() {
         this.saveData();
     }
@@ -226,11 +230,11 @@ class Economy extends Component {
         const checks = this.state.checkboxes;
         let xAxis = this.state.xAxis;
 
-        Object.keys(values).forEach(function(key) {
+        Object.keys(values).forEach(function (key) {
             xAxis += Number(values[key].split(',')[0]);
         });
-        Object.keys(checks).forEach(function(key) {
-            if(checks[key]) --xAxis;
+        Object.keys(checks).forEach(function (key) {
+            if (checks[key]) --xAxis;
         });
         this.state.xAxis = xAxis;
     }
@@ -260,7 +264,9 @@ class Economy extends Component {
     render() {
 
         return (
-            <div>
+            <div style={{
+                paddingTop: '50px'
+            }}>
                 <Typography align="center">
                     <FormControl component="fieldset" required>
                         <FormContainer>
@@ -304,7 +310,7 @@ class Economy extends Component {
                     <FormControl component="fieldset" required>
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(6)}</FormLabel>
-                            {this.getCheckboxForm("welfarePoverty", answers.set6.ans1.text, this.state.checkboxes.welfarePoverty)}
+                            {this.getCheckboxForm("welfarePoverty", answers.set7.ans1.text, this.state.checkboxes.welfarePoverty)}
                             {this.getCheckboxForm("welfareUnemployed", answers.set7.ans2.text, this.state.checkboxes.welfareUnemployed)}
                             {this.getCheckboxForm("welfareMin", answers.set7.ans3.text, this.state.checkboxes.welfareMin)}
                             {this.getCheckboxForm("welfarePension", answers.set7.ans4.text, this.state.checkboxes.welfarePension)}

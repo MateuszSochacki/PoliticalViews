@@ -4,12 +4,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user", schema = "ii302782", catalog = "")
-@IdClass(UserEntityPK.class)
 public class UserEntity {
     private int idUser;
-    private int socialViewIdSocialView;
-    private int economyIdEconomy;
-    private int stateViewIdStateView;
+    private int socialViewId;
+    private int economyId;
+    private int stateViewId;
+    private QuestionnaireEntity questionnaire;
+    private CoordinatesEntity coordinates;
+    private SocialViewEntity socialView;
+    private EconomyEntity economy;
+    private StateViewEntity stateView;
 
     @Id
     @Column(name = "idUser")
@@ -23,32 +27,32 @@ public class UserEntity {
 
     @Id
     @Column(name = "SocialView_idSocialView")
-    public int getSocialViewIdSocialView() {
-        return socialViewIdSocialView;
+    public int getSocialViewId() {
+        return socialViewId;
     }
 
-    public void setSocialViewIdSocialView(int socialViewIdSocialView) {
-        this.socialViewIdSocialView = socialViewIdSocialView;
+    public void setSocialViewId(int socialViewIdSocialView) {
+        this.socialViewId = socialViewIdSocialView;
     }
 
     @Id
     @Column(name = "Economy_idEconomy")
-    public int getEconomyIdEconomy() {
-        return economyIdEconomy;
+    public int getEconomyId() {
+        return economyId;
     }
 
-    public void setEconomyIdEconomy(int economyIdEconomy) {
-        this.economyIdEconomy = economyIdEconomy;
+    public void setEconomyId(int economyIdEconomy) {
+        this.economyId = economyIdEconomy;
     }
 
     @Id
     @Column(name = "StateView_idStateView")
-    public int getStateViewIdStateView() {
-        return stateViewIdStateView;
+    public int getStateViewId() {
+        return stateViewId;
     }
 
-    public void setStateViewIdStateView(int stateViewIdStateView) {
-        this.stateViewIdStateView = stateViewIdStateView;
+    public void setStateViewId(int stateViewIdStateView) {
+        this.stateViewId = stateViewIdStateView;
     }
 
     @Override
@@ -59,9 +63,9 @@ public class UserEntity {
         UserEntity that = (UserEntity) o;
 
         if (idUser != that.idUser) return false;
-        if (socialViewIdSocialView != that.socialViewIdSocialView) return false;
-        if (economyIdEconomy != that.economyIdEconomy) return false;
-        if (stateViewIdStateView != that.stateViewIdStateView) return false;
+        if (socialViewId != that.socialViewId) return false;
+        if (economyId != that.economyId) return false;
+        if (stateViewId != that.stateViewId) return false;
 
         return true;
     }
@@ -69,9 +73,59 @@ public class UserEntity {
     @Override
     public int hashCode() {
         int result = idUser;
-        result = 31 * result + socialViewIdSocialView;
-        result = 31 * result + economyIdEconomy;
-        result = 31 * result + stateViewIdStateView;
+        result = 31 * result + socialViewId;
+        result = 31 * result + economyId;
+        result = 31 * result + stateViewId;
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "idUser", referencedColumnName = "user_idUser", nullable = false)
+    public QuestionnaireEntity getQuestionnaire() {
+        return questionnaire;
+    }
+
+    public void setQuestionnaire(QuestionnaireEntity questionnaireEntity) {
+        this.questionnaire = questionnaireEntity;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Coordinates_idCoordinates", referencedColumnName = "idCoordinates", nullable = false)
+    public CoordinatesEntity getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(CoordinatesEntity coordinatesEntity) {
+        this.coordinates = coordinatesEntity;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "SocialView_idSocialView", referencedColumnName = "idSocialView", nullable = false)
+    public SocialViewEntity getSocialView() {
+        return socialView;
+    }
+
+    public void setSocialView(SocialViewEntity socialviewEntity) {
+        this.socialView = socialviewEntity;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Economy_idEconomy", referencedColumnName = "idEconomy", nullable = false)
+    public EconomyEntity getEconomy() {
+        return economy;
+    }
+
+    public void setEconomy(EconomyEntity economyEntity) {
+        this.economy = economyEntity;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "StateView_idStateView", referencedColumnName = "idStateView", nullable = false)
+    public StateViewEntity getStateView() {
+        return stateView;
+    }
+
+    public void setStateView(StateViewEntity stateView) {
+        this.stateView = stateView;
     }
 }
