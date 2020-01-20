@@ -1,9 +1,12 @@
 package com.poll.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "socialview")
+@NoArgsConstructor
 public class SocialViewEntity {
     private long idSocialView;
     private String religion;
@@ -12,19 +15,65 @@ public class SocialViewEntity {
     private String abortion;
     private String euthanasia;
     private String race;
-    private Byte womenEdu;
-    private Byte womenEmploy;
-    private Byte womenVoting;
-    private Byte womenWage;
-    private Byte womenMaternity;
-    private Byte stimAlcohol;
-    private Byte stimCannabis;
-    private Byte stimHard;
-    private Byte sitmNicotine;
+    private Boolean womenEdu;
+    private Boolean womenEmploy;
+    private Boolean womenVoting;
+    private Boolean womenWage;
+    private Boolean womenMaternity;
+    private Boolean stimAlcohol;
+    private Boolean stimCannabis;
+    private Boolean stimHard;
+    private Boolean sitmNicotine;
     private UserEntity user;
+
+    public SocialViewEntity(long idSocialView, String religion, String deathPenalty, String orientation, String abortion,
+                            String euthanasia, String race, Boolean womenEdu, Boolean womenEmploy, Boolean womenVoting,
+                            Boolean womenWage, Boolean womenMaternity, Boolean stimAlcohol, Boolean stimCannabis,
+                            Boolean stimHard, Boolean sitmNicotine, UserEntity user) {
+        this.idSocialView = idSocialView;
+        this.religion = religion;
+        this.deathPenalty = deathPenalty;
+        this.orientation = orientation;
+        this.abortion = abortion;
+        this.euthanasia = euthanasia;
+        this.race = race;
+        this.womenEdu = womenEdu;
+        this.womenEmploy = womenEmploy;
+        this.womenVoting = womenVoting;
+        this.womenWage = womenWage;
+        this.womenMaternity = womenMaternity;
+        this.stimAlcohol = stimAlcohol;
+        this.stimCannabis = stimCannabis;
+        this.stimHard = stimHard;
+        this.sitmNicotine = sitmNicotine;
+        this.user = user;
+    }
+
+    public SocialViewEntity(String religion, String deathPenalty, String orientation, String abortion,
+                            String euthanasia, String race, Boolean womenEdu, Boolean womenEmploy, Boolean womenVoting,
+                            Boolean womenWage, Boolean womenMaternity, Boolean stimAlcohol, Boolean stimCannabis,
+                            Boolean stimHard, Boolean sitmNicotine, UserEntity user) {
+        this.religion = religion;
+        this.deathPenalty = deathPenalty;
+        this.orientation = orientation;
+        this.abortion = abortion;
+        this.euthanasia = euthanasia;
+        this.race = race;
+        this.womenEdu = womenEdu;
+        this.womenEmploy = womenEmploy;
+        this.womenVoting = womenVoting;
+        this.womenWage = womenWage;
+        this.womenMaternity = womenMaternity;
+        this.stimAlcohol = stimAlcohol;
+        this.stimCannabis = stimCannabis;
+        this.stimHard = stimHard;
+        this.sitmNicotine = sitmNicotine;
+        this.user = user;
+    }
 
     @Id
     @Column(name = "idSocialView")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdSocialView() {
         return idSocialView;
     }
@@ -95,91 +144,91 @@ public class SocialViewEntity {
 
     @Basic
     @Column(name = "womenEdu")
-    public Byte getWomenEdu() {
+    public Boolean getWomenEdu() {
         return womenEdu;
     }
 
-    public void setWomenEdu(Byte womenEdu) {
+    public void setWomenEdu(Boolean womenEdu) {
         this.womenEdu = womenEdu;
     }
 
     @Basic
     @Column(name = "womenEmploy")
-    public Byte getWomenEmploy() {
+    public Boolean getWomenEmploy() {
         return womenEmploy;
     }
 
-    public void setWomenEmploy(Byte womenEmploy) {
+    public void setWomenEmploy(Boolean womenEmploy) {
         this.womenEmploy = womenEmploy;
     }
 
     @Basic
     @Column(name = "womenVoting")
-    public Byte getWomenVoting() {
+    public Boolean getWomenVoting() {
         return womenVoting;
     }
 
-    public void setWomenVoting(Byte womenVoting) {
+    public void setWomenVoting(Boolean womenVoting) {
         this.womenVoting = womenVoting;
     }
 
     @Basic
     @Column(name = "womenWage")
-    public Byte getWomenWage() {
+    public Boolean getWomenWage() {
         return womenWage;
     }
 
-    public void setWomenWage(Byte womenWage) {
+    public void setWomenWage(Boolean womenWage) {
         this.womenWage = womenWage;
     }
 
     @Basic
     @Column(name = "womenMaternity")
-    public Byte getWomenMaternity() {
+    public Boolean getWomenMaternity() {
         return womenMaternity;
     }
 
-    public void setWomenMaternity(Byte womenMaternity) {
+    public void setWomenMaternity(Boolean womenMaternity) {
         this.womenMaternity = womenMaternity;
     }
 
     @Basic
     @Column(name = "stimAlcohol")
-    public Byte getStimAlcohol() {
+    public Boolean getStimAlcohol() {
         return stimAlcohol;
     }
 
-    public void setStimAlcohol(Byte stimAlcohol) {
+    public void setStimAlcohol(Boolean stimAlcohol) {
         this.stimAlcohol = stimAlcohol;
     }
 
     @Basic
     @Column(name = "stimCannabis")
-    public Byte getStimCannabis() {
+    public Boolean getStimCannabis() {
         return stimCannabis;
     }
 
-    public void setStimCannabis(Byte stimCannabis) {
+    public void setStimCannabis(Boolean stimCannabis) {
         this.stimCannabis = stimCannabis;
     }
 
     @Basic
     @Column(name = "stimHard")
-    public Byte getStimHard() {
+    public Boolean getStimHard() {
         return stimHard;
     }
 
-    public void setStimHard(Byte stimHard) {
+    public void setStimHard(Boolean stimHard) {
         this.stimHard = stimHard;
     }
 
     @Basic
     @Column(name = "sitmNicotine")
-    public Byte getSitmNicotine() {
+    public Boolean getSitmNicotine() {
         return sitmNicotine;
     }
 
-    public void setSitmNicotine(Byte sitmNicotine) {
+    public void setSitmNicotine(Boolean sitmNicotine) {
         this.sitmNicotine = sitmNicotine;
     }
 

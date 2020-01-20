@@ -4,13 +4,15 @@ import com.poll.dto.IdDto;
 import com.poll.dto.stateView.StateViewCreateRequestDto;
 import com.poll.service.StateViewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class StateViewController {
 
     private static final String ENTITY_ID = "id";
-    private static final String ADD_STATE_VIEW = "/stateviews";
+    private static final String ADD_STATE_VIEW = "/addStateview";
 
     @Autowired
     private StateViewService service;

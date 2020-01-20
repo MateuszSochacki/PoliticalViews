@@ -1,9 +1,12 @@
 package com.poll.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "economy")
+@NoArgsConstructor
 public class EconomyEntity {
     private long idEconomy;
     private String rich;
@@ -18,18 +21,76 @@ public class EconomyEntity {
     private String tradeUnions;
     private String vat;
     private String controls;
-    private Byte protectTariffs;
-    private Byte protectLicenses;
-    private Byte antiDumping;
-    private Byte exchangeRate;
-    private Byte welfarePoverty;
-    private Byte welfareUnemployed;
-    private Byte welfareMin;
-    private Byte welfarePension;
+    private Boolean protectTariffs;
+    private Boolean protectLicenses;
+    private Boolean antiDumping;
+    private Boolean exchangeRate;
+    private Boolean welfarePoverty;
+    private Boolean welfareUnemployed;
+    private Boolean welfareMin;
+    private Boolean welfarePension;
     private UserEntity user;
+
+    public EconomyEntity(long idEconomy, String rich, String corpTax, String minWage, String incTax, String ground,
+                         String education, String healthcare, String monopolies, String retirenment, String tradeUnions,
+                         String vat, String controls, Boolean protectTariffs, Boolean protectLicenses, Boolean antiDumping,
+                         Boolean exchangeRate, Boolean welfarePoverty, Boolean welfareUnemployed, Boolean welfareMin,
+                         Boolean welfarePension, UserEntity user) {
+        this.idEconomy = idEconomy;
+        this.rich = rich;
+        this.corpTax = corpTax;
+        this.minWage = minWage;
+        this.incTax = incTax;
+        this.ground = ground;
+        this.education = education;
+        this.healthcare = healthcare;
+        this.monopolies = monopolies;
+        this.retirenment = retirenment;
+        this.tradeUnions = tradeUnions;
+        this.vat = vat;
+        this.controls = controls;
+        this.protectTariffs = protectTariffs;
+        this.protectLicenses = protectLicenses;
+        this.antiDumping = antiDumping;
+        this.exchangeRate = exchangeRate;
+        this.welfarePoverty = welfarePoverty;
+        this.welfareUnemployed = welfareUnemployed;
+        this.welfareMin = welfareMin;
+        this.welfarePension = welfarePension;
+        this.user = user;
+    }
+
+    public EconomyEntity(String rich, String corpTax, String minWage, String incTax, String ground,
+                         String education, String healthcare, String monopolies, String retirenment, String tradeUnions,
+                         String vat, String controls, Boolean protectTariffs, Boolean protectLicenses, Boolean antiDumping,
+                         Boolean exchangeRate, Boolean welfarePoverty, Boolean welfareUnemployed, Boolean welfareMin,
+                         Boolean welfarePension, UserEntity user) {
+        this.rich = rich;
+        this.corpTax = corpTax;
+        this.minWage = minWage;
+        this.incTax = incTax;
+        this.ground = ground;
+        this.education = education;
+        this.healthcare = healthcare;
+        this.monopolies = monopolies;
+        this.retirenment = retirenment;
+        this.tradeUnions = tradeUnions;
+        this.vat = vat;
+        this.controls = controls;
+        this.protectTariffs = protectTariffs;
+        this.protectLicenses = protectLicenses;
+        this.antiDumping = antiDumping;
+        this.exchangeRate = exchangeRate;
+        this.welfarePoverty = welfarePoverty;
+        this.welfareUnemployed = welfareUnemployed;
+        this.welfareMin = welfareMin;
+        this.welfarePension = welfarePension;
+        this.user = user;
+    }
 
     @Id
     @Column(name = "idEconomy")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdEconomy() {
         return idEconomy;
     }
@@ -160,81 +221,81 @@ public class EconomyEntity {
 
     @Basic
     @Column(name = "protectTariffs")
-    public Byte getProtectTariffs() {
+    public Boolean getProtectTariffs() {
         return protectTariffs;
     }
 
-    public void setProtectTariffs(Byte protectTariffs) {
+    public void setProtectTariffs(Boolean protectTariffs) {
         this.protectTariffs = protectTariffs;
     }
 
     @Basic
     @Column(name = "protectLicenses")
-    public Byte getProtectLicenses() {
+    public Boolean getProtectLicenses() {
         return protectLicenses;
     }
 
-    public void setProtectLicenses(Byte protectLicenses) {
+    public void setProtectLicenses(Boolean protectLicenses) {
         this.protectLicenses = protectLicenses;
     }
 
     @Basic
     @Column(name = "antiDumping")
-    public Byte getAntiDumping() {
+    public Boolean getAntiDumping() {
         return antiDumping;
     }
 
-    public void setAntiDumping(Byte antiDumping) {
+    public void setAntiDumping(Boolean antiDumping) {
         this.antiDumping = antiDumping;
     }
 
     @Basic
     @Column(name = "exchangeRate")
-    public Byte getExchangeRate() {
+    public Boolean getExchangeRate() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(Byte exchangeRate) {
+    public void setExchangeRate(Boolean exchangeRate) {
         this.exchangeRate = exchangeRate;
     }
 
     @Basic
     @Column(name = "welfarePoverty")
-    public Byte getWelfarePoverty() {
+    public Boolean getWelfarePoverty() {
         return welfarePoverty;
     }
 
-    public void setWelfarePoverty(Byte welfarePoverty) {
+    public void setWelfarePoverty(Boolean welfarePoverty) {
         this.welfarePoverty = welfarePoverty;
     }
 
     @Basic
     @Column(name = "welfareUnemployed")
-    public Byte getWelfareUnemployed() {
+    public Boolean getWelfareUnemployed() {
         return welfareUnemployed;
     }
 
-    public void setWelfareUnemployed(Byte welfareUnemployed) {
+    public void setWelfareUnemployed(Boolean welfareUnemployed) {
         this.welfareUnemployed = welfareUnemployed;
     }
 
     @Basic
     @Column(name = "welfareMin")
-    public Byte getWelfareMin() {
+    public Boolean getWelfareMin() {
         return welfareMin;
     }
 
-    public void setWelfareMin(Byte welfareMin) {
+    public void setWelfareMin(Boolean welfareMin) {
         this.welfareMin = welfareMin;
     }
 
     @Basic
     @Column(name = "welfarePension")
-    public Byte getWelfarePension() {
+    public Boolean getWelfarePension() {
         return welfarePension;
     }
 
-    public void setWelfarePension(Byte welfarePension) {
+    public void setWelfarePension(Boolean welfarePension) {
         this.welfarePension = welfarePension;
     }
 

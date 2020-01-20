@@ -1,10 +1,13 @@
 package com.poll.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "coordinates")
+@NoArgsConstructor
 public class CoordinatesEntity {
     private long idCoordinates;
     private Double xAxis;
@@ -12,8 +15,26 @@ public class CoordinatesEntity {
     private UserEntity user;
     private Collection<PoliticalPartyEntity> politicalParties;
 
+    public CoordinatesEntity(long idCoordinates, Double xAxis, Double yAxis, UserEntity user,
+                              Collection<PoliticalPartyEntity> politicalParties) {
+        this.idCoordinates = idCoordinates;
+        this.xAxis = xAxis;
+        this.yAxis = yAxis;
+        this.user = user;
+        this.politicalParties = politicalParties;
+    }
+
+    public CoordinatesEntity(Double xAxis, Double yAxis, UserEntity user,
+                             Collection<PoliticalPartyEntity> politicalParties) {
+        this.xAxis = xAxis;
+        this.yAxis = yAxis;
+        this.user = user;
+        this.politicalParties = politicalParties;
+    }
+
     @Id
     @Column(name = "idCoordinates")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdCoordinates() {
         return idCoordinates;
     }

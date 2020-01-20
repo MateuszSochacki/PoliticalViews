@@ -13,6 +13,7 @@ public class AnswerEntity {
 
     @Id
     @Column(name = "idAnswer")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdAnswer() {
         return idAnswer;
     }

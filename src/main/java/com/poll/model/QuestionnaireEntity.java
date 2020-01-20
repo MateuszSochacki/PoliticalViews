@@ -14,6 +14,7 @@ public class QuestionnaireEntity {
 
     @Id
     @Column(name = "idQuestionnaire")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdQuestionnaire() {
         return idQuestionnaire;
     }

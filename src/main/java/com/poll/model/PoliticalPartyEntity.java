@@ -12,6 +12,7 @@ public class PoliticalPartyEntity {
 
     @Id
     @Column(name = "idPoliticalParty")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdPoliticalParty() {
         return idPoliticalParty;
     }

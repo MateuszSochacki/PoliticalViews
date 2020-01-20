@@ -86,6 +86,7 @@ public class StateViewEntity {
 
     @Id
     @Column(name = "idStateView")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdStateView() {
         return idStateView;
     }
