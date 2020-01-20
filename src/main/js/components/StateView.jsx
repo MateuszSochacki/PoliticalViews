@@ -217,7 +217,7 @@ class StateView extends Component {
             ...this.state.checkboxesClimate,
             ...this.state.checkboxesReq,
         };
-        fetch('http://localhost:8080/api/stateviews',
+        fetch('http://localhost:8080/addStateView',
             {
                 headers: {
                     'Content-Type': 'application/json',

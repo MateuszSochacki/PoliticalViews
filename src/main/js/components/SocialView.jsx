@@ -107,7 +107,7 @@ class SocialView extends Component {
                 stimAlcohol: false,
                 stimCannabis: false,
                 stimHard: false,
-                sitmNicotine: false
+                stimNicotine: false
             },
             coordinates: {
                 xAxis: 0,
@@ -164,7 +164,7 @@ class SocialView extends Component {
             ...values,
             ...checkboxes
         };
-        fetch('http://localhost:8080/api/socialviews',
+        fetch('http://localhost:8080/addSocialView',
             {
                 headers: {
                     'Content-Type': 'application/json',

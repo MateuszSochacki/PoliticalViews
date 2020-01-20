@@ -59,10 +59,6 @@ public class EconomyCreateRequestDto {
 
     @NotNull
     @NotEmpty
-    private final String controls;
-
-    @NotNull
-    @NotEmpty
     private final Boolean protectTariffs;
 
     @NotNull
@@ -105,7 +101,6 @@ public class EconomyCreateRequestDto {
             final String retirenment,
             final String tradeUnions,
             final String vat,
-            final String controls,
             final Boolean protectTariffs,
             final Boolean protectLicenses,
             final Boolean antiDumping,
@@ -126,7 +121,6 @@ public class EconomyCreateRequestDto {
                 retirenment,
                 tradeUnions,
                 vat,
-                controls,
                 protectTariffs,
                 protectLicenses,
                 antiDumping,

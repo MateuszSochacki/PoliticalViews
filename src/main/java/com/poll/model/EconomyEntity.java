@@ -20,7 +20,6 @@ public class EconomyEntity {
     private String retirenment;
     private String tradeUnions;
     private String vat;
-    private String controls;
     private Boolean protectTariffs;
     private Boolean protectLicenses;
     private Boolean antiDumping;
@@ -33,7 +32,7 @@ public class EconomyEntity {
 
     public EconomyEntity(long idEconomy, String rich, String corpTax, String minWage, String incTax, String ground,
                          String education, String healthcare, String monopolies, String retirenment, String tradeUnions,
-                         String vat, String controls, Boolean protectTariffs, Boolean protectLicenses, Boolean antiDumping,
+                         String vat, Boolean protectTariffs, Boolean protectLicenses, Boolean antiDumping,
                          Boolean exchangeRate, Boolean welfarePoverty, Boolean welfareUnemployed, Boolean welfareMin,
                          Boolean welfarePension, UserEntity user) {
         this.idEconomy = idEconomy;
@@ -48,7 +47,6 @@ public class EconomyEntity {
         this.retirenment = retirenment;
         this.tradeUnions = tradeUnions;
         this.vat = vat;
-        this.controls = controls;
         this.protectTariffs = protectTariffs;
         this.protectLicenses = protectLicenses;
         this.antiDumping = antiDumping;
@@ -62,7 +60,7 @@ public class EconomyEntity {
 
     public EconomyEntity(String rich, String corpTax, String minWage, String incTax, String ground,
                          String education, String healthcare, String monopolies, String retirenment, String tradeUnions,
-                         String vat, String controls, Boolean protectTariffs, Boolean protectLicenses, Boolean antiDumping,
+                         String vat, Boolean protectTariffs, Boolean protectLicenses, Boolean antiDumping,
                          Boolean exchangeRate, Boolean welfarePoverty, Boolean welfareUnemployed, Boolean welfareMin,
                          Boolean welfarePension, UserEntity user) {
         this.rich = rich;
@@ -76,7 +74,6 @@ public class EconomyEntity {
         this.retirenment = retirenment;
         this.tradeUnions = tradeUnions;
         this.vat = vat;
-        this.controls = controls;
         this.protectTariffs = protectTariffs;
         this.protectLicenses = protectLicenses;
         this.antiDumping = antiDumping;
@@ -210,16 +207,6 @@ public class EconomyEntity {
     }
 
     @Basic
-    @Column(name = "controls")
-    public String getControls() {
-        return controls;
-    }
-
-    public void setControls(String controls) {
-        this.controls = controls;
-    }
-
-    @Basic
     @Column(name = "protectTariffs")
     public Boolean getProtectTariffs() {
         return protectTariffs;
@@ -319,7 +306,6 @@ public class EconomyEntity {
         if (retirenment != null ? !retirenment.equals(that.retirenment) : that.retirenment != null) return false;
         if (tradeUnions != null ? !tradeUnions.equals(that.tradeUnions) : that.tradeUnions != null) return false;
         if (vat != null ? !vat.equals(that.vat) : that.vat != null) return false;
-        if (controls != null ? !controls.equals(that.controls) : that.controls != null) return false;
         if (protectTariffs != null ? !protectTariffs.equals(that.protectTariffs) : that.protectTariffs != null)
             return false;
         if (protectLicenses != null ? !protectLicenses.equals(that.protectLicenses) : that.protectLicenses != null)
@@ -351,7 +337,6 @@ public class EconomyEntity {
         result = 31 * result + (retirenment != null ? retirenment.hashCode() : 0);
         result = 31 * result + (tradeUnions != null ? tradeUnions.hashCode() : 0);
         result = 31 * result + (vat != null ? vat.hashCode() : 0);
-        result = 31 * result + (controls != null ? controls.hashCode() : 0);
         result = 31 * result + (protectTariffs != null ? protectTariffs.hashCode() : 0);
         result = 31 * result + (protectLicenses != null ? protectLicenses.hashCode() : 0);
         result = 31 * result + (antiDumping != null ? antiDumping.hashCode() : 0);

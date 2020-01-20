@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StateViewController {
 
     private static final String ENTITY_ID = "id";
-    private static final String ADD_STATE_VIEW = "/addStateview";
+    private static final String ADD_STATE_VIEW = "/addStateView";
 
     @Autowired
     private StateViewService service;

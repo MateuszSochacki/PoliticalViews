@@ -207,7 +207,7 @@ class Economy extends Component {
             ...this.state.values,
             ...this.state.checkboxes
         };
-        fetch('http://localhost:8080/api/economy',
+        fetch('http://localhost:8080/addEconomy',
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -241,8 +241,6 @@ class Economy extends Component {
 
     handleChangeCheck(event) {
 
-        /*value = (value !== true);*/
-        //this.updateCoordinatesFromCheck(event.target.label);
         const checkboxes = this.state.checkboxes;
         checkboxes[event.target.value] = event.target.checked;
         this.setState({checkboxes});

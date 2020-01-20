@@ -6,8 +6,8 @@ class Coordinates extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            xAxis: this.props.xAxis,
-            yAxis: this.props.yAxis
+            economy: this.props.xAxis,
+            social: this.props.yAxis
         };
         this.updateX = this.updateX.bind(this);
         this.updateY = this.updateY.bind(this);
@@ -18,17 +18,17 @@ class Coordinates extends Component {
     }
 
     updateX(val) {
-        const value = this.state.xAxis + val;
-        this.setState({xAxis: value})
+        const value = this.state.economy + val;
+        this.setState({economy: value})
     }
 
     updateY(val) {
-        const value = this.state.yAxis + val;
-        this.setState({yAxis: value})
+        const value = this.state.social + val;
+        this.setState({social: value})
     }
 
     saveData() {
-        fetch('http://localhost:8080/api/coordinates',
+        fetch('http://localhost:8080/addCoordinates',
             {   headers: {
                     'Content-Type': 'application/json',
                 },
@@ -39,8 +39,8 @@ class Coordinates extends Component {
 
     render() {
         return (
-            <div><Chart xAxis={this.state.xAxis}
-                        yAxis={this.state.yAxis}/></div>
+            <div><Chart xAxis={this.state.economy}
+                        yAxis={this.state.social}/></div>
         );
     }
 }
