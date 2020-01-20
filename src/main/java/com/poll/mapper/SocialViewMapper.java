@@ -3,7 +3,7 @@ package com.poll.mapper;
 import com.poll.dto.socialView.SocialViewCreateRequestDto;
 import com.poll.model.SocialViewEntity;
 
-public class SocialViewMapper {
+public final class SocialViewMapper {
 
     public static SocialViewEntity fromDto(SocialViewCreateRequestDto dto) {
 

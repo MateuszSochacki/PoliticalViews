@@ -1,16 +1,35 @@
 package com.poll.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "questionnaire")
+@NoArgsConstructor
 public class QuestionnaireEntity {
     private long idQuestionnaire;
     private String name;
     private String description;
     private Collection<QuestionEntity> questions;
     private UserEntity user;
+
+    public QuestionnaireEntity(long idQuestionnaire, String name, String description,
+                               Collection<QuestionEntity> questions, UserEntity user) {
+        this.idQuestionnaire = idQuestionnaire;
+        this.name = name;
+        this.description = description;
+        this.questions = questions;
+        this.user = user;
+    }
+
+    public QuestionnaireEntity(String name, String description, Collection<QuestionEntity> questions, UserEntity user) {
+        this.name = name;
+        this.description = description;
+        this.questions = questions;
+        this.user = user;
+    }
 
     @Id
     @Column(name = "idQuestionnaire")

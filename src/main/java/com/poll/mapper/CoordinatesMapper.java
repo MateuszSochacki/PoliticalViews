@@ -6,7 +6,7 @@ import com.poll.model.CoordinatesEntity;
 import java.util.Collection;
 import java.util.Collections;
 
-public class CoordinatesMapper {
+public final class CoordinatesMapper {
 
     @SuppressWarnings("unchecked")
     public static CoordinatesEntity fromDto(CoordinatesCreateRequestDto dto) {

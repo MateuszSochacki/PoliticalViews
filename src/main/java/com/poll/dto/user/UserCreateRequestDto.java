@@ -1,26 +1,27 @@
-package com.poll.dto.coordinates;
+package com.poll.dto.user;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class CoordinatesCreateRequestDto {
+public class UserCreateRequestDto {
 
     @NotNull
     @NotEmpty
-    private final String economy;
+    private final String name;
 
     @NotNull
     @NotEmpty
-    private final String social;
+    private final String password;
 
-    public static CoordinatesCreateRequestDto of(final String economy, final String social) {
-        return new CoordinatesCreateRequestDto(economy, social);
+    public static UserCreateRequestDto of(final String name, final String password) {
+        return new UserCreateRequestDto(name, password);
     }
 }

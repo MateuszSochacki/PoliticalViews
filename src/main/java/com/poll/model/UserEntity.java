@@ -1,10 +1,13 @@
 package com.poll.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "user")
+@NoArgsConstructor
 public class UserEntity {
     private long idUser;
     private String name;
@@ -14,6 +17,31 @@ public class UserEntity {
     private Collection<QuestionnaireEntity> questionnaires;
     private Collection<SocialViewEntity> socialviews;
     private Collection<StateViewEntity> stateviews;
+
+    public UserEntity(long idUser, String name, String password, Collection<CoordinatesEntity> coordinates,
+                       Collection<EconomyEntity> economies, Collection<QuestionnaireEntity> questionnaires,
+                       Collection<SocialViewEntity> socialviews, Collection<StateViewEntity> stateviews) {
+        this.idUser = idUser;
+        this.name = name;
+        this.password = password;
+        this.coordinates = coordinates;
+        this.economies = economies;
+        this.questionnaires = questionnaires;
+        this.socialviews = socialviews;
+        this.stateviews = stateviews;
+    }
+
+    public UserEntity(String name, String password, Collection<CoordinatesEntity> coordinates,
+                      Collection<EconomyEntity> economies, Collection<QuestionnaireEntity> questionnaires,
+                      Collection<SocialViewEntity> socialviews, Collection<StateViewEntity> stateviews) {
+        this.name = name;
+        this.password = password;
+        this.coordinates = coordinates;
+        this.economies = economies;
+        this.questionnaires = questionnaires;
+        this.socialviews = socialviews;
+        this.stateviews = stateviews;
+    }
 
     @Id
     @Column(name = "idUser")

@@ -3,7 +3,7 @@ package com.poll.mapper;
 import com.poll.dto.economy.EconomyCreateRequestDto;
 import com.poll.model.EconomyEntity;
 
-public class EconomyMapper {
+public final class EconomyMapper {
 
     public static EconomyEntity fromDto(final EconomyCreateRequestDto dto) {
 
