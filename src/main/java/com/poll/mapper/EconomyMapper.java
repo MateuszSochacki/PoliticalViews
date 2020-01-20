@@ -10,7 +10,7 @@ public class EconomyMapper {
         return new EconomyEntity(
                 dto.getRich(), dto.getCorpTax(), dto.getMinWage(), dto.getIncTax(),
                 dto.getGround(), dto.getEducation(), dto.getHealthcare(), dto.getMonopolies(),
-                dto.getRetirenment(), dto.getTradeUnions(), dto.getVat(), dto.getControls(), dto.getProtectTariffs(),
+                dto.getRetirenment(), dto.getTradeUnions(), dto.getVat(), dto.getProtectTariffs(),
                 dto.getProtectLicenses(), dto.getAntiDumping(), dto.getExchangeRate(), dto.getWelfarePoverty(),
                 dto.getWelfareUnemployed(), dto.getWelfareMin(), dto.getWelfarePension(), null
         );
