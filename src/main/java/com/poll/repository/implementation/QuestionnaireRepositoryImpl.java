@@ -10,10 +10,17 @@ import org.springframework.stereotype.Repository;
 public class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
 
     @Autowired
-    private QuestionnaireOrmRepository ormRepository;
+    private QuestionnaireOrmRepository questionnaireOrmRepository;
 
     @Override
     public Long save(final QuestionnaireEntity entity) {
-        return ormRepository.saveAndFlush(entity).getIdQuestionnaire();
+
+        entity.getQuestions()
+                .forEach(question -> {
+                    question.setQuestionnaire(entity);
+                    question.getAnswers()
+                            .forEach(ans -> ans.setQuestion(question));
+                });
+        return questionnaireOrmRepository.saveAndFlush(entity).getIdQuestionnaire();
     }
 }

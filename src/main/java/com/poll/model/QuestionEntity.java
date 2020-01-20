@@ -1,16 +1,33 @@
 package com.poll.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "question")
+@NoArgsConstructor
 public class QuestionEntity {
     private long idQuestion;
     private String contents;
     private int number;
     private Collection<AnswerEntity> answers;
     private QuestionnaireEntity questionnaire;
+
+    public QuestionEntity(long idQuestion, String contents, int number, Collection<AnswerEntity> answers, QuestionnaireEntity questionnaire) {
+        this.idQuestion = idQuestion;
+        this.contents = contents;
+        this.number = number;
+        this.answers = answers;
+        this.questionnaire = questionnaire;
+    }
+
+    public QuestionEntity(String contents, int number, Collection<AnswerEntity> answers) {
+        this.contents = contents;
+        this.number = number;
+        this.answers = answers;
+    }
 
     @Id
     @Column(name = "idQuestion")
@@ -65,7 +82,7 @@ public class QuestionEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     public Collection<AnswerEntity> getAnswers() {
         return answers;
     }

@@ -114,7 +114,7 @@ public class UserEntity {
         this.economies = economyEntities;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Collection<QuestionnaireEntity> getQuestionnaires() {
         return questionnaires;
     }

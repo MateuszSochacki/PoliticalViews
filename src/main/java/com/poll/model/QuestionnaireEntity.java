@@ -84,7 +84,7 @@ public class QuestionnaireEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "questionnaire")
+    @OneToMany(mappedBy = "questionnaire", cascade = CascadeType.ALL)
     public Collection<QuestionEntity> getQuestions() {
         return questions;
     }
