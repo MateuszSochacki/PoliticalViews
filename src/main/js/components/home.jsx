@@ -25,6 +25,11 @@ class Home extends React.Component {
                             Rozpocznij test
                         </Button>
                     </Link>
+                    <Link to="/Login">
+                        <Button variant="contained" color="primary" className="button">
+                            Zaloguj się
+                        </Button>
+                    </Link>
                 </Typography>
             </div>
         );

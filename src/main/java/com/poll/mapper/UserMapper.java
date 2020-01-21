@@ -10,7 +10,7 @@ public final class UserMapper {
     @SuppressWarnings("unchecked")
     public static UserEntity fromDto(UserCreateRequestDto dto) {
         return new UserEntity(
-                dto.getName(),
+                dto.getUserName(),
                 dto.getPassword(),
                 Collections.EMPTY_SET,
                 Collections.EMPTY_SET,

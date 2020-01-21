@@ -15,13 +15,13 @@ public class UserCreateRequestDto {
 
     @NotNull
     @NotEmpty
-    private final String name;
+    private final String userName;
 
     @NotNull
     @NotEmpty
     private final String password;
 
-    public static UserCreateRequestDto of(final String name, final String password) {
-        return new UserCreateRequestDto(name, password);
+    public static UserCreateRequestDto of(final String userName, final String password) {
+        return new UserCreateRequestDto(userName, password);
     }
 }
