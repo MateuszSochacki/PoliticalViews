@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class EconomyCreateRequestDto {
+public final class EconomyCreateRequestDto {
 
     @NotNull
     @NotEmpty

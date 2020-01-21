@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class QuestionCreateRequestDto {
+public final class QuestionCreateRequestDto {
 
     @NotNull
     @NotEmpty

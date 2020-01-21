@@ -13,7 +13,10 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public final class QuestionnaireCreateRequestDto {
+public final class QuestionnaireResponseRequestDto {
+
+    @NotNull
+    private final Long questionnaireId;
 
     @NotNull
     @NotEmpty
@@ -25,17 +28,13 @@ public final class QuestionnaireCreateRequestDto {
 
     @NotNull
     @Valid
-    private final List<QuestionCreateRequestDto> questions;
+    private final List<QuestionResponseRequestDto> questions;
 
-    @NotNull
-    @NotEmpty
-    private final Long userId;
-
-    public static QuestionnaireCreateRequestDto of(
+    public static QuestionnaireResponseRequestDto of(
+            final Long questionnaireId,
             final String name,
             final String description,
-            final List<QuestionCreateRequestDto> questions,
-            final Long userId) {
-        return new QuestionnaireCreateRequestDto(name, description, questions, userId);
+            final List<QuestionResponseRequestDto> questions) {
+        return new QuestionnaireResponseRequestDto(questionnaireId, name, description, questions);
     }
 }

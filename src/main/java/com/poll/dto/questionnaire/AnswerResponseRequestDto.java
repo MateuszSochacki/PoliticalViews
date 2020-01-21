@@ -12,7 +12,10 @@ import java.math.BigDecimal;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public final class AnswerCreateRequestDto {
+public final class AnswerResponseRequestDto {
+
+    @NotNull
+    private final Long answerId;
 
     @NotNull
     @NotEmpty
@@ -24,10 +27,11 @@ public final class AnswerCreateRequestDto {
     @NotNull
     private final BigDecimal social;
 
-    public static AnswerCreateRequestDto of(
+    public static AnswerResponseRequestDto of(
+            final Long answerId,
             final String contents,
             final BigDecimal economy,
             final BigDecimal social) {
-        return new AnswerCreateRequestDto(contents, economy, social);
+        return new AnswerResponseRequestDto(answerId, contents, economy, social);
     }
 }

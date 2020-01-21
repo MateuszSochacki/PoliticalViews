@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class SocialViewCreateRequestDto {
+public final class SocialViewCreateRequestDto {
 
     @NotNull
     @NotEmpty
