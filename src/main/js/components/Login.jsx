@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from "@material-ui/core/Grid/Grid";
-import Link from "@material-ui/core/Link/Link";
+import {Link, withRouter} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignIn() {
+function Login() {
     const classes = useStyles();
 
     return (
@@ -83,7 +83,7 @@ export default function SignIn() {
                     </Button>
                     <Grid container>
                         <Grid item>
-                            <Link href="/SignUp" variant="body2">
+                            <Link to="/SignUp" variant="body2">
                                 {"Nie masz konta? Zarejestruj się"}
                             </Link>
                         </Grid>
@@ -93,3 +93,4 @@ export default function SignIn() {
         </Container>
     );
 }
+export default withRouter(Login)

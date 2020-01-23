@@ -1,15 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {Redirect} from "react-router";
+import {Link, withRouter} from "react-router-dom";
+import Notifications, {notify} from "./Notifications";
+import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -32,17 +33,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default class SignUp extends Component {
+class SignUp extends React.Component {
 
     constructor(props) {
-
         super(props);
+
         this.state = {
-            user: {
-                userName: "",
-                password: ""
-            },
-            registered: false
+            userName: '',
+            password: ''
         };
         this.createUser = this.createUser.bind(this);
         this.handleUserName = this.handleUserName.bind(this);
@@ -50,53 +48,56 @@ export default class SignUp extends Component {
     }
 
     handleUserName(event) {
-        this.setState({userName: event.target.value})
-    }
+        this.setState({userName: event.target.value});
+    };
 
     handlePassword(event) {
-        this.setState({password: event.target.value})
-    }
+        this.setState({password: event.target.value});
+    };
 
-    createUser() {
-        fetch('http://localhost:8080/addUser',
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST',
-                body: JSON.stringify(this.state)
-            }).catch(err => console.error(err))
-            .then(response => response.json())
-            .then(data => {
-                if(data.status == 200){
-                    this.props.history.push("/");
+    createUser(event) {
+
+        const {history} = this.props;
+        event.preventDefault();
+        const userName = this.state.userName;
+        const password = this.state.password;
+        const data = {userName, password};
+
+        const request = new Request('http://localhost:8080/addUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            redirect: 'manual',
+            body: JSON.stringify(data)
+        });
+        fetch(request)
+            .then(response => {
+                if (response.ok) {
+                    history.push('/Login');
                     console.log('Successfully Login');
+                    return response.json();
+                } else {
+                    notify('Taki użytkownik już istnieje!')
+                    return response.json();
                 }
-            });
-
-        //this.setState({registered: true});
-    }
+            }).then(data => {
+        }).catch(err => console.error(err));
+    };
 
     render() {
-
-        const {registered} = this.state.registered;
-
-        if (registered) {
-            return <Redirect to='/Login'/>
-        }
-
-        const classes = useStyles;
+        const {classes} = this.props;
         return (
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
+                    <Avatar>
                         <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Zarejestruj się
                     </Typography>
-                    <form className={classes.form} >
+                    <form className={classes.form}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -139,15 +140,18 @@ export default class SignUp extends Component {
                         </Button>
                         <Grid container justify="flex-end">
                             <Grid item>
-                                <Link href="/Login" variant="body2">
+                                <Link to="/Login" variant="body2">
                                     Masz już konto? Zaloguj się
                                 </Link>
                             </Grid>
                         </Grid>
                     </form>
                 </div>
+                <div>
+                    <Notifications/>
+                </div>
             </Container>
-
         );
     }
 }
+export default withStyles(useStyles)(SignUp);

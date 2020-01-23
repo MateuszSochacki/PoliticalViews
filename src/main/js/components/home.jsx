@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import 'typeface-roboto';
 
 class Home extends React.Component {
@@ -35,5 +35,4 @@ class Home extends React.Component {
         );
     }
 }
-
-export default Home;
+export default withRouter(Home);

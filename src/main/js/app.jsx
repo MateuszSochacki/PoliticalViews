@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Routes from './Routes.jsx'
+import {withRouter} from "react-router-dom";
+
 import 'typeface-roboto'
 
 class App extends Component {
@@ -24,5 +26,5 @@ class App extends Component {
     }
 }
 ReactDOM.render(<App/>, document.getElementById('app'));
-export default App;
+export default withRouter(App);
 

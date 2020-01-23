@@ -5,12 +5,6 @@ import {Radio, RadioGroup} from '@material-ui/core/';
 import Typography from "@material-ui/core/Typography/";
 import Button from "@material-ui/core/Button/Button";
 
-/*const styles = {
-    checked: {
-        color: green[500],
-    },
-};*/
-
 function FormContainer(props) {
     return (
         <Typography align="center" component="div" style={{ paddingBottom: 40 }}>
