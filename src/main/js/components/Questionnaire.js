@@ -6,21 +6,35 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Notifications, {notify} from "./Notifications";
 import BrowseQuestions from "./BrowseQuestions";
+import Grid from "@material-ui/core/Grid/";
 
 const styles = theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap',
     },
+    mainField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 500
+    },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
     },
+    answerVal: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 100
+    },
     dense: {
         marginTop: 16,
     },
-    menu: {
-        width: 200,
+    description: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        height: 200,
+        width: 500
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -137,174 +151,246 @@ class Questionnaire extends React.Component {
         return (
             <div>
                 <form className={classes.container} autoComplete="off" id="myForm">
-                    <form className={classes.container} autoComplete="off" id="myForm1">
-                        <TextField
-                            id="QuestionnaireText"
-                            name="name"
-                            label="Tytuł:"
-                            className={classes.textField}
-                            required
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <TextField
-                            id="Description"
-                            name="description"
-                            label="Opis testu:"
-                            className={classes.textField}
-                            required
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </form>
-                    <br/>
-                    <form className={classes.container} autoComplete="off" id="myForm2">
-                        <TextField
-                            id="QuestionName"
-                            name="question"
-                            label="Pytanie:"
-                            className={classes.textField}
-                            required
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </form>
-                    <br/>
-                    <form className={classes.container} autoComplete="off" id="myForm3">
-                        <TextField
-                            id="Answer1"
-                            name="answer1"
-                            label="Odpowiedź:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            id="EconomyValue1"
-                            name="economy1"
-                            label="Wartość na osi gospodarczej:"
-                            className={classes.textField}
-                            required
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <TextField
-                            id="SocialValue1"
-                            name="social1"
-                            label="Wartość na osi światopoglądowej:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                    </form>
-                    <br/>
-                    <form className={classes.container} autoComplete="off" id="myForm4">
-                        <TextField
-                            id="Answer2"
-                            name="answer2"
-                            label="Odpowiedź:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            id="EconomyValue2"
-                            name="economy2"
-                            label="Wartość na osi gospodarczej:"
-                            className={classes.textField}
-                            required
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <TextField
-                            id="SocialValue2"
-                            name="social2"
-                            label="Wartość na osi światopoglądowej:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                    </form>
-                    <br/>
-                    <form className={classes.container} autoComplete="off" id="myForm5">
-                        <TextField
-                            id="Answer3"
-                            name="answer3"
-                            label="Odpowiedź:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            id="EconomyValue3"
-                            name="economy3"
-                            label="Wartość na osi gospodarczej:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            id="SocialValue3"
-                            name="social3"
-                            label="Wartość na osi światopoglądowej:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                    </form>
-                    <br/>
-                    <form className={classes.container} autoComplete="off" id="myForm6">
-                        <TextField
-                            id="Answer4"
-                            name="answer4"
-                            label="Odpowiedź:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            id="EconomyValue4"
-                            name="economy4"
-                            label="Wartość na osi gospodarczej:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            id="SocialValue4"
-                            name="social4"
-                            label="Wartość na osi światopoglądowej:"
-                            className={classes.textField}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            required
-                        />
-                    </form>
-                    <br/>
+                    <Grid container>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="QuestionnaireText"
+                                name="name"
+                                label="Tytuł:"
+                                className={classes.mainField}
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                required
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                id="Description"
+                                name="description"
+                                label="Opis testu:"
+                                InputProps={{
+                                    className: classes.description
+                                }}
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                required
+                                onChange={this.handleChange}
+                                multiline
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="QuestionName"
+                                name="question"
+                                label="Pytanie:"
+                                className={classes.mainField}
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                required
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container>
+                        <Grid item>
+                            <TextField
+                                id="Answer1"
+                                name="answer1"
+                                label="Odpowiedź 1:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="EconomyValue1"
+                                name="economy1"
+                                label="Wartość na osi gospodarczej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                required
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="SocialValue1"
+                                name="social1"
+                                label="Wartość na osi światopoglądowej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container>
+                        <Grid item>
+                            <TextField
+                                id="Answer2"
+                                name="answer2"
+                                label="Odpowiedź 2:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="EconomyValue2"
+                                name="economy2"
+                                label="Wartość na osi gospodarczej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                required
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="SocialValue2"
+                                name="social2"
+                                label="Wartość na osi światopoglądowej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container>
+                        <Grid item>
+                            <TextField
+                                id="Answer3"
+                                name="answer3"
+                                label="Odpowiedź 3:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="EconomyValue3"
+                                name="economy3"
+                                label="Wartość na osi gospodarczej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="SocialValue3"
+                                name="social3"
+                                label="Wartość na osi światopoglądowej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container>
+                        <Grid item>
+                            <TextField
+                                id="Answer4"
+                                name="answer4"
+                                label="Odpowiedź 4:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="EconomyValue4"
+                                name="economy4"
+                                label="Wartość na osi gospodarczej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                id="SocialValue4"
+                                name="social4"
+                                label="Wartość na osi światopoglądowej:"
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                className={classes.textField}
+                                onChange={this.handleChange}
+                                margin="normal"
+                                variant="outlined"
+                                required
+                            />
+                        </Grid>
+                    </Grid>
                     <BrowseQuestions questions={this.state.toDto.questions}/>
                     <Button variant="contained" fullWidth color="secondary"
                             onClick={this.addToQuestionnaire}
