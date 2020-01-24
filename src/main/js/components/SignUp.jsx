@@ -78,7 +78,7 @@ class SignUp extends React.Component {
                     console.log('Successfully Login');
                     return response.json();
                 } else {
-                    notify('Taki użytkownik już istnieje!')
+                    notify('Taki użytkownik już istnieje!', false)
                     return response.json();
                 }
             }).then(data => {

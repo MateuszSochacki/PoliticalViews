@@ -14,7 +14,7 @@ const Error = styled.div`
 `;
 
 const Success = styled.div`
-    background-color: #14F22A;
+    background-color: #32cd32;
     color: white;
     padding: 16px;
     position: absolute;
@@ -26,8 +26,8 @@ const Success = styled.div`
 
 const emit = new emitter();
 
-export function notify(msg) {
-    emit.emit('notification', msg);
+export function notify(msg, isSuccess) {
+    emit.emit('notification', msg, isSuccess);
 }
 
 
@@ -38,34 +38,36 @@ export default class Notifications extends React.Component {
 
         this.state = {
             top: -100,
-            msg: ''
+            msg: '',
+            isSuccess: false
         };
 
         this.timeout = null;
 
-        emit.on('notification', (msg) => {
-            this.onShow(msg)
+        emit.on('notification', (msg, isSuccess) => {
+            this.onShow(msg, isSuccess)
         });
 
         this.showNotification = this.showNotification.bind(this);
         this.onShow = this.onShow.bind(this);
     }
 
-    onShow(msg) {
+    onShow(msg, isSuccess) {
         if(this.timeout) {
             clearTimeout(this.timeout);
             this.setState({top: -100}, () => {
                 this.timeout = setTimeout(() => {
-                    this.showNotification(msg);
+                    this.showNotification(msg, isSuccess);
                 }, 500)
             })
-        } else this.showNotification(msg);
+        } else this.showNotification(msg, isSuccess);
     }
 
-    showNotification(msg) {
+    showNotification(msg, isSuccess) {
         this.setState({
                 top: 16,
-                msg
+                msg,
+                isSuccess
             }, () => {
                this.timeout = setTimeout(() => {
                     this.setState({top: -100});
@@ -77,7 +79,8 @@ export default class Notifications extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Error top={this.state.top}>Taki użytkownik już istnieje! </Error>
+                {this.state.isSuccess ? <Success top={this.state.top}>{this.state.msg}</Success>
+                : <Error top={this.state.top}>{this.state.msg}</Error>}
             </React.Fragment>
         );
     }

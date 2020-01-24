@@ -4,6 +4,7 @@ import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
+import Notifications, {notify} from "./Notifications";
 
 const styles = theme => ({
     container: {
@@ -55,24 +56,31 @@ class Questionnaire extends React.Component {
                 name: '',
                 description: '',
                 userId: '',
-                questions: [{}],
+                questions: [],
             }
         }
     }
 
     saveQuestionnaire() {
+
+        const dto = this.state.toDto;
+        dto.name = this.state.values.name;
+        dto.description = this.state.values.description;
+        dto.userId = 1;
+
         const request = new Request('http://localhost:8080/addQuestionnaire', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             redirect: 'manual',
-            body: JSON.stringify(data)
+            body: JSON.stringify(dto)
         });
         fetch(request)
             .then(response => {
                 if (response.ok) {
                     console.log('questionnaire succesfully created');
+                    notify('Test został utworzony', true)
                 }
                 return response.json();
             }).then(data => {
@@ -85,7 +93,7 @@ class Questionnaire extends React.Component {
         this.setState({values});
     };
 
-    addToQuestionnaire(event) {
+    addToQuestionnaire() {
 
         const answers = [{
             contents: this.state.values.answer1,
@@ -105,168 +113,184 @@ class Questionnaire extends React.Component {
             social: this.state.values.social4
         }];
 
-        this.setState(prevState => ({
+        const prevToDto = this.state.toDto;
+
+        prevToDto.questions.push({name: this.state.values.question, number: this.state.questionNumber, answers });
+        notify('Dodano do testu', true);
+        this.setState({toDto: prevToDto, questionNumber: this.state.questionNumber + 1});
+
+
+        /*this.setState(prevToDto => ({
             questions: [...prevState.toDto.questions,
                 {name: this.state.question, number: this.state.questionNumber, answers }],
             questionNumber: this.state.questionNumber + 1
-        }))
+        }))*/
     }
 
     render() {
         const {classes} = this.props;
 
         return (
-            <form className={classes.container} noValidate autoComplete="off" id="myForm">
-                <TextField
-                    id="QuestionnaireText"
-                    name="name"
-                    label="Tytuł:"
-                    className={classes.textField}
-                    required
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="Description"
-                    name="description"
-                    label="Opis testu:"
-                    className={classes.textField}
-                    required
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="QuestionName"
-                    name="question"
-                    label="Pytanie:"
-                    className={classes.textField}
-                    required
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="Answer1"
-                    name="answer1"
-                    label="Odpowiedź:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="EconomyValue1"
-                    name="economy1"
-                    label="Wartość na osi gospodarczej:"
-                    className={classes.textField}
-                    required
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                    type="date"
-                />
-                <TextField
-                    id="SocialValue1"
-                    name="social1"
-                    label="Wartość na osi światopoglądowej:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="Answer2"
-                    name="answer2"
-                    label="Odpowiedź:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="EconomyValue2"
-                    name="economy2"
-                    label="Wartość na osi gospodarczej:"
-                    className={classes.textField}
-                    required
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="SocialValue2"
-                    name="social2"
-                    label="Wartość na osi światopoglądowej:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="Answer3"
-                    name="answer3"
-                    label="Odpowiedź:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="EconomyValue3"
-                    name="economy3"
-                    label="Wartość na osi gospodarczej:"
-                    className={classes.textField}
-                    required
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="SocialValue3"
-                    name="social3"
-                    label="Wartość na osi światopoglądowej:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="Answer4"
-                    name="answer4"
-                    label="Odpowiedź:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="EconomyValue4"
-                    name="economy4"
-                    label="Wartość na osi gospodarczej:"
-                    className={classes.textField}
-                    required
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <TextField
-                    id="SocialValue4"
-                    name="social4"
-                    label="Wartość na osi światopoglądowej:"
-                    className={classes.textField}
-                    onChange={this.handleChange}
-                    margin="normal"
-                    variant="outlined"
-                />
-                <Button variant="contained" fullWidth color="secondary" onClick={this.addToQuestionnaire}
-                        className={classes.button}>
-                    Submit
-                    {<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
-                    <Icon className={classes.rightIcon}>send</Icon>
-                </Button>
-            </form>
+            <div>
+                <form className={classes.container} autoComplete="off" id="myForm">
+                    <TextField
+                        id="QuestionnaireText"
+                        name="name"
+                        label="Tytuł:"
+                        className={classes.textField}
+                        required
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="Description"
+                        name="description"
+                        label="Opis testu:"
+                        className={classes.textField}
+                        required
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="QuestionName"
+                        name="question"
+                        label="Pytanie:"
+                        className={classes.textField}
+                        required
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="Answer1"
+                        name="answer1"
+                        label="Odpowiedź:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="EconomyValue1"
+                        name="economy1"
+                        label="Wartość na osi gospodarczej:"
+                        className={classes.textField}
+                        required
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="SocialValue1"
+                        name="social1"
+                        label="Wartość na osi światopoglądowej:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="Answer2"
+                        name="answer2"
+                        label="Odpowiedź:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="EconomyValue2"
+                        name="economy2"
+                        label="Wartość na osi gospodarczej:"
+                        className={classes.textField}
+                        required
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="SocialValue2"
+                        name="social2"
+                        label="Wartość na osi światopoglądowej:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="Answer3"
+                        name="answer3"
+                        label="Odpowiedź:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="EconomyValue3"
+                        name="economy3"
+                        label="Wartość na osi gospodarczej:"
+                        className={classes.textField}
+                        required
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="SocialValue3"
+                        name="social3"
+                        label="Wartość na osi światopoglądowej:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="Answer4"
+                        name="answer4"
+                        label="Odpowiedź:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="EconomyValue4"
+                        name="economy4"
+                        label="Wartość na osi gospodarczej:"
+                        className={classes.textField}
+                        required
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        id="SocialValue4"
+                        name="social4"
+                        label="Wartość na osi światopoglądowej:"
+                        className={classes.textField}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <Button variant="contained" fullWidth color="secondary" onClick={this.addToQuestionnaire}
+                            className={classes.button}>
+                        Dodaj do testu
+                        {<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
+                        <Icon className={classes.rightIcon}>send</Icon>
+                    </Button>
+
+                    <Button variant="contained" fullWidth color="primary" onClick={this.saveQuestionnaire}
+                            className={classes.button}>
+                        Zapisz test
+                        {<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
+                        <Icon className={classes.rightIcon}>send</Icon>
+                    </Button>
+                </form>
+                <Notifications/>
+            </div>
         );
     }
 }
