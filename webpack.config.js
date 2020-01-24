@@ -1,11 +1,11 @@
-const WebpackNotifierPlugin = require('webpack-notifier');
-const path = require('path');
+WebpackNotifierPlugin = require('webpack-notifier');
+path = require('path');
 module.exports = {
 
     mode: 'none',
 
     entry: {
-        app: ['./src/main/js/app.jsx']
+        app: ['./src/main/js/app.js']
 
     },
     devtool: 'sourcemaps',
@@ -24,7 +24,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx$/,
+                test: /\.m?js$/,
                 loader: ["babel-loader"],
                 exclude: /(node_modules)/
             },
@@ -33,17 +33,17 @@ module.exports = {
                 use: ['style-loader','css-loader']
             },
             {
-                test: /\.(woff|woff2|eot|ttf|svg)$/,
+                test: /\.(woff|woff2|eot|ttf|svg|png|jpe?g|gif)$/,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]',
+                            name: '[path][name].[ext]',
                             outputPath: 'fonts/'
                         }
                     }
                 ]
-            }
+            },
         ],
 
     },
