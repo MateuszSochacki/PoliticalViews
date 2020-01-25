@@ -47,6 +47,7 @@ class Questionnaire extends React.Component {
 
         this.addToQuestionnaire = this.addToQuestionnaire.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleNumber = this.handleNumber.bind(this);
         this.saveQuestionnaire = this.saveQuestionnaire.bind(this);
 
         this.state = {
@@ -109,6 +110,17 @@ class Questionnaire extends React.Component {
         const values = this.state.values;
         values[event.target.name] = event.target.value;
         this.setState({values});
+
+    };
+
+    handleNumber(event) {
+        const re = /^[0-9\b]+$/;
+        const values = this.state.values;
+
+        if (event.target.value === '' || re.test(event.target.value)) {
+            values[event.target.name] = event.target.value;
+            this.setState({values});
+        }
     };
 
     addToQuestionnaire() {
@@ -132,10 +144,28 @@ class Questionnaire extends React.Component {
         }];
 
         const prevToDto = this.state.toDto;
+        const refreshed = this.state.values;
 
         prevToDto.questions.push({name: this.state.values.question, number: this.state.questionNumber, answers});
+
+        refreshed.question = '';
+        refreshed.answer1 = '';
+        refreshed.answer2 = '';
+        refreshed.answer3 = '';
+        refreshed.answer4 = '';
+        refreshed.economy1 = 0;
+        refreshed.economy2 = 0;
+        refreshed.economy3 = 0;
+        refreshed.economy4 = 0;
+        refreshed.social1 = 0;
+        refreshed.social2 = 0;
+        refreshed.social3 = 0;
+        refreshed.social4 = 0;
+
         notify('Dodano do testu', true);
-        this.setState({toDto: prevToDto, questionNumber: this.state.questionNumber + 1});
+        this.setState({toDto: prevToDto,
+            questionNumber: this.state.questionNumber + 1,
+            values: refreshed});
 
 
         /*this.setState(prevToDto => ({
@@ -161,7 +191,8 @@ class Questionnaire extends React.Component {
                                 InputLabelProps={{
                                     shrink: true
                                 }}
-                                required
+                                required={true}
+                                value={this.state.values.name}
                                 onChange={this.handleChange}
                                 margin="normal"
                                 variant="outlined"
@@ -179,6 +210,7 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 required
+                                value={this.state.values.description}
                                 onChange={this.handleChange}
                                 multiline
                                 margin="normal"
@@ -197,6 +229,7 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 required
+                                value={this.state.values.question}
                                 onChange={this.handleChange}
                                 margin="normal"
                                 variant="outlined"
@@ -213,6 +246,7 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
+                                value={this.state.values.answer1}
                                 onChange={this.handleChange}
                                 margin="normal"
                                 variant="outlined"
@@ -229,7 +263,8 @@ class Questionnaire extends React.Component {
                                 }}
                                 className={classes.textField}
                                 required
-                                onChange={this.handleChange}
+                                value={this.state.values.economy1}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                             />
@@ -243,7 +278,8 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
-                                onChange={this.handleChange}
+                                value={this.state.values.social1}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                                 required
@@ -260,6 +296,7 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
+                                value={this.state.values.answer2}
                                 onChange={this.handleChange}
                                 margin="normal"
                                 variant="outlined"
@@ -276,7 +313,8 @@ class Questionnaire extends React.Component {
                                 }}
                                 className={classes.textField}
                                 required
-                                onChange={this.handleChange}
+                                value={this.state.values.economy2}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                             />
@@ -290,7 +328,8 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
-                                onChange={this.handleChange}
+                                value={this.state.values.social2}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                                 required
@@ -307,6 +346,7 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
+                                value={this.state.values.answer3}
                                 onChange={this.handleChange}
                                 margin="normal"
                                 variant="outlined"
@@ -322,7 +362,8 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
-                                onChange={this.handleChange}
+                                value={this.state.values.economy3}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                                 required
@@ -337,7 +378,8 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
-                                onChange={this.handleChange}
+                                value={this.state.values.social3}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                                 required
@@ -354,6 +396,7 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
+                                value={this.state.values.answer4}
                                 onChange={this.handleChange}
                                 margin="normal"
                                 variant="outlined"
@@ -369,7 +412,8 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
-                                onChange={this.handleChange}
+                                value={this.state.values.economy4}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                                 required
@@ -384,14 +428,14 @@ class Questionnaire extends React.Component {
                                     shrink: true
                                 }}
                                 className={classes.textField}
-                                onChange={this.handleChange}
+                                value={this.state.values.social4}
+                                onChange={this.handleNumber}
                                 margin="normal"
                                 variant="outlined"
                                 required
                             />
                         </Grid>
                     </Grid>
-                    <BrowseQuestions questions={this.state.toDto.questions}/>
                     <Button variant="contained" fullWidth color="secondary"
                             onClick={this.addToQuestionnaire}
                             className={classes.button}>
@@ -400,6 +444,7 @@ class Questionnaire extends React.Component {
                                href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
                         <Icon className={classes.rightIcon}>send</Icon>
                     </Button>
+                    <BrowseQuestions questions={this.state.toDto.questions}/>
                     <Button variant="contained" fullWidth color="primary"
                             onClick={this.saveQuestionnaire}
                             className={classes.button}>
@@ -415,9 +460,9 @@ class Questionnaire extends React.Component {
     }
 }
 
-    Questionnaire.propTypes = {
-        classes: PropTypes.object.isRequired,
-    };
-    export default withStyles(styles)(Questionnaire);
+Questionnaire.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(Questionnaire);
 
 
