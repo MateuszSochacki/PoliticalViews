@@ -114,7 +114,8 @@ class Questionnaire extends React.Component {
     };
 
     handleNumber(event) {
-        const re = /^[0-9\b]+$/;
+        //const re = /-?^[0-9\b]+$/;
+        const re = /-?|{^-?\d+$}/;
         const values = this.state.values;
 
         if (event.target.value === '' || re.test(event.target.value)) {
