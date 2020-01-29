@@ -38,7 +38,6 @@ class GeneratedTest extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.assignValue = this.assignValue.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderChart = this.renderChart.bind(this);
     }
 
     async componentDidMount() {

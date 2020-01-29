@@ -18,7 +18,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public UserEntity findUser(Long id) {
+    public UserEntity findUser(final Long id) {
         return ormRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public UserEntity login(final String userName, final String password) {
+        return ormRepository.findByNameAndPassword(userName, password).orElse( null);
     }
 }

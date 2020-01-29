@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 public final class IdDto {
 
     @NotNull
-    @NotEmpty
     private Long id;
 
     public static IdDto of(final Long id) {
