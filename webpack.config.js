@@ -5,7 +5,7 @@ module.exports = {
     mode: 'none',
 
     entry: {
-        app: ['./src/main/js/app.js']
+        app: ['./src/main/js/App.js']
 
     },
     devtool: 'sourcemaps',

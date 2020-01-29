@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Route, Switch, withRouter} from 'react-router-dom'
 
-import Home from './components/home'
+import Home from './components/Home'
 import Test from './components/Test'
 import Login from "./components/user/Login";
 import SignUp from "./components/user/SignUp";

@@ -2,7 +2,8 @@ package com.poll.service;
 
 import com.poll.dto.IdDto;
 import com.poll.dto.questionnaire.QuestionnaireCreateRequestDto;
-import com.poll.dto.questionnaire.QuestionnaireResponseRequestDto;
+import com.poll.dto.questionnaire.QuestionnaireAggregateResponseDto;
+import com.poll.dto.questionnaire.QuestionnairesResponseDto;
 import com.poll.mapper.QuestionnaireMapper;
 import com.poll.repository.QuestionnaireRepository;
 import com.poll.repository.UserRepository;
@@ -28,7 +29,12 @@ public class QuestionnaireService {
                                 userRepository.findUser(questionnaireDto.getUserId()))));
     }
 
-    public QuestionnaireResponseRequestDto read(final IdDto idDto) {
+    public QuestionnaireAggregateResponseDto read(final IdDto idDto) {
         return QuestionnaireMapper.toDto(questionnaireRepository.read(idDto.getId()));
+    }
+
+    public QuestionnairesResponseDto readMany(final IdDto idDto) {
+        return QuestionnaireMapper.toDto(
+                questionnaireRepository.readMany(idDto.getId()));
     }
 }

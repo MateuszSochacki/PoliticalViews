@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Repository
 public class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
@@ -44,5 +45,10 @@ public class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
         query.select(questionnaire).where(cb.equal(questionnaire.get("idQuestionnaire"), id));
         TypedQuery<QuestionnaireEntity> typedQuery = entityManager.createQuery(query);
         return typedQuery.getSingleResult();
+    }
+
+    @Override
+    public List<QuestionnaireEntity> readMany(Long userId) {
+        return questionnaireOrmRepository.findByUser_IdUser(userId);
     }
 }
