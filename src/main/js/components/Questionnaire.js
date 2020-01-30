@@ -7,6 +7,7 @@ import Icon from '@material-ui/core/Icon';
 import Notifications, {notify} from "./Notifications";
 import BrowseQuestions from "./BrowseQuestions";
 import Grid from "@material-ui/core/Grid/";
+import {Link} from "react-router-dom";
 
 const styles = theme => ({
     container: {
@@ -83,27 +84,31 @@ class Questionnaire extends React.Component {
     saveQuestionnaire() {
 
         const dto = this.state.toDto;
-        dto.name = this.state.values.name;
-        dto.description = this.state.values.description;
-        dto.userId = sessionStorage.getItem('id');
 
-        const request = new Request('http://localhost:8080/addQuestionnaire', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            redirect: 'manual',
-            body: JSON.stringify(dto)
-        });
-        fetch(request)
-            .then(response => {
-                if (response.ok) {
-                    console.log('questionnaire succesfully created');
-                    notify('Test został utworzony', true)
-                }
-                return response.json();
-            }).then(data => {
-        }).catch(err => console.error(err));
+        if(dto.questions.length > 0) {
+
+            dto.name = this.state.values.name;
+            dto.description = this.state.values.description;
+            dto.userId = sessionStorage.getItem('id');
+
+            const request = new Request('http://localhost:8080/addQuestionnaire', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                redirect: 'manual',
+                body: JSON.stringify(dto)
+            });
+            fetch(request)
+                .then(response => {
+                    if (response.ok) {
+                        console.log('questionnaire succesfully created');
+                        notify('Test został utworzony', true)
+                    }
+                    return response.json();
+                }).then(data => {
+            }).catch(err => console.error(err));
+        } else notify('Test musi zawierać pytania!', false)
     };
 
     handleChange(event) {
@@ -126,6 +131,8 @@ class Questionnaire extends React.Component {
 
     addToQuestionnaire() {
 
+        let isIncomplete = false;
+
         const answers = [{
             contents: this.state.values.answer1,
             economy: this.state.values.economy1,
@@ -147,26 +154,37 @@ class Questionnaire extends React.Component {
         const prevToDto = this.state.toDto;
         const refreshed = this.state.values;
 
-        prevToDto.questions.push({name: this.state.values.question, number: this.state.questionNumber, answers});
+        Object.keys(refreshed).forEach(function (key) {
+            if(refreshed[key] === null || refreshed[key] === '')
+                isIncomplete = true;
+        });
 
-        refreshed.question = '';
-        refreshed.answer1 = '';
-        refreshed.answer2 = '';
-        refreshed.answer3 = '';
-        refreshed.answer4 = '';
-        refreshed.economy1 = 0;
-        refreshed.economy2 = 0;
-        refreshed.economy3 = 0;
-        refreshed.economy4 = 0;
-        refreshed.social1 = 0;
-        refreshed.social2 = 0;
-        refreshed.social3 = 0;
-        refreshed.social4 = 0;
+        if(!isIncomplete) {
 
-        notify('Dodano do testu', true);
-        this.setState({toDto: prevToDto,
-            questionNumber: this.state.questionNumber + 1,
-            values: refreshed});
+
+            prevToDto.questions.push({name: this.state.values.question, number: this.state.questionNumber, answers});
+
+            refreshed.question = '';
+            refreshed.answer1 = '';
+            refreshed.answer2 = '';
+            refreshed.answer3 = '';
+            refreshed.answer4 = '';
+            refreshed.economy1 = 0;
+            refreshed.economy2 = 0;
+            refreshed.economy3 = 0;
+            refreshed.economy4 = 0;
+            refreshed.social1 = 0;
+            refreshed.social2 = 0;
+            refreshed.social3 = 0;
+            refreshed.social4 = 0;
+
+            notify('Dodano do testu', true);
+            this.setState({
+                toDto: prevToDto,
+                questionNumber: this.state.questionNumber + 1,
+                values: refreshed
+            });
+        } else  notify('Wypełnij wszystkie pola!', false);
 
 
         /*this.setState(prevToDto => ({
@@ -181,6 +199,11 @@ class Questionnaire extends React.Component {
 
         return (
             <div>
+                <Link to="/">
+                    <Button variant="contained" color="primary" className="button">
+                        Wróć
+                    </Button>
+                </Link>
                 <Grid container>
                     <Grid item>
                         <form className={classes.container} autoComplete="off" id="myForm">

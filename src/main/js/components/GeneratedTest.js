@@ -100,7 +100,7 @@ class GeneratedTest extends React.Component {
 
         return (
             <div style={{
-                paddingTop: '50px'
+                paddingTop: '20px'
             }}>
                 <Link to="/">
                     <Button variant="contained" color="primary" className="button">
@@ -111,7 +111,9 @@ class GeneratedTest extends React.Component {
                                                yAxis={this.state.response.social}/>}
                 {!responseState &&
                      <Typography align="center">
-                        {questions.map(question => {
+                         <h2>{name}</h2><br/>
+                         <h3>{description}</h3>
+                         {questions.map(question => {
                             ++i;
                             return (
                                 <div>

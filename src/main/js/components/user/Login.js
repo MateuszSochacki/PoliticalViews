@@ -119,10 +119,6 @@ class Login extends Component {
                             autoComplete="current-password"
                             onChange={this.handleChange}
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary"/>}
-                            label="Zapamiętaj mnie"
-                        />
                         <Button
                             type="submit"
                             fullWidth
