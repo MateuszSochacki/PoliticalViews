@@ -8,6 +8,7 @@ import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Radio from "@material-ui/core/Radio/Radio";
 import CustomChart from "./CustomChart";
+import {Link} from "react-router-dom";
 
 function FormContainer(props) {
     return (
@@ -41,10 +42,10 @@ class GeneratedTest extends React.Component {
     }
 
     async componentDidMount() {
-        // będzie z propsów wyciachany
-        const id = 21;
+        const { toGenerate } = this.props.location.state;
+        const id = toGenerate.questionnaireId;
 
-        const request = new Request('http://localhost:8080/findQuestionnaire?id=21', {
+        const request = new Request('http://localhost:8080/findQuestionnaire?id='.concat(id), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,6 +102,11 @@ class GeneratedTest extends React.Component {
             <div style={{
                 paddingTop: '50px'
             }}>
+                <Link to="/">
+                    <Button variant="contained" color="primary" className="button">
+                        Wróć
+                    </Button>
+                </Link>
                 {responseState && <CustomChart xAxis={this.state.response.economy}
                                                yAxis={this.state.response.social}/>}
                 {!responseState &&
@@ -137,8 +143,8 @@ class GeneratedTest extends React.Component {
                                 </div>
                             );
                         })}
-                        <Button variant="contained" size="medium" onClick={this.handleSubmit}>
-                            Pokaż wyniki <Forward/>
+                        <Button variant="contained" size="medium" color="secondary" onClick={this.handleSubmit}>
+                            Pokaż wyniki
                         </Button>
                     </Typography>
                 }
