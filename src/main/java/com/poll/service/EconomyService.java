@@ -4,6 +4,7 @@ import com.poll.dto.IdDto;
 import com.poll.dto.economy.EconomyCreateRequestDto;
 import com.poll.mapper.EconomyMapper;
 import com.poll.repository.EconomyRepository;
+import com.poll.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class EconomyService {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private EconomyRepository economyRepository;
 
     public IdDto add(EconomyCreateRequestDto dto) {
 
         return IdDto.of(
                 economyRepository.save(
-                        EconomyMapper.fromDto(dto)));
+                        EconomyMapper.fromDto(dto, userRepository.findUser(dto.getUserId()))));
     }
 }

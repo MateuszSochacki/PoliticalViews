@@ -7,11 +7,15 @@ import TextField from "@material-ui/core/TextField/TextField";
 import Grid from "@material-ui/core/Grid/Grid";
 import Icon from "@material-ui/core/Icon/Icon";
 import {Link} from "react-router-dom";
+import Notifications, {notify} from "./Notifications";
 
 const styles = theme => ({
     root: {
         fontSize: 26,
         paddingTop: '100px'
+    },
+    notification: {
+        fontSize: 14,
     },
     table: {
         minWidth: 700,
@@ -33,40 +37,59 @@ function BrowseQuestionnaires(props) {
         setQuestionnaire(questionnaire);
     };
 
+    const handleClick = event => {
+        const text = "http://localhost:8080/LinkedTest?id=".concat(questionnaire.questionnaireId);
+        if (questionnaire.questionnaireId !== undefined && questionnaire.questionnaireId !== '') {
+            navigator.clipboard.writeText(text);
+            notify('Skopiowano link do schowka!', true);
+        } else notify('Musisz wybrać test z listy!', false);
+    };
+
     return (
-        <Grid container className={classes.root}>
-            <Grid item xs={3}>
-                Wybierz test do wygenerowania:
-            </Grid>
-            <Grid item xs={3}>
-                <Autocomplete
-                    id="combo-box"
-                    options={questionnaires}
-                    getOptionSelected={option => option}
-                    getOptionLabel={option => option.name}
-                    style={{width: 400}}
-                    onChange={handleChange}
-                    renderInput={params => (
-                        <TextField {...params} label="Twoje testy" variant="outlined" fullWidth/>
-                    )}
-                />
-            </Grid>
-            <Grid item xs={3}>
-                <Link to={{
-                    pathname: '/GeneratedTest',
-                    state: {
-                        toGenerate: questionnaire
-                    }
-                }}>
-                    <Button variant="contained" fullWidth color="primary">
-                        Generuj
+        <div>
+            <Grid container className={classes.root}>
+                <Grid item xs={3}>
+                    Wybierz test do wygenerowania:
+                </Grid>
+                <Grid item xs={3}>
+                    <Autocomplete
+                        id="combo-box"
+                        options={questionnaires}
+                        getOptionSelected={option => option}
+                        getOptionLabel={option => option.name}
+                        style={{width: 400}}
+                        onChange={handleChange}
+                        renderInput={params => (
+                            <TextField {...params} label="Twoje testy" variant="outlined" fullWidth/>
+                        )}
+                    />
+                </Grid>
+                <Grid item xs={2}>
+                    <Link to={{
+                        pathname: '/GeneratedTest',
+                        state: {
+                            toGenerate: questionnaire
+                        }
+                    }}>
+                        <Button variant="contained" fullWidth color="primary">
+                            Generuj
+                            {<link rel="stylesheet"
+                                   href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
+                            <Icon className={classes.rightIcon}>send</Icon>
+                        </Button>
+                    </Link>
+                </Grid>
+                <Grid item xs={2}>
+                    <Button variant="contained" fullWidth color="primary" onClick={handleClick}>
+                        Udostępnij test
                         {<link rel="stylesheet"
                                href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
                         <Icon className={classes.rightIcon}>send</Icon>
                     </Button>
-                </Link>
+                    <Notifications className={classes.notification}/>
+                </Grid>
             </Grid>
-        </Grid>
+        </div>
 
         /*<Table className={classes.table}>
             <TableHead>

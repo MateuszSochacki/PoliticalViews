@@ -7,6 +7,7 @@ import Login from "./components/user/Login";
 import SignUp from "./components/user/SignUp";
 import Questionnaire from "./components/Questionnaire";
 import GeneratedTest from "./components/GeneratedTest";
+import LinkedTest from "./components/LinkedTest";
 
 
 class Routes extends Component {
@@ -20,6 +21,7 @@ class Routes extends Component {
                 <Route path="/SignUp" component={SignUp}/>
                 <Route path="/Questionnaire" component={Questionnaire}/>
                 <Route path="/GeneratedTest" component={GeneratedTest}/>
+                <Route path="/LinkedTest" component={LinkedTest} />
             </Switch>
         );
     }

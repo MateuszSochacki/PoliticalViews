@@ -28,12 +28,20 @@ class Coordinates extends Component {
     }
 
     saveData() {
+        let userId = sessionStorage.getItem('id');
+        if(userId === null) userId = 0;
+
+        const coordinatesToSave = {
+            ...this.state,
+            userId
+        };
+
         fetch('http://localhost:8080/addCoordinates',
             {   headers: {
                     'Content-Type': 'application/json',
                 },
                 method: 'POST',
-                body: JSON.stringify(this.state)
+                body: JSON.stringify(coordinatesToSave)
             }).catch( err => console.error(err));
     }
 

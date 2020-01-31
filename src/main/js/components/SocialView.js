@@ -101,7 +101,7 @@ class SocialView extends Component {
                 stimAlcohol: false,
                 stimCannabis: false,
                 stimHard: false,
-                stimNicotine: false
+                sitmNicotine: false
             },
             coordinates: {
                 xAxis: 0,
@@ -152,11 +152,15 @@ class SocialView extends Component {
     }
 
     saveData() {
+
+        let userId = sessionStorage.getItem('id');
+        if(userId === null) userId = 0;
         const values = this.state.values;
         const checkboxes = this.state.checkboxes;
         const answers = {
             ...values,
-            ...checkboxes
+            ...checkboxes,
+            userId
         };
         fetch('http://localhost:8080/addSocialView',
             {

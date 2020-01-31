@@ -203,9 +203,12 @@ class Economy extends Component {
     }
 
     saveData() {
+        let userId = sessionStorage.getItem('id');
+        if(userId === null) userId = 0;
         const answers = {
             ...this.state.values,
-            ...this.state.checkboxes
+            ...this.state.checkboxes,
+            userId
         };
         fetch('http://localhost:8080/addEconomy',
             {

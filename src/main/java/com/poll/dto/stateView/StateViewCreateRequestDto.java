@@ -85,6 +85,8 @@ public final class StateViewCreateRequestDto {
     @NotEmpty
     private final Boolean religionReq;
 
+    private final Long userId;
+
     public static StateViewCreateRequestDto of(
             final String autonomy,
             final String zyzdem,
@@ -103,7 +105,8 @@ public final class StateViewCreateRequestDto {
             final Boolean languageIReq,
             final Boolean eduIReq,
             final Boolean ethnicityIReq,
-            final Boolean religionReq) {
+            final Boolean religionReq,
+            final Long userId) {
         return new StateViewCreateRequestDto(
                 autonomy,
                 zyzdem,
@@ -122,6 +125,7 @@ public final class StateViewCreateRequestDto {
                 languageIReq,
                 eduIReq,
                 ethnicityIReq,
-                religionReq);
+                religionReq,
+                userId);
     }
 }

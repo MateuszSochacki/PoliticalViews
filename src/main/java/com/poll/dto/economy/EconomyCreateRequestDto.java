@@ -88,6 +88,8 @@ public final class EconomyCreateRequestDto {
     @NotEmpty
     private final Boolean welfarePension;
 
+    private final Long userId;
+
     public static EconomyCreateRequestDto of(
             final String rich,
             final String corpTax,
@@ -107,7 +109,8 @@ public final class EconomyCreateRequestDto {
             final Boolean welfarePoverty,
             final Boolean welfareUnemployed,
             final Boolean welfareMin,
-            final Boolean welfarePension) {
+            final Boolean welfarePension,
+            final Long userId) {
         return new EconomyCreateRequestDto(
                 rich,
                 corpTax,
@@ -127,6 +130,7 @@ public final class EconomyCreateRequestDto {
                 welfarePoverty,
                 welfareUnemployed,
                 welfareMin,
-                welfarePension);
+                welfarePension,
+                userId);
     }
 }

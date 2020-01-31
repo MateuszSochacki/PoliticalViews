@@ -20,7 +20,9 @@ public final class CoordinatesRequestDto {
     @NotEmpty
     private final String social;
 
-    public static CoordinatesRequestDto of(final String economy, final String social) {
-        return new CoordinatesRequestDto(economy, social);
+    private final Long userId;
+
+    public static CoordinatesRequestDto of(final String economy, final String social, final Long userId) {
+        return new CoordinatesRequestDto(economy, social, userId);
     }
 }

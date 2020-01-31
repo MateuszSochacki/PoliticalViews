@@ -70,7 +70,9 @@ public final class SocialViewCreateRequestDto {
 
     @NotNull
     @NotEmpty
-    private final Boolean stimNicotine;
+    private final Boolean sitmNicotine;
+
+    private final Long userId;
 
     public static SocialViewCreateRequestDto of(
             final String religion,
@@ -87,7 +89,8 @@ public final class SocialViewCreateRequestDto {
             final Boolean stimAlcohol,
             final Boolean stimCannabis,
             final Boolean stimHard,
-            final Boolean stimNicotine) {
+            final Boolean sitmNicotine,
+            final Long userId) {
         return new SocialViewCreateRequestDto(
                 religion,
                 deathPenalty,
@@ -103,6 +106,7 @@ public final class SocialViewCreateRequestDto {
                 stimAlcohol,
                 stimCannabis,
                 stimHard,
-                stimNicotine);
+                sitmNicotine,
+                userId);
     }
 }

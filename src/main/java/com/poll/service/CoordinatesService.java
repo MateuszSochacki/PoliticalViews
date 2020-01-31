@@ -5,6 +5,7 @@ import com.poll.dto.coordinates.CoordinatesComputeRequestDto;
 import com.poll.dto.coordinates.CoordinatesRequestDto;
 import com.poll.mapper.CoordinatesMapper;
 import com.poll.repository.CoordinatesRepository;
+import com.poll.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,13 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class CoordinatesService {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private CoordinatesRepository coordinatesRepository;
 
     public IdDto add(CoordinatesRequestDto dto) {
 
         return IdDto.of(
                 coordinatesRepository.save(
-                        CoordinatesMapper.fromDto(dto)));
+                        CoordinatesMapper.fromDto(dto, userRepository.findUser(dto.getUserId()))));
     }
 
     public CoordinatesRequestDto compute(final CoordinatesComputeRequestDto dto) {
@@ -36,7 +40,8 @@ public class CoordinatesService {
 
         return CoordinatesRequestDto.of(
                 String.valueOf(economy),
-                String.valueOf(social)
+                String.valueOf(social),
+                null
         );
     }
 

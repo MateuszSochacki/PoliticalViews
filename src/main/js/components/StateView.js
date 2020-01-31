@@ -212,10 +212,13 @@ class StateView extends Component {
     }
 
     saveData() {
+        let userId = sessionStorage.getItem('id');
+        if(userId === null) userId = 0;
         const answers = {
             ...this.state.values,
             ...this.state.checkboxesClimate,
             ...this.state.checkboxesReq,
+            userId
         };
         fetch('http://localhost:8080/addStateView',
             {
