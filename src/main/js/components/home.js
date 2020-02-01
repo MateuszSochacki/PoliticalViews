@@ -4,7 +4,26 @@ import Button from '@material-ui/core/Button';
 import {Link, withRouter} from "react-router-dom";
 import 'typeface-roboto';
 import BrowseQuestionnaires from "./BrowseQuestionnaires";
+import AppBar from "@material-ui/core/AppBar/AppBar";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core";
 
+const styles = theme => ({
+    root: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        marginTop: theme.spacing.unit,
+        marginBottom: theme.spacing.unit,
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+});
 class Home extends React.Component {
 
     constructor(props) {
@@ -46,37 +65,57 @@ class Home extends React.Component {
             width: '100%'
         };
         let {isSigned} = this.state;
+        const {classes} = this.props;
 
         return (
-            <div style={style}>
-                <Typography variant="h3" align="center" gutterBottom>
-                    Zanalizuj swoje poglądy już teraz!<br/>
-                    <Link to="/Test">
-                        <Button variant="contained" color="primary" className="button">
-                            Rozpocznij test
-                        </Button>
-                    </Link>
-                    {isSigned && <div>
-                        <Button variant="contained" color="primary" className="button" onClick={this.logout}>
-                            Wyloguj się
-                        </Button>
-                        <Link to="/Questionnaire">
+            <div className={classes.root}>
+                <div>
+                    <AppBar position="static">
+                        <Toolbar>
+                            {isSigned && <div>
+                                <Button variant="contained" color="secondary" className="button" onClick={this.logout}>
+                                    Wyloguj się
+                                </Button>
+                            </div>}
+                            {!isSigned &&
+                            <Link to="/Login">
+                                <Button variant="contained" color="secondary" className="button">
+                                    Zaloguj się
+                                </Button><br/>
+                            </Link>}
+                        </Toolbar>
+                    </AppBar>
+                </div>
+                <div style={style}>
+                    <Typography variant="h3" align="center" gutterBottom>
+                    <br/>Zanalizuj swoje poglądy już teraz!<br/>
+                        <Typography variant="h5" align="center" gutterBottom>
+                            Witaj na platformie testów politycznych. Kliknij rozpocznij test, aby okrelić swoje
+                            preferencje polityczne,
+                            na tle największych polskich partii. Stwórz darmowe konto lub zaloguj się,
+                            aby móc dodać i wygenerować swój własny test, który możesz również przesyłać dalej.
+                        </Typography>
+                        <Link to="/Test">
                             <Button variant="contained" color="primary" className="button">
-                                Utwórz swój nowy test
-                            </Button>
-                        </Link><br/>
-                        <BrowseQuestionnaires questionnaires={this.state.questionnaires}/>
-                    </div>}
-                    {!isSigned &&
-                    <Link to="/Login">
-                        <Button variant="contained" color="primary" className="button">
-                            Zaloguj się
-                        </Button>
-                    </Link>}
-                </Typography>
+                                Rozpocznij test
+                            </Button><br/>
+                        </Link>
+                        {isSigned && <div>
+                            <Link to="/Questionnaire">
+                                <Button variant="contained" color="primary" className="button">
+                                    Utwórz swój nowy test
+                                </Button>
+                            </Link><br/>
+                            <BrowseQuestionnaires questionnaires={this.state.questionnaires}/>
+                        </div>}
+                    </Typography>
+                </div>
             </div>
         );
     }
 }
 
-export default withRouter(Home);
+Home.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(Home);

@@ -65,7 +65,7 @@ export default class Notifications extends React.Component {
 
     showNotification(msg, isSuccess) {
         this.setState({
-                top: 16,
+                top: 75,
                 msg,
                 isSuccess
             }, () => {

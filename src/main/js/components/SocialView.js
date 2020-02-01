@@ -15,15 +15,15 @@ function FormContainer(props) {
 
 function getQuestion(num) {
     const questions = ["Jak duży wpływ powinna mieć religia na władzę?",
-    "Jakie prawa oraz zasady powinny obejmować osoby płci żeńskiej w państwie?",
+    "Jakie prawa oraz zasady powinny obejmować osoby płci żeńskiej w państwie? (Możesz wybrać wiele odpowiedzi)",
     "Czy jesteś za stosowaniem kary śmierci, jeśli tak to w jakich okolicznościach?",
-    "Które z podanych substancji powinny być legalne na rynku handlowym?",
+    "Które z podanych substancji powinny być legalne na rynku handlowym? (Możesz wybrać wiele odpowiedzi)",
     "Jak duży zakres praw powinny mieć osoby innej orientacji niż heteroseksualna?",
     "W jakich przypadkach aborcja powinna być możliwa do wykonania?",
     "W jakich przypadkach eutanazja powinna być możliwa do wykonania?",
     "Jakie regulacje powinny obowiązywać w kwestii posiadania broni palnej?"];
 
-    return (questions[num]);
+    return (<Typography variant="h6" gutterBottom>{ questions[num] }</Typography>);
 }
 const answers = {
 

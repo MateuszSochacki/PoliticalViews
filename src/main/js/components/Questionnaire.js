@@ -8,6 +8,8 @@ import Notifications, {notify} from "./Notifications";
 import BrowseQuestions from "./BrowseQuestions";
 import Grid from "@material-ui/core/Grid/";
 import {Link} from "react-router-dom";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import AppBar from "@material-ui/core/AppBar/AppBar";
 
 const styles = theme => ({
     container: {
@@ -199,11 +201,15 @@ class Questionnaire extends React.Component {
 
         return (
             <div>
-                <Link to="/">
-                    <Button variant="contained" color="primary" className="button">
-                        Wróć
-                    </Button>
-                </Link>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Link to="/">
+                            <Button variant="contained" color="secondary" className="button">
+                                Wróć
+                            </Button>
+                        </Link>
+                    </Toolbar>
+                </AppBar>
                 <Grid container>
                     <Grid item>
                         <form className={classes.container} autoComplete="off" id="myForm">

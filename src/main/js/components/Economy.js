@@ -18,9 +18,10 @@ function getQuestion(num) {
         "Czy uważasz, że osoby bogate powinny zostać dodatkowo opodatkowane?",
         "Jaki typ opodatkowania od przedsiębiorstw powinien obowiązywać?",
         "Jak powinna funkcjonować płaca minimalna?",
-        "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę przed interesem zagranicznym?",
+        "Czy jakieś z tych opcji powinny zostać zastosowane, aby chronić polską gospodarkę przed interesem zagranicznym? " +
+        "(Możesz wybrać wiele odpowiedzi)",
         "Jaka część gruntów powinna należeć do państwa?",
-        "W jakich sytuacjach powinien być przyznawany zasiłek?",
+        "W jakich sytuacjach powinien być przyznawany zasiłek? (Możesz wybrać wiele odpowiedzi)",
         "Jaka powinna być rola państwa w sektorze edukacji?",
         "Jaka powinna być rola państwa w sektorze ochrony zdrowia?",
         "Czy w wolnym rynku potrzebne są ograniczenia przeciwko powstawaniu monopoli?",
@@ -28,7 +29,7 @@ function getQuestion(num) {
         "Czy popierasz wpływ związków zawodowych na prywatne przedsiębiorstwa?",
         "Jakie Twoim zdaniem powinna obowiązywać stawka podatku VAT?",
     ];
-    return (questions[num]);
+    return (<Typography variant="h6" gutterBottom>{ questions[num] }</Typography>);
 }
 
 const answers = {

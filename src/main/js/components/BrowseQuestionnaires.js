@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button/Button";
 import Autocomplete from "@material-ui/lab/Autocomplete/Autocomplete";
 import TextField from "@material-ui/core/TextField/TextField";
 import Grid from "@material-ui/core/Grid/Grid";
-import Icon from "@material-ui/core/Icon/Icon";
 import {Link} from "react-router-dom";
 import Notifications, {notify} from "./Notifications";
 
@@ -20,6 +19,9 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
+    button: {
+        marginLeft: theme.spacing.unit
+    }
 });
 
 function BrowseQuestionnaires(props) {
@@ -64,7 +66,7 @@ function BrowseQuestionnaires(props) {
                         )}
                     />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} className={classes.button}>
                     <Link to={{
                         pathname: '/GeneratedTest',
                         state: {
@@ -73,18 +75,12 @@ function BrowseQuestionnaires(props) {
                     }}>
                         <Button variant="contained" fullWidth color="primary">
                             Generuj
-                            {<link rel="stylesheet"
-                                   href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
-                            <Icon className={classes.rightIcon}>send</Icon>
                         </Button>
                     </Link>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} className={classes.button}>
                     <Button variant="contained" fullWidth color="primary" onClick={handleClick}>
                         Udostępnij test
-                        {<link rel="stylesheet"
-                               href="https://fonts.googleapis.com/icon?family=Material+Icons"/>}
-                        <Icon className={classes.rightIcon}>send</Icon>
                     </Button>
                     <Notifications className={classes.notification}/>
                 </Grid>

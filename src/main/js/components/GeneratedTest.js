@@ -9,6 +9,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import Radio from "@material-ui/core/Radio/Radio";
 import CustomChart from "./CustomChart";
 import {Link} from "react-router-dom";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import AppBar from "@material-ui/core/AppBar/AppBar";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core";
 
 function FormContainer(props) {
     return (
@@ -18,21 +22,33 @@ function FormContainer(props) {
     );
 }
 
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+});
+
 class GeneratedTest extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             questionnaire: {
-                questionnaireId:'',
-                name:'',
-                description:'',
-                questions:[]
+                questionnaireId: '',
+                name: '',
+                description: '',
+                questions: []
             },
             radioItems: {},
             response: {
-                economy : 2,
-                social : 2
+                economy: 2,
+                social: 2
             },
             responseState: false
         };
@@ -42,7 +58,7 @@ class GeneratedTest extends React.Component {
     }
 
     async componentDidMount() {
-        const { toGenerate } = this.props.location.state;
+        const {toGenerate} = this.props.location.state;
         const id = toGenerate.questionnaireId;
 
         const request = new Request('http://localhost:8080/findQuestionnaire?id='.concat(id), {
@@ -55,13 +71,13 @@ class GeneratedTest extends React.Component {
         const response = await fetch(request);
         const questionnaire = await response.json();
         const radioItems = {
-            'question0' : ''
+            'question0': ''
         };
         for (let i = 1; i < questionnaire.questions.length; ++i) {
             radioItems['question'.concat(i.toString())] = '';
         }
 
-        this.setState({ questionnaire, radioItems });
+        this.setState({questionnaire, radioItems});
     }
 
     handleChange(event) {
@@ -76,7 +92,7 @@ class GeneratedTest extends React.Component {
 
     async handleSubmit() {
 
-        const dto =  {answerValues: Object.values((this.state.radioItems))};
+        const dto = {answerValues: Object.values((this.state.radioItems))};
 
 
         const request = new Request('http://localhost:8080/computeCoordinates', {
@@ -96,62 +112,75 @@ class GeneratedTest extends React.Component {
     render() {
         const {name, description, questions} = this.state.questionnaire;
         const {responseState} = this.state;
+        const {classes} = this.props;
         let i = -1;
 
         return (
-            <div style={{
-                paddingTop: '20px'
-            }}>
-                <Link to="/">
-                    <Button variant="contained" color="primary" className="button">
-                        Wróć
-                    </Button>
-                </Link>
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="h6" className={classes.title}>
+                            {name}
+                        </Typography>
+                        <Link to="/">
+                            <Button variant="contained" color="secondary">
+                                Wróć
+                            </Button>
+                        </Link>
+                    </Toolbar>
+                </AppBar>
                 {responseState && <CustomChart xAxis={this.state.response.economy}
                                                yAxis={this.state.response.social}/>}
                 {!responseState &&
-                     <Typography align="center">
-                         <h2>{name}</h2><br/>
-                         <h3>{description}</h3>
-                         {questions.map(question => {
-                            ++i;
-                            return (
-                                <div>
-                                    <FormControl component="fieldset" required>
-                                        <FormContainer>
-                                            <FormLabel component="legend">{question.name}</FormLabel>
-                                            <RadioGroup
-                                                aria-label={'question'.concat(i.toString())}
-                                                name={'question'.concat(i.toString())}
-                                                value={this.state.radioItems['question'.concat(i.toString())]}
-                                                onChange={this.handleChange}
-                                                row={true}
-                                            >
-                                                <FormControlLabel value={this.assignValue(question.answers[0])}
-                                                                  control={<Radio/>}
-                                                                  label={question.answers[0].contents}/>
-                                                <FormControlLabel value={this.assignValue(question.answers[1])}
-                                                                  control={<Radio/>}
-                                                                  label={question.answers[1].contents}/>
-                                                <FormControlLabel value={this.assignValue(question.answers[2])}
-                                                                  control={<Radio/>}
-                                                                  label={question.answers[2].contents}/>
-                                                <FormControlLabel value={this.assignValue(question.answers[3])}
-                                                                  control={<Radio/>}
-                                                                  label={question.answers[3].contents}/>
-                                            </RadioGroup>
-                                        </FormContainer>
-                                    </FormControl><br/>
-                                </div>
-                            );
-                        })}
-                        <Button variant="contained" size="medium" color="secondary" onClick={this.handleSubmit}>
-                            Pokaż wyniki
-                        </Button>
-                    </Typography>
+                <Typography align="center">
+                    <h3>{description}</h3>
+                    {questions.map(question => {
+                        ++i;
+                        return (
+                            <div>
+                                <FormControl component="fieldset" required>
+                                    <FormContainer>
+                                        <FormLabel component="legend">
+                                            <Typography variant="h6" gutterBottom>
+                                                {question.name}
+                                            </Typography>
+                                        </FormLabel>
+                                        <RadioGroup
+                                            aria-label={'question'.concat(i.toString())}
+                                            name={'question'.concat(i.toString())}
+                                            value={this.state.radioItems['question'.concat(i.toString())]}
+                                            onChange={this.handleChange}
+                                            row={true}
+                                        >
+                                            <FormControlLabel value={this.assignValue(question.answers[0])}
+                                                              control={<Radio/>}
+                                                              label={question.answers[0].contents}/>
+                                            <FormControlLabel value={this.assignValue(question.answers[1])}
+                                                              control={<Radio/>}
+                                                              label={question.answers[1].contents}/>
+                                            <FormControlLabel value={this.assignValue(question.answers[2])}
+                                                              control={<Radio/>}
+                                                              label={question.answers[2].contents}/>
+                                            <FormControlLabel value={this.assignValue(question.answers[3])}
+                                                              control={<Radio/>}
+                                                              label={question.answers[3].contents}/>
+                                        </RadioGroup>
+                                    </FormContainer>
+                                </FormControl><br/>
+                            </div>
+                        );
+                    })}
+                    <Button variant="contained" size="medium" color="secondary" onClick={this.handleSubmit}>
+                        Pokaż wyniki
+                    </Button>
+                </Typography>
                 }
             </div>
         );
     }
 }
-export default GeneratedTest;
+
+GeneratedTest.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(GeneratedTest);

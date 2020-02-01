@@ -10,6 +10,10 @@ import Radio from "@material-ui/core/Radio/Radio";
 import CustomChart from "./CustomChart";
 import {Link} from "react-router-dom";
 import {withRouter} from "react-router";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import AppBar from "@material-ui/core/AppBar/AppBar";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core";
 
 function FormContainer(props) {
     return (
@@ -18,6 +22,18 @@ function FormContainer(props) {
         </Typography>
     );
 }
+
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+});
 
 class LinkedTest extends React.Component {
 
@@ -98,22 +114,27 @@ class LinkedTest extends React.Component {
     render() {
         const {name, description, questions} = this.state.questionnaire;
         const {responseState} = this.state;
+        const {classes} = this.props;
         let i = -1;
 
         return (
-            <div style={{
-                paddingTop: '20px'
-            }}>
-                <Link to="/">
-                    <Button variant="contained" color="primary" className="button">
-                        Wróć
-                    </Button>
-                </Link>
+            <div className={classes.root}>
+                <AppBar position="static" >
+                    <Toolbar>
+                        <Typography variant="h6" className={classes.title}>
+                            {name}
+                        </Typography>
+                        <Link to="/">
+                            <Button variant="contained" color="secondary">
+                                Wróć
+                            </Button>
+                        </Link>
+                    </Toolbar>
+                </AppBar>
                 {responseState && <CustomChart xAxis={this.state.response.economy}
                                                yAxis={this.state.response.social}/>}
                 {!responseState &&
                 <Typography align="center">
-                    <h2>{name}</h2><br/>
                     <h3>{description}</h3>
                     {questions.map(question => {
                         ++i;
@@ -121,7 +142,11 @@ class LinkedTest extends React.Component {
                             <div>
                                 <FormControl component="fieldset" required>
                                     <FormContainer>
-                                        <FormLabel component="legend">{question.name}</FormLabel>
+                                        <FormLabel component="legend">
+                                            <Typography variant="h6" gutterBottom>
+                                                {question.name}
+                                            </Typography>
+                                        </FormLabel>
                                         <RadioGroup
                                             aria-label={'question'.concat(i.toString())}
                                             name={'question'.concat(i.toString())}
@@ -156,4 +181,7 @@ class LinkedTest extends React.Component {
         );
     }
 }
-export default LinkedTest;
+LinkedTest.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(LinkedTest);

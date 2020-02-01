@@ -15,15 +15,16 @@ function FormContainer(props) {
 
 function getQuestion(num) {
     const questions = ["Które z podanych czynników wpływających na środowisko " +
-    "powinny być poddane państwowej regulacji?", "Którą z podanych form państwowych uważasz " +
+    "powinny być poddane państwowej regulacji? (Możesz wybrać wiele odpowiedzi)",
+        "Którą z podanych form państwowych uważasz " +
     "za najodpowiedniejszą?", "Jaki z podanych systemów sprawowania władzy popierasz?",
-    "Jakie wymagania powinna spełniać osoba chcąca głosować w wyborach?",
+    "Jakie wymagania powinna spełniać osoba chcąca głosować w wyborach? (Możesz wybrać wiele odpowiedzi)",
     "Czy popierasz obowiązkową służbę wojskową?", "Który z podanych typów " +
     "polityki zagranicznej popierasz (uwzględniając użycie armii)?",
-    "Jakie czynniki powinne być brane pod uwagę podczas przyjmowania imigrantów?",
+    "Jakie czynniki powinne być brane pod uwagę podczas przyjmowania imigrantów? (Możesz wybrać wiele odpowiedzi)",
     "Jakie powinny obowiązywać prawa imigranckie w porównaniu do rodowitych obywateli",
     "Jak powinna zostać rozwiązana kwestia mediów w państwie?"];
-    return (questions[num]);
+    return (<Typography variant="h6" gutterBottom>{ questions[num] }</Typography>);
 }
 
 const answers = {

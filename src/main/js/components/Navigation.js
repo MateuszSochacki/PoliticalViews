@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import {Tab, Tabs} from '@material-ui/core/';
+import {Tab, Tabs, withStyles} from '@material-ui/core/';
 import Economy from "./Economy";
 import Coordinates from "./Coordinates";
 import Forward from '@material-ui/icons/Forward';
@@ -9,7 +9,14 @@ import SocialView from "./SocialView";
 import StateView from "./StateView";
 import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography/";
+import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
+const styles = theme => ({
+    button: {
+        marginTop: theme.spacing.unit * 3
+    }
+});
 class Navigation extends Component {
 
     constructor(props) {
@@ -52,10 +59,11 @@ class Navigation extends Component {
 
     render() {
         const {value} = this.state;
+        const {classes} = this.props;
 
         return (
+
             <div id ='navigation' >
-                {/*<MuiThemeProvider>*/}
                 <AppBar position="fixed">
                     <Toolbar>
                         <Typography variant="h5" color="inherit">
@@ -89,9 +97,17 @@ class Navigation extends Component {
                         <Button variant="contained" size="medium" onClick={this.handleClick}>
                             Pokaż wyniki <Forward/>
                         </Button> :
-                            <Button variant="contained" size="medium" onClick={this.handleReturn}>
-                                Powtórz test <Forward/>
-                            </Button>
+                            <div>
+                                <Button variant="contained" size="medium" onClick={this.handleReturn}>
+                                    Powtórz test <Forward/>
+                                </Button><br/>
+                                <Link to="/">
+                                    <Button variant="contained" color="secondary" className={classes.button}>
+                                        Wróć
+                                    </Button>
+                                </Link>
+                            </div>
+
                     }
                 </Typography>
                 {/* </MuiThemeProvider>*/}
@@ -99,5 +115,7 @@ class Navigation extends Component {
         )
     }
 }
-
-export default Navigation;
+Navigation.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(Navigation);
