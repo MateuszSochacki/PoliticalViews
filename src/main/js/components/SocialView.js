@@ -231,7 +231,7 @@ class SocialView extends Component {
             }}>
                 <Typography align="center">
 
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(0)}</FormLabel>
                             {this.getRadioGroup(answers.set1, "religion", this.state.values.religion)}
@@ -247,13 +247,13 @@ class SocialView extends Component {
                             {this.getCheckboxForm("womenMaternity", answers.set2.ans5.text, this.state.womenMaternity)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(2)}</FormLabel>
                             {this.getRadioGroup(answers.set3, "deathPenalty", this.state.values.deathPenalty)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
                             {this.getCheckboxForm("stimAlcohol", answers.set4.ans1.text, this.state.stimAlcohol)}
@@ -262,25 +262,25 @@ class SocialView extends Component {
                             {this.getCheckboxForm("stimHard", answers.set4.ans4.text, this.state.stimHard)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(4)}</FormLabel>
                             {this.getRadioGroup(answers.set5, "orientation", this.state.values.orientation)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(5)}</FormLabel>
                             {this.getRadioGroup(answers.set6, "abortion", this.state.values.abortion)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(6)}</FormLabel>
                             {this.getRadioGroup(answers.set7, "euthanasia", this.state.values.euthanasia)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(7)}</FormLabel>
                             {this.getRadioGroup(answers.set8, "race", this.state.values.race)}

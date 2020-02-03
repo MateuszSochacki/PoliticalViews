@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class QuestionnaireResponseDto {
+public final class QuestionnaireResponseDto {
 
     @NotNull
     private final Long questionnaireId;

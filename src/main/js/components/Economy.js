@@ -270,31 +270,31 @@ class Economy extends Component {
                 paddingTop: '50px'
             }}>
                 <Typography align="center">
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(0)}</FormLabel>
                             {this.getRadioGroup(answers.set1, "incTax", this.state.values.incTax)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(1)}</FormLabel>
                             {this.getRadioGroup(answers.set2, "rich", this.state.values.rich)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(2)}</FormLabel>
                             {this.getRadioGroup(answers.set3, "corpTax", this.state.values.corpTax)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(3)}</FormLabel>
                             {this.getRadioGroup(answers.set4, "minWage", this.state.values.minWage)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(4)}</FormLabel>
                             {this.getCheckboxForm("protectTariffs", answers.set5.ans1.text, this.state.checkboxes.protectTariffs)}
@@ -303,13 +303,13 @@ class Economy extends Component {
                             {this.getCheckboxForm("exchangeRate", answers.set5.ans4.text, this.state.checkboxes.exchangeRate)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(5)}</FormLabel>
                             {this.getRadioGroup(answers.set6, "ground", this.state.values.ground)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(6)}</FormLabel>
                             {this.getCheckboxForm("welfarePoverty", answers.set7.ans1.text, this.state.checkboxes.welfarePoverty)}
@@ -318,37 +318,37 @@ class Economy extends Component {
                             {this.getCheckboxForm("welfarePension", answers.set7.ans4.text, this.state.checkboxes.welfarePension)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(7)}</FormLabel>
                             {this.getRadioGroup(answers.set8, "education", this.state.values.education)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(8)}</FormLabel>
                             {this.getRadioGroup(answers.set9, "healthcare", this.state.values.healthcare)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(9)}</FormLabel>
                             {this.getRadioGroup(answers.set10, "monopolies", this.state.values.monopolies)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(10)}</FormLabel>
                             {this.getRadioGroup(answers.set11, "retirenment", this.state.values.retirenment)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(11)}</FormLabel>
                             {this.getRadioPair(answers.set12, "tradeUnions", this.state.values.tradeUnions)}
                         </FormContainer>
                     </FormControl><br/>
-                    <FormControl component="fieldset" required>
+                    <FormControl component="fieldset" >
                         <FormContainer>
                             <FormLabel component="legend">{getQuestion(12)}</FormLabel>
                             {this.getRadioGroup(answers.set13, "vat", this.state.values.vat)}

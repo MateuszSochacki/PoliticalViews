@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class QuestionnairesResponseDto {
+public final class QuestionnairesResponseDto {
 
     @NotNull
     @Valid

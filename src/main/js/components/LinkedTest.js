@@ -73,10 +73,10 @@ class LinkedTest extends React.Component {
         const response = await fetch(request);
         const questionnaire = await response.json();
         const radioItems = {
-            'question0' : ''
+            'question0' : '0,0'
         };
         for (let i = 1; i < questionnaire.questions.length; ++i) {
-            radioItems['question'.concat(i.toString())] = '';
+            radioItems['question'.concat(i.toString())] = '0,0';
         }
 
         this.setState({ questionnaire, radioItems });
@@ -140,7 +140,7 @@ class LinkedTest extends React.Component {
                         ++i;
                         return (
                             <div>
-                                <FormControl component="fieldset" required>
+                                <FormControl component="fieldset" >
                                     <FormContainer>
                                         <FormLabel component="legend">
                                             <Typography variant="h6" gutterBottom>

@@ -12,11 +12,11 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class CoordinatesComputeRequestDto {
+public final class CoordinatesComputeRequestDto {
 
     @NotNull
     @Valid
-    List<String> answerValues;
+    final private List<String> answerValues;
 
     public static CoordinatesComputeRequestDto of(final List<String> answerValues) {
         return new CoordinatesComputeRequestDto(answerValues);
