@@ -9,7 +9,7 @@ Take a test to determine your political views and find party that matches your b
   * [Hibernate](https://hibernate.org) - Object-relational mapping framework
   * [Lombok](https://projectlombok.org/) - External library to cleanup the code
 * [MySql](https://www.mysql.com/) - Database
-* [React](https://reactjs.org/) - Frontend
+* [React](https://reactjs.org/), [webpack](https://webpack.js.org/) - Frontend
 
 ## Functionality
  - taking a predefined test and obtaining chart showing one's views on a political spectrum
